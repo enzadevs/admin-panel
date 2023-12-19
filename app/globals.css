@@ -38,9 +38,9 @@ body{
 }
 
 .icons-wrapper{
-    background-color: var(--zinc-300);
     border: none;
     border-radius: 50%;
+    cursor: pointer;
     height: 40px;
     width: 40px;
 }

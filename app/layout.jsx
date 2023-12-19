@@ -22,7 +22,7 @@ export default function RootLayout({children}){
         <html className={exo2.className}>
             <body className='bg-white flex flex-col min-h-screen'>
                 <TopProgressBar/>
-                <main className=''>
+                <main>
                     <NavBar/>
                     {children}
                     <SpeedInsights/>
