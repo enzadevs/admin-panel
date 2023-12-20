@@ -1,7 +1,9 @@
+
+
 export default function HomePage(){
     return(
-        <div>
-            Root Page
+        <div className='px-4'>
+            HomePage
         </div>
     )
 }

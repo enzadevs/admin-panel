@@ -1,7 +1,6 @@
 import './globals.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import TopProgressBar from 'components/Functions/TopProgressBar'
-import NavBar from 'components/Navigation/NavBar/NavBar'
 
 export const metadata = {
     title: 'Admin Panel',
@@ -22,11 +21,8 @@ export default function RootLayout({children}){
         <html className={exo2.className}>
             <body className='bg-white flex flex-col min-h-screen'>
                 <TopProgressBar/>
-                <main>
-                    <NavBar/>
-                    {children}
-                    <SpeedInsights/>
-                </main>
+                {children}
+                <SpeedInsights/>
             </body>
         </html>
     )
