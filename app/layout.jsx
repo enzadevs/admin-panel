@@ -18,7 +18,7 @@ const exo2 = Exo_2({
 
 export default function RootLayout({children}){
     return(
-        <html className={exo2.className}>
+        <html className={exo2.className} suppressHydrationWarning>
             <body className='bg-white flex flex-col min-h-screen'>
                 <TopProgressBar/>
                 {children}

@@ -2,7 +2,6 @@ import {RiMenuUnfoldFill} from 'react-icons/ri'
 import NavSearchBox from './NavSearchBox'
 import ChatDashboard from './ChatDashboard'
 import Notifications from './Notifications'
-import ThemeSwitcher from './ThemeSwitcher'
 import ProfileDashboard from './ProfileDashboard'
 
 export default function NavBar(){
@@ -12,8 +11,7 @@ export default function NavBar(){
                 <RiMenuUnfoldFill className='icons'/>
             </label>
             <NavSearchBox/>
-            <span className='flex-row-center gap-2 ml-auto h-10  w-[288px]'>
-                <ThemeSwitcher/>
+            <span className='flex-row-center gap-2 ml-auto h-10  w-fit'>
                 <ChatDashboard/>
                 <Notifications/>
                 <ProfileDashboard/>
