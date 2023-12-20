@@ -7,10 +7,10 @@ import Link from 'next/link'
 export default function SideBarMenu(){
     return(
         <div className='flex flex-col gap-2 px-4 mt-2'>
-            <span className='flex-row-center gap-2 px-2 h-10 w-full'>
+            <Link href='manage' className='border-b border-light rounded-lg flex-row-center gap-2 transition hover:bg-calm-600 hover:text-white px-2 h-10 w-full'>
                 <IoStorefrontOutline className='icons'/>
-                <p className='font-semibold'>Панель управления</p>
-            </span>
+                <p>Панель управления</p>
+            </Link>
             <Link href='/analytics' className='border-b border-light rounded-lg flex-row-center gap-2 transition hover:bg-calm-600 hover:text-white px-2 h-10 w-full'>
                 <PiChartLineUp className='icons'/>
                 <p>Аналитика</p>
