@@ -1,98 +1,55 @@
-import {IoIosArrowRoundUp} from 'react-icons/io'
-import {PiUsersThreeLight} from 'react-icons/pi'
+import {PiUsersThreeLight,PiShoppingCartLight} from 'react-icons/pi'
+import {TbReportMoney,TbDatabaseDollar} from 'react-icons/tb'
 
-export default function ShortSum(){
+export default async function ShortSum(){
     return(
-        <div className='flex-row-center'>
-            <div className='bg-calm-50 border border-calm-400 rounded-lg flex-row-center h-32 w-80'>
-                <span className='border-r border-light flex-[50%] flex flex-col h-full'>
-                    <span className='center flex-[50%]'>
-                        <p className='text-xl font-semibold'>12,575</p>
+        <div className='flex flex-col gap-4 mt-2'>
+            <h1 className='text-xl font-bold '>Сегодня :</h1>
+            <div className='flex-row-center gap-8'>
+                <div className='bg-calm-50 shadow-sm border border-light rounded-lg flex-row-center transition flex-[25%] max-w-[25%] hover:border-calm-400 h-32'>
+                    <div className='flex flex-col flex-[70%] h-full max-w-[70%]'>
+                        <p className='border-b border-light flex items-center text-gray-600 pl-2 h-10'>Посетители :</p>
+                        <span className='center grow'>
+                            <p className='text-2xl'>152.450</p>
+                        </span>
+                    </div>
+                    <span className='border-l border-light center flex-[30%] h-full max-w-[30%]'>
+                        <PiUsersThreeLight className='h-12 w-12'/>
                     </span>
-                    <span className='text-gray-500 center flex-[50%]'>
-                        <h2>Посетители</h2>
-                        <PiUsersThreeLight className='ml-2 icons'/>
+                </div>
+                <div className='bg-calm-50 shadow-sm border border-light rounded-lg flex-row-center transition flex-[25%] max-w-[25%] hover:border-calm-400 h-32'>
+                    <div className='flex flex-col flex-[70%] h-full max-w-[70%]'>
+                        <p className='border-b border-light flex items-center text-gray-600 pl-2 h-10'>Заказы :</p>
+                        <span className='center grow'>
+                            <p className='text-2xl'>48</p>
+                        </span>
+                    </div>
+                    <span className='border-l border-light center flex-[30%] h-full max-w-[30%]'>
+                        <PiShoppingCartLight className='h-12 w-12'/>
                     </span>
-                </span>
-                <span className='center flex-[50%] h-full'>
-                    <IoIosArrowRoundUp className='text-green-500 h-8 w-8'/>
-                    <p className='text-green-500 text-xl'>12.5%</p>
-                </span>
-            </div>
-            <div className='bg-calm-50 border border-calm-400 rounded-lg flex-row-center h-32 w-80'>
-                <span className='border-r border-light flex-[50%] flex flex-col h-full'>
-                    <span className='center flex-[50%]'>
-                        <p className='text-xl font-semibold'>12,575</p>
+                </div>
+                <div className='bg-calm-50 shadow-sm border border-light rounded-lg flex-row-center transition flex-[25%] max-w-[25%] hover:border-calm-400 h-32'>
+                    <div className='flex flex-col flex-[70%] h-full max-w-[70%]'>
+                        <p className='border-b border-light flex items-center text-gray-600 pl-2 h-10'>Сумма заказов :</p>
+                        <span className='center grow'>
+                            <p className='text-2xl'>45120 ман.</p>
+                        </span>
+                    </div>
+                    <span className='border-l border-light center flex-[30%] h-full max-w-[30%]'>
+                        <TbDatabaseDollar className='h-12 w-12'/>
                     </span>
-                    <span className='text-gray-500 center flex-[50%]'>
-                        <h2>Посетители</h2>
-                        <PiUsersThreeLight className='ml-2 icons'/>
+                </div>
+                <div className='bg-calm-50 shadow-sm border border-light rounded-lg flex-row-center transition flex-[25%] max-w-[25%] hover:border-calm-400 h-32'>
+                    <div className='flex flex-col flex-[70%] h-full max-w-[70%]'>
+                        <p className='border-b border-light flex items-center text-gray-600 pl-2 h-10'>Выгода :</p>
+                        <span className='center grow'>
+                            <p className='text-2xl'>2675 ман.</p>
+                        </span>
+                    </div>
+                    <span className='border-l border-light center flex-[30%] h-full max-w-[30%]'>
+                        <TbReportMoney className='h-12 w-12'/>
                     </span>
-                </span>
-                <span className='center flex-[50%] h-full'>
-                    <IoIosArrowRoundUp className='text-green-500 h-8 w-8'/>
-                    <p className='text-green-500 text-xl'>12.5%</p>
-                </span>
-            </div>
-            <div className='bg-calm-50 border border-calm-400 rounded-lg flex-row-center h-32 w-80'>
-                <span className='border-r border-light flex-[50%] flex flex-col h-full'>
-                    <span className='center flex-[50%]'>
-                        <p className='text-xl font-semibold'>12,575</p>
-                    </span>
-                    <span className='text-gray-500 center flex-[50%]'>
-                        <h2>Пользователи</h2>
-                        <PiUsersThreeLight className='ml-2 icons'/>
-                    </span>
-                </span>
-                <span className='center flex-[50%] h-full'>
-                    <IoIosArrowRoundUp className='text-green-500 h-8 w-8'/>
-                    <p className='text-green-500 text-xl'>12.5%</p>
-                </span>
-            </div>
-            <div className='bg-calm-50 border border-calm-400 rounded-lg flex-row-center h-32 w-80'>
-                <span className='border-r border-light flex-[50%] flex flex-col h-full'>
-                    <span className='center flex-[50%]'>
-                        <p className='text-xl font-semibold'>12,575</p>
-                    </span>
-                    <span className='text-gray-500 center flex-[50%]'>
-                        <h2>Заказы</h2>
-                        <PiUsersThreeLight className='ml-2 icons'/>
-                    </span>
-                </span>
-                <span className='center flex-[50%] h-full'>
-                    <IoIosArrowRoundUp className='text-green-500 h-8 w-8'/>
-                    <p className='text-green-500 text-xl'>12.5%</p>
-                </span>
-            </div>
-            <div className='bg-calm-50 border border-calm-400 rounded-lg flex-row-center h-32 w-80'>
-                <span className='border-r border-light flex-[50%] flex flex-col h-full'>
-                    <span className='center flex-[50%]'>
-                        <p className='text-xl font-semibold'>12,575</p>
-                    </span>
-                    <span className='text-gray-500 center flex-[50%]'>
-                        <h2>Продажи</h2>
-                        <PiUsersThreeLight className='ml-2 icons'/>
-                    </span>
-                </span>
-                <span className='center flex-[50%] h-full'>
-                    <IoIosArrowRoundUp className='text-green-500 h-8 w-8'/>
-                    <p className='text-green-500 text-xl'>12.5%</p>
-                </span>
-            </div>
-            <div className='bg-calm-50 border border-calm-400 rounded-lg flex-row-center h-32 w-80'>
-                <span className='border-r border-light flex-[50%] flex flex-col h-full'>
-                    <span className='center flex-[50%]'>
-                        <p className='text-xl font-semibold'>12,575</p>
-                    </span>
-                    <span className='text-gray-500 center flex-[50%]'>
-                        <h2>Прибыль</h2>
-                        <PiUsersThreeLight className='ml-2 icons'/>
-                    </span>
-                </span>
-                <span className='center flex-[50%] h-full'>
-                    <IoIosArrowRoundUp className='text-green-500 h-8 w-8'/>
-                    <p className='text-green-500 text-xl'>12.5%</p>
-                </span>
+                </div>
             </div>
         </div>
     )
