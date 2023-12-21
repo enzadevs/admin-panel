@@ -1,6 +1,7 @@
 import BrandLogo from '../NavBar/BrandLogo'
 import SideBarMenu from './SideBarMenu'
 import NavBar from 'components/Navigation/NavBar/NavBar'
+import Footer from '../Footer/Footer'
 
 export default function SideBar({children}){
     return(
@@ -17,6 +18,7 @@ export default function SideBar({children}){
                 <div className='flex flex-col'>
                     <NavBar/>
                     {children}
+                    <Footer/>
                 </div>
             </div> 
         </div>
