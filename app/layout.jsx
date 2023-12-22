@@ -1,5 +1,4 @@
 import './globals.css'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import TopProgressBar from 'components/Functions/TopProgressBar'
 
 export const metadata = {
@@ -22,7 +21,6 @@ export default function RootLayout({children}){
             <body className='bg-white flex flex-col min-h-screen'>
                 <TopProgressBar/>
                 {children}
-                <SpeedInsights/>
             </body>
         </html>
     )
