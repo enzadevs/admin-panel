@@ -35,7 +35,8 @@ export default function UsersCount(){
                             alt='map of turkmenistan'
                             className='object-contain'
                             fill
-                            sizes='100vw'
+                            sizes='(100vw)'
+                            priority='true'
                         >
                         </Image>
                     </span>

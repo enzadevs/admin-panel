@@ -5,7 +5,7 @@ import BestProductsTable from 'components/Containers/Charts/BestProductsTable'
 
 export default function HomePage(){
     return(
-        <div className='flex flex-col gap-4 px-4 mb-24'>
+        <div className='flex flex-col gap-4 px-4 mb-12'>
             <ShortSum/>
             <SalesAndRevenue/>
             <UsersCount/>

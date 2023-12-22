@@ -1,28 +1,9 @@
 'use client'
 
-import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import {AgGridReact} from 'ag-grid-react'
-import 'ag-grid-community/styles/ag-grid.css'
-import 'ag-grid-community/styles/ag-theme-quartz.min.css'
 const DeviceTypeDonut = dynamic(() => import('react-apexcharts'), {ssr: false})
 
 export default function BestProductsTable(){
-    const [rowData, setRowData] = useState([
-        {имяПродукта: 'Ручка',продано: 3507,прибыль: 2300,суммаПродаж: 22130,цена: 150,наСкладе: 158},
-        {имяПродукта: 'Ручка',продано: 3507,прибыль: 2300,суммаПродаж: 22130,цена: 150,наСкладе: 158},
-        {имяПродукта: 'Ручка',продано: 3507,прибыль: 2300,суммаПродаж: 22130,цена: 150,наСкладе: 158},
-        {имяПродукта: 'Ручка',продано: 3507,прибыль: 2300,суммаПродаж: 22130,цена: 150,наСкладе: 158},
-        {имяПродукта: 'Ручка',продано: 3507,прибыль: 2300,суммаПродаж: 22130,цена: 150,наСкладе: 158}
-    ])
-    const [colDefs, setColDefs] = useState([
-        {field: 'имяПродукта'},
-        {field: 'продано'},
-        {field: 'прибыль'},
-        {field: 'суммаПродаж'},
-        {field: 'цена'},
-        {field: 'наСкладе'}
-    ])
     const cities = {
         chart: {
             id: 'current-week-revenue'
@@ -46,8 +27,76 @@ export default function BestProductsTable(){
                     <span className='flex-row-center items-center gap-2 pl-4 h-10'>
                         <p className='text-calm-600 font-bold'>Самые популярные товары</p>
                     </span>
-                    <div className='ag-theme-quartz' style={{height: '80%'}}>
-                        <AgGridReact rowData={rowData} columnDefs={colDefs} />
+                    <div className='overflow-x-auto'>
+                        <table className='table'>
+                            <thead>
+                                <tr className='text-center'>
+                                    <th>#</th>
+                                    <th>Имя</th>
+                                    <th>Цена</th>
+                                    <th>Сумма продаж</th>
+                                    <th>Прибыль</th>
+                                    <th>Продано (кол.)</th>
+                                    <th>На складе</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className='cursor-pointer transition hover:bg-calm-200 text-center'>
+                                    <th>1</th>
+                                    <td className='max-w-[300px]'>Nike Air Max Кроссовки </td>
+                                    <td>349</td>
+                                    <td>25670</td>
+                                    <td>4450</td>
+                                    <td>80</td>
+                                    <td>120</td>
+                                </tr>
+                                <tr className='cursor-pointer transition hover:bg-calm-200 text-center'>
+                                    <th>2</th>
+                                    <td className='max-w-[300px]'>Nike Air Max Кроссовки </td>
+                                    <td>349</td>
+                                    <td>25670</td>
+                                    <td>4450</td>
+                                    <td>80</td>
+                                    <td>120</td>
+                                </tr>
+                                <tr className='cursor-pointer transition hover:bg-calm-200 text-center'>
+                                    <th>3</th>
+                                    <td className='max-w-[300px]'>Nike Air Max Кроссовки </td>
+                                    <td>349</td>
+                                    <td>25670</td>
+                                    <td>4450</td>
+                                    <td>80</td>
+                                    <td>120</td>
+                                </tr>
+                                <tr className='cursor-pointer transition hover:bg-calm-200 text-center'>
+                                    <th>4</th>
+                                    <td className='max-w-[300px]'>Nike Air Max Кроссовки </td>
+                                    <td>349</td>
+                                    <td>25670</td>
+                                    <td>4450</td>
+                                    <td>80</td>
+                                    <td>120</td>
+                                </tr>
+                                <tr className='cursor-pointer transition hover:bg-calm-200 text-center'>
+                                    <th>5</th>
+                                    <td className='max-w-[300px]'>Nike Air Max Кроссовки </td>
+                                    <td>349</td>
+                                    <td>25670</td>
+                                    <td>4450</td>
+                                    <td>80</td>
+                                    <td>120</td>
+                                </tr>
+                                <tr className='cursor-pointer transition hover:bg-calm-200 text-center'>
+                                    <th>6</th>
+                                    <td className='max-w-[300px]'>Nike Air Max Кроссовки </td>
+                                    <td>349</td>
+                                    <td>25670</td>
+                                    <td>4450</td>
+                                    <td>80</td>
+                                    <td>120</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div className='bg-calm-50 border rounded-lg shadow-md flex flex-col gap-2 flex-[30%] transition hover:border-calm-400 px-2 h-full max-w-[30%]'>

@@ -17,7 +17,9 @@ export default function SideBar({children}){
             <div className='drawer-content'>
                 <div className='flex flex-col'>
                     <NavBar/>
-                    {children}
+                    <div className='min-h-screen'>
+                        {children}
+                    </div>
                     <Footer/>
                 </div>
             </div> 

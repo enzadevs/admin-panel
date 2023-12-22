@@ -12,7 +12,6 @@
     "@plaiceholder/next": "^3.0.0",
     "@prisma/client": "^5.7.1",
     "@vercel/speed-insights": "^1.0.2",
-    "ag-grid-react": "^31.0.1",
     "apexcharts": "^3.45.0",
     "formik": "^2.4.5",
     "next": "14.0.4",

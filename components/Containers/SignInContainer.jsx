@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import {useRouter} from 'next/navigation'
 import {PiUserCircleLight} from 'react-icons/pi'
 import {SlLock} from 'react-icons/sl'
 
@@ -8,7 +8,11 @@ export default function SignInContainer(){
     const router = useRouter()
 
     return(
-        <div className='bg-calm-50 border border-light rounded-lg flex flex-col items-center gap-4 p-4 h-[25%] max-h-[50%] w-96'>
+        <div className='bg-calm-50 border border-light rounded-lg flex flex-col items-center gap-4 p-4 h-fit max-h-[50%] w-96'>
+            <div className='cursor-default flex-row-center justify-center gap-2 h-14'>
+                <span className='bg-calm-800 rounded-lg text-white center text-xl font-bold h-10 w-10'>N</span>
+                <p className='text-calm-800 text-xl font-bold'>Admin Tool</p>
+            </div>
             <h1 className='text-xl font-bold'>Добро пожаловать!</h1>
             <div className='relative h-10 w-full'>
                 <input
