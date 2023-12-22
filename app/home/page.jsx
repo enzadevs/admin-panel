@@ -1,3 +1,7 @@
+export const metadata = {
+    title: 'Главная страница'
+}
+
 import ShortSum from 'components/Containers/ShortSum'
 import SalesAndRevenue from 'components/Containers/Charts/SalesAndRevenue'
 import UsersCount from 'components/Containers/Charts/UsersCount'
