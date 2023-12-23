@@ -30,7 +30,7 @@ export default function BestProductsTable(){
                     <div className='overflow-x-auto'>
                         <table className='table'>
                             <thead>
-                                <tr className='text-center'>
+                                <tr className='border-b border-light text-center'>
                                     <th>#</th>
                                     <th>Имя</th>
                                     <th>Цена</th>
@@ -41,7 +41,7 @@ export default function BestProductsTable(){
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className='cursor-pointer transition hover:bg-calm-200 text-center'>
+                                <tr className='border-b border-light cursor-pointer transition hover:bg-calm-200 text-center'>
                                     <th>1</th>
                                     <td className='max-w-[300px]'>Nike Air Max Кроссовки </td>
                                     <td>349</td>
@@ -50,7 +50,7 @@ export default function BestProductsTable(){
                                     <td>80</td>
                                     <td>120</td>
                                 </tr>
-                                <tr className='cursor-pointer transition hover:bg-calm-200 text-center'>
+                                <tr className='border-b border-light cursor-pointer transition hover:bg-calm-200 text-center'>
                                     <th>2</th>
                                     <td className='max-w-[300px]'>Nike Air Max Кроссовки </td>
                                     <td>349</td>
@@ -59,7 +59,7 @@ export default function BestProductsTable(){
                                     <td>80</td>
                                     <td>120</td>
                                 </tr>
-                                <tr className='cursor-pointer transition hover:bg-calm-200 text-center'>
+                                <tr className='border-b border-light cursor-pointer transition hover:bg-calm-200 text-center'>
                                     <th>3</th>
                                     <td className='max-w-[300px]'>Nike Air Max Кроссовки </td>
                                     <td>349</td>
@@ -68,7 +68,7 @@ export default function BestProductsTable(){
                                     <td>80</td>
                                     <td>120</td>
                                 </tr>
-                                <tr className='cursor-pointer transition hover:bg-calm-200 text-center'>
+                                <tr className='border-b border-light cursor-pointer transition hover:bg-calm-200 text-center'>
                                     <th>4</th>
                                     <td className='max-w-[300px]'>Nike Air Max Кроссовки </td>
                                     <td>349</td>
@@ -77,7 +77,7 @@ export default function BestProductsTable(){
                                     <td>80</td>
                                     <td>120</td>
                                 </tr>
-                                <tr className='cursor-pointer transition hover:bg-calm-200 text-center'>
+                                <tr className='border-b border-light cursor-pointer transition hover:bg-calm-200 text-center'>
                                     <th>5</th>
                                     <td className='max-w-[300px]'>Nike Air Max Кроссовки </td>
                                     <td>349</td>
@@ -86,7 +86,7 @@ export default function BestProductsTable(){
                                     <td>80</td>
                                     <td>120</td>
                                 </tr>
-                                <tr className='cursor-pointer transition hover:bg-calm-200 text-center'>
+                                <tr className='border-b border-light cursor-pointer transition hover:bg-calm-200 text-center'>
                                     <th>6</th>
                                     <td className='max-w-[300px]'>Nike Air Max Кроссовки </td>
                                     <td>349</td>
