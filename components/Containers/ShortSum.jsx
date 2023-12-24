@@ -3,7 +3,7 @@ import {TbReportMoney,TbDatabaseDollar} from 'react-icons/tb'
 
 export default async function ShortSum(){
     return(
-        <div className='flex flex-col gap-4 mt-2'>
+        <div className='flex flex-col gap-4'>
             <h1 className='text-xl font-bold '>Сегодня :</h1>
             <div className='flex-row-center gap-8'>
                 <div className='bg-calm-50 shadow-sm border border-light rounded-lg flex-row-center transition flex-[25%] max-w-[25%] hover:border-calm-400 h-32'>

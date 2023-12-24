@@ -10,7 +10,7 @@ import {AiOutlineNotification} from 'react-icons/ai'
 
 export default function ManagementPage(){
     return(
-        <div className='flex flex-col gap-4 mt-2 px-4'>
+        <div className='flex flex-col gap-4 p-4'>
             <h1 className='text-xl font-bold'>Панель Управления</h1>
             <div className='grid grid-cols-4 gap-8'>
                 <Link href='/home/products' className='bg-calm-50 cursor-pointer shadow-sm border border-light rounded-lg flex-row-center transition hover:border-calm-400 h-32 w-full'>

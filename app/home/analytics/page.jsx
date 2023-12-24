@@ -65,7 +65,7 @@ export default function AnalyticsPage(){
     }
 
     return(
-        <div className='flex flex-col gap-4 mt-2 px-4'>
+        <div className='flex flex-col gap-4 p-4'>
             <h1 className='text-xl font-bold'>Аналитика</h1>
             <div className='h-auto w-full'>
                 <Tab.Group>

@@ -9,7 +9,7 @@ export default function SideBar({children}){
             <input id='my-drawer-2' type='checkbox' className='drawer-toggle'/>
             <div className='drawer-side z-[2]'>
                 <label htmlFor='my-drawer-2' aria-label='close sidebar' className='drawer-overlay'></label> 
-                <div className='bg-calm-100 min-h-full w-72'>
+                <div className='bg-calm-50 min-h-full w-72'>
                     <BrandLogo/>
                     <SideBarMenu/>
                 </div>
