@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import {TbDeviceDesktopPlus} from 'react-icons/tb'
-import AdsTable from 'components/Containers/AdsTable/AdsTable'
 
 export default function AdsPage(){
     return(
@@ -11,7 +10,7 @@ export default function AdsPage(){
             </Link>
             <div className='flex flex-col'>
                 <div className='bg-calm-50'>
-                    <AdsTable/>
+                    Table Data Goes Here
                 </div>
             </div>
         </>
