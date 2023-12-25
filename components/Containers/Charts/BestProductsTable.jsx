@@ -4,9 +4,9 @@ import dynamic from 'next/dynamic'
 const DeviceTypeDonut = dynamic(() => import('react-apexcharts'), {ssr: false})
 
 export default function BestProductsTable(){
-    const cities = {
+    const devices = {
         chart: {
-            id: 'current-week-revenue'
+            id: 'devices-week-count'
         },
         xaxis: {
             categories: ['Телефон','Компютер','Планшет','Неизвестно']
@@ -105,7 +105,7 @@ export default function BestProductsTable(){
                     </span>
                     <DeviceTypeDonut
                         type='bar' 
-                        options={cities} 
+                        options={devices} 
                         series={deviceType}
                         height={'85%'}
                         width={'100%'}

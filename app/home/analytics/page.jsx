@@ -1,101 +1,75 @@
 'use client'
 
-import { useState } from 'react'
-import { Tab } from '@headlessui/react'
+import dynamic from 'next/dynamic'
+const YearChart = dynamic(() => import('react-apexcharts'), {ssr: false})
+const YearlyVisitorsChart = dynamic(() => import('react-apexcharts'), {ssr: false})
 
 export default function AnalyticsPage(){
-    const monthsArray = [
+    const tewelveMonths = {
+        chart: {
+            id: 'month-revenue'
+        },
+        xaxis: {
+            categories: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
+        }
+    }
+    const monthSeries = [
         {
-            id: 0,
-            monthName: 'Январь'
+            name: 'Сумма продаж',
+            data: [39, 7301, 389, 5620, 7819, 1222, 3219, 5501, 1386, 2764, 545, 7010],
+            color: '#3277AB'
         },
         {
-            id: 1,
-            monthName: 'Февраль'
-        },
-        {
-            id: 2,
-            monthName: 'Март'
-        },
-        {
-            id: 3,
-            monthName: 'Апрель'
-        },
-        {
-            id: 4,
-            monthName: 'Май'
-        },
-        {
-            id: 5,
-            monthName: 'Июнь'
-        },
-        {
-            id: 6,
-            monthName: 'Июль'
-        },
-        {
-            id: 7,
-            monthName: 'Август'
-        },
-        {
-            id: 8,
-            monthName: 'Сентябрь'
-        },
-        {
-            id: 9,
-            monthName: 'Октябрь'
-        },
-        {
-            id: 10,
-            monthName: 'Ноябрь'
-        },
-        {
-            id: 11,
-            monthName: 'Декабрь'
+            name: 'Прибыль',
+            data: [277, 804, 954, 929, 808, 732, 75, 569, 983, 353, 93, 993],
+            color: '#22c55e'
         }
     ]
-    const [num, setNum] = useState(0)
 
-    function randomNumberInRange(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min
+    const yearlyVisitors = {
+        chart: {
+            id: 'yearly-visitors'
+        },
+        xaxis: {
+            categories: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
+        }
     }
-
-    const handleClick = () => {
-        setNum(randomNumberInRange(1, 1000))
-    }
+    const visitorsCount = [
+        {
+            name: 'Количество посетителей',
+            data: [478, 452, 711, 77, 631, 913, 634, 116, 961, 142, 234, 531],
+            color: '#7e22ce'
+        }
+    ]
 
     return(
-        <div className='flex flex-col gap-4 p-4'>
-            <h1 className='text-xl font-bold'>Аналитика</h1>
-            <div className='h-auto w-full'>
-                <Tab.Group>
-                    <Tab.List className='border-b border-light flex-row-center items-center justify-between pb-4 h-fit'>
-                        {monthsArray.map(item => {
-                            return(
-                                <Tab 
-                                    key={item.id} 
-                                    className='bg-calm-50 rounded-lg transition outline-none hover:bg-calm-500 hover:text-white px-4 h-10 w-fit'
-                                    >
-                                        {item.monthName}
-                                </Tab>
-                            )
-                        })}
-                    </Tab.List>
-                    <Tab.Panels className='bg-calm-50 rounded-lg mt-4 px-2 min-h-[80vh]'>
-                        <Tab.Panel>Content 1</Tab.Panel>
-                        <Tab.Panel>Content 2</Tab.Panel>
-                        <Tab.Panel>Content 3</Tab.Panel>
-                        <Tab.Panel>Content 4</Tab.Panel>
-                        <Tab.Panel>Content 5</Tab.Panel>
-                        <Tab.Panel>Content 6</Tab.Panel>
-                        <Tab.Panel>Content 7</Tab.Panel>
-                        <Tab.Panel>Content 8</Tab.Panel>
-                        <Tab.Panel>Content 9</Tab.Panel>
-                        <Tab.Panel>Content 10</Tab.Panel>
-                        <Tab.Panel>Content 11</Tab.Panel>
-                        <Tab.Panel>Content 12</Tab.Panel>
-                    </Tab.Panels>
-                </Tab.Group>
+        <div className='flex flex-col gap-4'>
+            <h2 className='font-semibold'>Отчеты за 2023 год</h2>
+            <div className='bg-calm-50 border shadow-md rounded-lg flex flex-col gap-2 transition hover:border-calm-400 px-2 h-[28em]'>
+                <span className='flex-row-center items-center gap-2 pl-4 h-10'>
+                    <p className='text-calm-600 font-bold'>Сумма продаж /</p>
+                    <p className='text-green-500 font-bold'>Прибыль</p>
+                    <p>(ман.)</p>
+                </span>
+                <YearChart
+                    type='area' 
+                    options={tewelveMonths} 
+                    series={monthSeries}
+                    height={'85%'}
+                    width={'100%'}
+                />
+            </div>
+            <div className='bg-calm-50 border shadow-md rounded-lg flex flex-col gap-2 transition hover:border-calm-400 px-2 h-[28em]'>
+                <span className='flex-row-center items-center gap-2 pl-4 h-10'>
+                    <p className='text-calm-600 font-bold'>Количество посетителей</p>
+                </span>
+                <YearlyVisitorsChart
+                    type='bar' 
+                    options={yearlyVisitors} 
+                    series={visitorsCount}
+                    height={'85%'}
+                    width={'100%'}
+                />
             </div>
         </div>
     )
