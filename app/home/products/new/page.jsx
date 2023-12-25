@@ -79,10 +79,10 @@ export default function NewProducts(){
                     </div>
                 </span>
             </div>
-            <button className='bg-calm-50 border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-500 hover:text-white px-4 h-10'>
+            <button className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-500 hover:text-white px-4 h-10'>
                 Добавить фотографии
             </button>
-            <Link href='/home/products' className='bg-calm-50 border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-500 hover:text-white px-4 h-10'>
+            <Link href='/home/products' className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-500 hover:text-white px-4 h-10'>
                 Сохранить
             </Link>
         </div>

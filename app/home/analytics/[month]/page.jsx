@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 const ForMonthChart = dynamic(() => import('react-apexcharts'), {ssr: false})
-import { generateNumbers } from 'components/Functions/GenerateNUmbers'
+import { generateNumbers } from 'components/Functions/GenerateNumbers'
 
 export default function MonthLayout(){
     const monthOptions = {
