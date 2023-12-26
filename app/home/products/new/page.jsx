@@ -1,88 +1,81 @@
 import Link from 'next/link'
-import {GrMoney} from 'react-icons/gr'
-import {FaPencil,FaHashtag,FaBarcode} from 'react-icons/fa6'
-import {RxDropdownMenu} from 'react-icons/rx'
-import {TbHome} from 'react-icons/tb'
-import {Md123} from 'react-icons/md'
+import SelectionContainer from 'components/Containers/Selection/Selection'
 
 export default function NewProducts(){
     return(
         <div className='flex flex-col gap-4'>
             <h1 className='text-xl font-bold'>Новый товар</h1>
-            <div className='flex-row-center gap-8'>
+            <div className='flex flex-row gap-4'>
                 <span className='flex flex-col gap-4 flex-[50%] max-w-[50%]'>
-                    <div className='relative rounded-lg flex-row-center h-10 w-full'>
-                        <input
-                            type='text'
-                            placeholder='Имя товара'
-                            className='bg-calm-50 rounded-lg outline-none transition border focus:border-calm-400 px-4 h-full w-full'
-                        ></input>
-                        <FaPencil className='absolute right-2 icons'/>
-                    </div>
-                    <div className='relative rounded-lg flex-row-center h-10 w-full'>
-                        <input
-                            type='text'
-                            placeholder='Цена'
-                            className='bg-calm-50 rounded-lg outline-none transition border focus:border-calm-400 px-4 h-full w-full'
-                        ></input>
-                        <GrMoney className='absolute right-2 icons'/>
-                    </div>
-                    <div className='relative rounded-lg flex-row-center h-10 w-full'>
-                        <input
-                            type='text'
-                            placeholder='Категория (dropdown)'
-                            className='bg-calm-50 rounded-lg outline-none transition border focus:border-calm-400 px-4 h-full w-full'
-                        ></input>
-                        <RxDropdownMenu className='absolute right-2 icons'/>
-                    </div>
-                    <div className='relative rounded-lg flex-row-center h-10 w-full'>
-                        <input
-                            type='text'
-                            placeholder='Под категория (dropdown)'
-                            className='bg-calm-50 rounded-lg outline-none transition border focus:border-calm-400 px-4 h-full w-full'
-                        ></input>
-                        <RxDropdownMenu className='absolute right-2 icons'/>
-                    </div>
+                    <input
+                        type='text'
+                        placeholder='Имя товара'
+                        className='text-sm rounded-lg outline-none transition border focus:border-calm-400 px-4 h-9'
+                    ></input>
+                    <input
+                        type='text'
+                        placeholder='Цена (ман.)'
+                        className='text-sm rounded-lg outline-none transition border focus:border-calm-400 px-4 h-9'
+                    ></input>
+                    <input
+                        type='text'
+                        placeholder='Бар код'
+                        className='text-sm rounded-lg outline-none transition border focus:border-calm-400 px-4 h-9'
+                    ></input>
+                    <input
+                        type='text'
+                        placeholder='Количество'
+                        className='text-sm rounded-lg outline-none transition border focus:border-calm-400 px-4 h-9'
+                    ></input>
+                    <textarea
+                        placeholder='Описание'
+                        className='text-sm rounded-lg outline-none transition border focus:border-calm-400 p-4 h-20'
+                    ></textarea>
                 </span>
                 <span className='flex flex-col gap-4 flex-[50%] max-w-[50%]'>
-                    <div className='relative rounded-lg flex-row-center h-10 w-full'>
-                        <input
-                            type='text'
-                            placeholder='Бренд (dropdown)'
-                            className='bg-calm-50 rounded-lg outline-none transition border focus:border-calm-400 px-4 h-full w-full'
-                        ></input>
-                        <TbHome className='absolute right-2 icons'/>
-                    </div>
-                    <div className='relative rounded-lg flex-row-center h-10 w-full'>
-                        <input
-                            type='text'
-                            placeholder='Теги (dropdown)'
-                            className='bg-calm-50 rounded-lg outline-none transition border focus:border-calm-400 px-4 h-full w-full'
-                        ></input>
-                        <FaHashtag className='absolute right-2 icons'/>
-                    </div>
-                    <div className='relative rounded-lg flex-row-center h-10 w-full'>
-                        <input
-                            type='text'
-                            placeholder='Бар код'
-                            className='bg-calm-50 rounded-lg outline-none transition border focus:border-calm-400 px-4 h-full w-full'
-                        ></input>
-                        <FaBarcode className='absolute right-2 icons'/>
-                    </div>
-                    <div className='relative rounded-lg flex-row-center h-10 w-full'>
-                        <input
-                            type='text'
-                            placeholder='Количество'
-                            className='bg-calm-50 rounded-lg outline-none transition border focus:border-calm-400 px-4 h-full w-full'
-                        ></input>
-                        <Md123 className='absolute right-2 icons'/>
+                    <SelectionContainer
+                        selectLabel={''}
+                        selectOptions={[]}
+                        selectPlaceholder={'Категория'}
+                    />
+                    <SelectionContainer
+                        selectLabel={''}
+                        selectOptions={[]}
+                        selectPlaceholder={'Подкатегория'}
+                    />
+                    <SelectionContainer
+                        selectLabel={''}
+                        selectOptions={[]}
+                        selectPlaceholder={'Бренд'}
+                    />
+                    <SelectionContainer
+                        selectLabel={''}
+                        selectOptions={[]}
+                        selectPlaceholder={'Теги'}
+                    />
+                    <div className='flex-row-center justify-between gap-4'>
+                        <button 
+                            value={'new'} 
+                            className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-600 hover:text-white px-4 h-20 w-full'>
+                            Новинка
+                        </button>
+                        <button 
+                            value={'popular'} 
+                            className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-600 hover:text-white px-4 h-20 w-full'>
+                            Популярное
+                        </button>
+                        <button 
+                            value={'free delivery'} 
+                            className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-600 hover:text-white px-4 h-20 w-full'>
+                            Бесплатная доставка
+                        </button>
                     </div>
                 </span>
             </div>
-            <button className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-500 hover:text-white px-4 h-10'>
+            <button className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-600 hover:text-white px-4 h-9'>
                 Добавить фотографии
             </button>
-            <Link href='/home/products' className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-500 hover:text-white px-4 h-10'>
+            <Link href='/home/products' className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-600 hover:text-white px-4 h-9'>
                 Сохранить
             </Link>
         </div>

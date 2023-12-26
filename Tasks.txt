@@ -1,2 +1,3 @@
 -use absolute positioning while showing visitors for map of turkmenistan for each state
 Array.from({length: 40}, () => Math.floor(Math.random() * 40))
+-table header overflow problem while chat is open
