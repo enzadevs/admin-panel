@@ -68,3 +68,18 @@ body{
     height: 20px;
     width: 20px;
 }
+
+.collapse-title{
+    display: flex !important;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    height: 40px;
+}
+
+.collapse-title, :where(.collapse > input[type='checkbox']), :where(.collapse > input[type='radio']) {
+    padding: 4px 16px;
+    padding-inline-end: 16px;
+    min-height: 40px;
+}

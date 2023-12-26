@@ -52,7 +52,7 @@ export default function NewAd(){
                         placeholder={'Конец'}
                         inputClassName={'bg-calm-50 border border-light rounded-lg transition focus:border-calm-400 outline-none px-2 h-10 w-full'}
                     />
-                    <button className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-500 hover:text-white px-4 h-10 w-full'>
+                    <button className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-600 hover:text-white px-4 h-10 w-full'>
                         <p className='font-bold'>Добавить фото</p>
                     </button>
                 </div>
@@ -62,7 +62,7 @@ export default function NewAd(){
                     </span>
                 </div>
             </div>
-            <button href='/home/ads/new' className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-500 hover:text-white px-4 h-10 w-full'>
+            <button href='/home/ads/new' className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-600 hover:text-white px-4 h-10 w-full'>
                 <p className='font-bold'>Сохранить</p>
                 <IoSaveOutline className='icons'/>
             </button>

@@ -8,7 +8,7 @@ import {MdEdit} from 'react-icons/md'
 
 const { Column, HeaderCell, Cell } = Table
 
-export default function ProductsTable({columnData}){
+export default function UsersTable({columnData}){
     const [data,setData] = useState([])
     const [sortColumn, setSortColumn] = useState()
     const [sortType, setSortType] = useState()
@@ -54,9 +54,9 @@ export default function ProductsTable({columnData}){
     })
 
     return(
-        <>
+        <div className='z-0'>
             <Table
-                height={500}
+                height={700}
                 data={getData()}
                 sortColumn={sortColumn}
                 sortType={sortType}
@@ -67,29 +67,29 @@ export default function ProductsTable({columnData}){
             >
                 <Column width={80} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
                     <HeaderCell>#</HeaderCell>
-                    <Cell dataKey='id'/>
+                    <Cell dataKey='userID'/>
                 </Column>
                 <Column flexGrow={2} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Имя товара</HeaderCell>
-                    <Cell dataKey='productName'/>
+                    <HeaderCell>Полное имя</HeaderCell>
+                    <Cell dataKey='fullName'/>
                 </Column>
                 <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Бренд</HeaderCell>
-                    <Cell dataKey='brandName'/>
+                    <HeaderCell>Личный номер</HeaderCell>
+                    <Cell dataKey='userPersonalNumber'/>
                 </Column>
                 <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Категория</HeaderCell>
-                    <Cell dataKey='category'/>
+                    <HeaderCell>Дата создания</HeaderCell>
+                    <Cell dataKey='userCreationDate'/>
                 </Column>
                 <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Количество</HeaderCell>
-                    <Cell dataKey='stock'/>
+                    <HeaderCell>Статус</HeaderCell>
+                    <Cell dataKey='userIsOnline'/>
                 </Column>
                 <Column width={100} align='center' fixed style={{backgroundColor: '#f3f7fc'}}>
                     <HeaderCell>Опции</HeaderCell>
                     <Cell style={{padding: '2px'}}>
                         {data => (
-                            <Link href={`/home/products/${data.id}`} className='bg-calm-50 rounded-full center transition hover:bg-calm-600 hover:text-white h-10 w-10'>
+                            <Link href={`/home/users/${data.id}`} className='bg-calm-50 rounded-full center transition hover:bg-calm-600 hover:text-white h-10 w-10'>
                                 <MdEdit className='icons'/>
                             </Link>
                         )}
@@ -115,6 +115,6 @@ export default function ProductsTable({columnData}){
                     onChangeLimit={handleChangeLimit}
                 />
             </div>
-        </>
+        </div>
     )
 }

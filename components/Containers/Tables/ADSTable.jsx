@@ -5,10 +5,9 @@ import Link from 'next/link'
 import {Table,Pagination} from 'rsuite'
 import {useState} from 'react'
 import {MdEdit} from 'react-icons/md'
-
 const { Column, HeaderCell, Cell } = Table
 
-export default function ProductsTable({columnData}){
+export default function ADSTable({columnData}){
     const [data,setData] = useState([])
     const [sortColumn, setSortColumn] = useState()
     const [sortType, setSortType] = useState()
@@ -70,26 +69,34 @@ export default function ProductsTable({columnData}){
                     <Cell dataKey='id'/>
                 </Column>
                 <Column flexGrow={2} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Имя товара</HeaderCell>
-                    <Cell dataKey='productName'/>
+                    <HeaderCell>Имя</HeaderCell>
+                    <Cell dataKey='adsName'/>
                 </Column>
                 <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Бренд</HeaderCell>
-                    <Cell dataKey='brandName'/>
+                    <HeaderCell>Дата создания</HeaderCell>
+                    <Cell dataKey='creationDate'/>
                 </Column>
                 <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Категория</HeaderCell>
-                    <Cell dataKey='category'/>
+                    <HeaderCell>Дата начала</HeaderCell>
+                    <Cell dataKey='startDate'/>
                 </Column>
                 <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Количество</HeaderCell>
-                    <Cell dataKey='stock'/>
+                    <HeaderCell>Дата завершения</HeaderCell>
+                    <Cell dataKey='endDate'/>
+                </Column>
+                <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
+                    <HeaderCell>Статус</HeaderCell>
+                    <Cell dataKey='status'/>
+                </Column>
+                <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
+                    <HeaderCell>Прибыль</HeaderCell>
+                    <Cell dataKey='income'/>
                 </Column>
                 <Column width={100} align='center' fixed style={{backgroundColor: '#f3f7fc'}}>
                     <HeaderCell>Опции</HeaderCell>
                     <Cell style={{padding: '2px'}}>
                         {data => (
-                            <Link href={`/home/products/${data.id}`} className='bg-calm-50 rounded-full center transition hover:bg-calm-600 hover:text-white h-10 w-10'>
+                            <Link href={`/home/ads/${data.id}`} className='bg-calm-50 rounded-full center transition hover:bg-calm-600 hover:text-white h-10 w-10'>
                                 <MdEdit className='icons'/>
                             </Link>
                         )}

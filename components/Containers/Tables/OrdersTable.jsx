@@ -8,7 +8,7 @@ import {MdEdit} from 'react-icons/md'
 
 const { Column, HeaderCell, Cell } = Table
 
-export default function ProductsTable({columnData}){
+export default function OrdersTable({columnData}){
     const [data,setData] = useState([])
     const [sortColumn, setSortColumn] = useState()
     const [sortType, setSortType] = useState()
@@ -54,9 +54,9 @@ export default function ProductsTable({columnData}){
     })
 
     return(
-        <>
+        <div className='z-0'>
             <Table
-                height={500}
+                height={700}
                 data={getData()}
                 sortColumn={sortColumn}
                 sortType={sortType}
@@ -70,20 +70,20 @@ export default function ProductsTable({columnData}){
                     <Cell dataKey='id'/>
                 </Column>
                 <Column flexGrow={2} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Имя товара</HeaderCell>
-                    <Cell dataKey='productName'/>
+                    <HeaderCell>Пользователь</HeaderCell>
+                    <Cell dataKey='userID'/>
                 </Column>
                 <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Бренд</HeaderCell>
-                    <Cell dataKey='brandName'/>
+                    <HeaderCell>Статус</HeaderCell>
+                    <Cell dataKey='status'/>
                 </Column>
                 <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Категория</HeaderCell>
-                    <Cell dataKey='category'/>
+                    <HeaderCell>Тип доставки</HeaderCell>
+                    <Cell dataKey='deliveryType'/>
                 </Column>
                 <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Количество</HeaderCell>
-                    <Cell dataKey='stock'/>
+                    <HeaderCell>Создано</HeaderCell>
+                    <Cell dataKey='createdDate'/>
                 </Column>
                 <Column width={100} align='center' fixed style={{backgroundColor: '#f3f7fc'}}>
                     <HeaderCell>Опции</HeaderCell>
@@ -115,6 +115,6 @@ export default function ProductsTable({columnData}){
                     onChangeLimit={handleChangeLimit}
                 />
             </div>
-        </>
+        </div>
     )
 }

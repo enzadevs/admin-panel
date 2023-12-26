@@ -29,22 +29,22 @@ export default function ManagementPage(){
                         <TbCategory2 className='h-12 w-12'/>
                     </span>
                 </Link>
-                <Link href='/home/giftcards' className='bg-calm-50 cursor-pointer shadow-sm border border-light rounded-lg flex-row-center transition hover:border-calm-400 h-32 w-full'>
+                {/* <Link href='/home/giftcards' className='bg-calm-50 cursor-pointer shadow-sm border border-light rounded-lg flex-row-center transition hover:border-calm-400 h-32 w-full'>
                     <div className='center flex-[70%] h-full max-w-[70%]'>
                         <p className='text-2xl'>Подарочные купоны</p>
                     </div>
                     <span className='border-l border-light center flex-[30%] h-full max-w-[30%]'>
                         <IoGiftOutline className='h-12 w-12'/>
                     </span>
-                </Link>
-                <Link href='/home/discounts' className='bg-calm-50 cursor-pointer shadow-sm border border-light rounded-lg flex-row-center transition hover:border-calm-400 h-32 w-full'>
+                </Link> */}
+                {/* <Link href='/home/discounts' className='bg-calm-50 cursor-pointer shadow-sm border border-light rounded-lg flex-row-center transition hover:border-calm-400 h-32 w-full'>
                     <div className='center flex-[70%] h-full max-w-[70%]'>
                         <p className='text-2xl'>Скидки</p>
                     </div>
                     <span className='border-l border-light center flex-[30%] h-full max-w-[30%]'>
                         <AiOutlineNotification className='h-12 w-12'/>
                     </span>
-                </Link>
+                </Link> */}
                 <Link href='/home/ads' className='bg-calm-50 cursor-pointer shadow-sm border border-light rounded-lg flex-row-center transition hover:border-calm-400 h-32 w-full'>
                     <div className='center flex-[70%] h-full max-w-[70%]'>
                         <p className='text-2xl'>Реклама</p>
@@ -61,22 +61,22 @@ export default function ManagementPage(){
                         <BsCartCheck className='h-12 w-12'/>
                     </span>
                 </Link>
-                <Link href='/home/deliveries' className='bg-calm-50 cursor-pointer shadow-sm border border-light rounded-lg flex-row-center transition hover:border-calm-400 h-32 w-full'>
+                {/* <Link href='/home/deliveries' className='bg-calm-50 cursor-pointer shadow-sm border border-light rounded-lg flex-row-center transition hover:border-calm-400 h-32 w-full'>
                     <div className='center flex-[70%] h-full max-w-[70%]'>
                         <p className='text-2xl'>Доставки</p>
                     </div>
                     <span className='border-l border-light center flex-[30%] h-full max-w-[30%]'>
                         <TbTruckDelivery className='h-12 w-12'/>
                     </span>
-                </Link>
-                <Link href='/home/checkout' className='bg-calm-50 cursor-pointer shadow-sm border border-light rounded-lg flex-row-center transition hover:border-calm-400 h-32 w-full'>
+                </Link> */}
+                {/* <Link href='/home/checkout' className='bg-calm-50 cursor-pointer shadow-sm border border-light rounded-lg flex-row-center transition hover:border-calm-400 h-32 w-full'>
                     <div className='center flex-[70%] h-full max-w-[70%]'>
                         <p className='text-2xl'>Касса</p>
                     </div>
                     <span className='border-l border-light center flex-[30%] h-full max-w-[30%]'>
                         <TbReportMoney className='h-12 w-12'/>
                     </span>
-                </Link>
+                </Link> */}
             </div>
         </div>
     )

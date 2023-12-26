@@ -39,14 +39,14 @@ export default function SideBarMenu(){
                 <IoNotificationsOutline className='icons'/>
                 <p>Уведомления</p>
             </Link>
-            <Link href='/home/calendar' className='border-b border-light rounded-lg flex-row-center gap-2 transition hover:bg-calm-600 hover:text-white px-2 h-10 w-full'>
+            {/* <Link href='/home/calendar' className='border-b border-light rounded-lg flex-row-center gap-2 transition hover:bg-calm-600 hover:text-white px-2 h-10 w-full'>
                 <PiCalendarLight className='icons'/>
                 <p>Календарь</p>
-            </Link>
-            <Link href='/home/settings' className='border-b border-light rounded-lg flex-row-center gap-2 transition hover:bg-calm-600 hover:text-white px-2 h-10 w-full'>
+            </Link> */}
+            {/* <Link href='/home/settings' className='border-b border-light rounded-lg flex-row-center gap-2 transition hover:bg-calm-600 hover:text-white px-2 h-10 w-full'>
                 <IoSettingsOutline className='icons'/>
                 <p>Настройки</p>
-            </Link>
+            </Link> */}
         </div>
     )
 }
