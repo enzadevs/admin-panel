@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id Int @id @default(autoincrement()) @unique
+  fullName String
+  password String
+  phoneNumber String @unique
+  address String?
+  // likedProducts LikedProducts[]
+  // shoppingCart ShoppingCart[]
+  // order Order[]
+  // messages Message[]
+  // orderHistory OrderHistory[]
+  // status Boolean @default(false)
+  // customerSalesSum Int? @default(0)
+  // customerRevenue Int? @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Product {
+  id Int @id @default(autoincrement()) @unique
+  name String
+  brandName String?
+  // category Category[]
+  // subCategory SubCategory[]
+  originCountry String?
+  price Int
+  // revenueSum Int
+  // sellPrice Int
+  // discount Int
+  description String?
+  stockCount Int @default(0)
+  barcode String?
+  unitType String?
+  // hashtags Hashtag[]
+  colors String?
+  // images ImageURL[]
+}
+
+model Category {
+  id Int @id @default(autoincrement()) @unique
+  name String
+  // posterImages ImageURL[]
+  // icon ImageURL[]
+  subCategories SubCategory[]
+}
+
+model SubCategory {
+  id Int @id @default(autoincrement()) @unique
+  name String
+  belongsTo Category @relation(fields: [categoryID], references: [id])
+  categoryID Int
+}
+
+model Order {
+  id Int @id @default(autoincrement()) @unique
+  // customer Customer[]
+  // shoppingCart ShoppingCart[]
+  sum Int? @default(0)
+  // income Int? @default(0)
+  comment String?
+  address String
+  type String?
+  // * types are standart,express..
+  status Boolean @default(false)
+  // * statuses are active,closed,cancelled...
+  deliveryPrice Int @default(20)
+}
+
+model Advertisement {
+  id Int @id @default(autoincrement()) @unique
+  title String
+  brandName String?
+  description String?
+  // imagesList ImageURL[]
+  incomeValue Int @default(0)
+  status Boolean @default(false)
+  createdAt DateTime @default(now())
+  startDate DateTime
+  endDate DateTime
+}
+
+// model VisitorCount {
+// }
+
+// model DeviceTypeCount {
+// }
+
+model Brand {
+  id Int @id @default(autoincrement()) @unique
+  name String
+  createdAt DateTime @default(now())
+  // logoImage ImageURL[]
+}
+
+// model Liked {
+// }
+
+model ImageURL {
+  id Int @id @default(autoincrement()) @unique
+  title String?
+  url String
+  createdAt DateTime @default(now())
+}
+
+model ProductStatus {
+  id Int @id @default(autoincrement()) @unique
+  status String
+}
+
+model ShoppingCart {
+  id Int @id @default(autoincrement()) @unique
+}
