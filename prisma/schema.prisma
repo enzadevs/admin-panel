@@ -7,114 +7,155 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Customer {
-  id Int @id @default(autoincrement()) @unique
-  fullName String
-  password String
-  phoneNumber String @unique
-  address String?
-  // likedProducts LikedProducts[]
-  // shoppingCart ShoppingCart[]
-  // order Order[]
-  // messages Message[]
-  // orderHistory OrderHistory[]
-  // status Boolean @default(false)
-  // customerSalesSum Int? @default(0)
-  // customerRevenue Int? @default(0)
-  createdAt DateTime @default(now())
+model User {
+  id                String    @id @unique @default(uuid())
+  role              UserRole  @default(CUSTOMER)
+  fullName          String
+  phoneNumber       String    @unique
+  password          String
+  address           String?
+  shoppingCartItems Product[] @relation("AddedBy")
+  likedProducts     Product[] @relation("LikedProducts")
+  ordersList        Order[]
+  orderHistory      Product[] @relation("History")
+  onlineStatus      Boolean   @default(false)
+  customerSalesSum  Int?      @default(0)
+  customerRevenue   Int?      @default(0)
+  createdAt         DateTime  @default(now())
+  Message           Message[]
+  Visitor           Visitor?  @relation(fields: [visitorId], references: [id])
+  visitorId         String?
+
+  @@index([phoneNumber])
 }
 
 model Product {
-  id Int @id @default(autoincrement()) @unique
-  name String
-  brandName String?
-  // category Category[]
-  // subCategory SubCategory[]
-  originCountry String?
-  price Int
-  // revenueSum Int
-  // sellPrice Int
-  // discount Int
-  description String?
-  stockCount Int @default(0)
-  barcode String?
-  unitType String?
-  // hashtags Hashtag[]
-  colors String?
-  // images ImageURL[]
+  id              String        @id @unique @default(uuid())
+  name            String
+  brandName       String?
+  category        Category[]
+  subCategory     SubCategory[]
+  originCountry   String?
+  rating          Float         @default(0)
+  price           Int
+  incomeAmount    Int
+  sellPrice       Int
+  discount        Int
+  description     String?
+  stockCount      Int           @default(0)
+  barcode         String?
+  unitType        String?
+  hashtags        Hashtag[]
+  colors          String?
+  images          ImageURL[]
+  createdAt       DateTime      @default(now())
+  customer        User?         @relation("AddedBy", fields: [customerId], references: [id])
+  customerId      String
+  likedBy         User?         @relation("LikedProducts", fields: [likedCustomerId], references: [id])
+  likedCustomerId String
+  boughtBy        User?         @relation("History", fields: [boughtById], references: [id])
+  boughtById      String
+  Order           Order?        @relation(fields: [orderId], references: [id])
+  orderId         String?
 }
 
 model Category {
-  id Int @id @default(autoincrement()) @unique
-  name String
-  // posterImages ImageURL[]
-  // icon ImageURL[]
-  subCategories SubCategory[]
+  id            String        @id @unique @default(uuid())
+  name          String
+  posterImages  ImageURL[]
+  subCategories SubCategory[] @relation("SubCategoryOf")
+  createdAt     DateTime      @default(now())
+  Product       Product?      @relation(fields: [productId], references: [id])
+  productId     String?
 }
 
 model SubCategory {
-  id Int @id @default(autoincrement()) @unique
-  name String
-  belongsTo Category @relation(fields: [categoryID], references: [id])
-  categoryID Int
+  id           String     @id @unique @default(uuid())
+  name         String
+  posterImages ImageURL[]
+  belongsTo    Category   @relation("SubCategoryOf", fields: [categoryID], references: [id])
+  categoryID   String
+  Product      Product?   @relation(fields: [productId], references: [id])
+  productId    String?
 }
 
 model Order {
-  id Int @id @default(autoincrement()) @unique
-  // customer Customer[]
-  // shoppingCart ShoppingCart[]
-  sum Int? @default(0)
-  // income Int? @default(0)
-  comment String?
-  address String
-  type String?
-  // * types are standart,express..
-  status Boolean @default(false)
-  // * statuses are active,closed,cancelled...
-  deliveryPrice Int @default(20)
+  id            String    @id @unique @default(uuid())
+  orderedBy     User[]
+  comment       String?
+  address       String
+  type          String?
+  status        String    @default("Waiting")
+  deliveryPrice Int       @default(10)
+  productsList  Product[]
+  sum           Int?      @default(0)
+  income        Int?      @default(0)
 }
 
 model Advertisement {
-  id Int @id @default(autoincrement()) @unique
-  title String
-  brandName String?
+  id          String     @id @unique @default(uuid())
+  title       String
+  brandName   Brand?     @relation(fields: [brandId], references: [id])
   description String?
-  // imagesList ImageURL[]
-  incomeValue Int @default(0)
-  status Boolean @default(false)
-  createdAt DateTime @default(now())
-  startDate DateTime
-  endDate DateTime
+  imagesList  ImageURL[]
+  incomeValue Int        @default(0)
+  status      Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  startDate   DateTime?
+  endDate     DateTime?
+  brandId     String?
 }
-
-// model VisitorCount {
-// }
-
-// model DeviceTypeCount {
-// }
 
 model Brand {
-  id Int @id @default(autoincrement()) @unique
-  name String
-  createdAt DateTime @default(now())
-  // logoImage ImageURL[]
+  id            String          @id @unique @default(uuid())
+  name          String
+  createdAt     DateTime        @default(now())
+  logoImage     ImageURL[]
+  Advertisement Advertisement[]
 }
 
-// model Liked {
-// }
-
 model ImageURL {
-  id Int @id @default(autoincrement()) @unique
-  title String?
-  url String
-  createdAt DateTime @default(now())
+  id              String         @id @unique @default(uuid())
+  url             String
+  createdAt       DateTime       @default(now())
+  Product         Product?       @relation(fields: [productId], references: [id])
+  productId       String?
+  Category        Category?      @relation(fields: [categoryId], references: [id])
+  categoryId      String?
+  SubCategory     SubCategory?   @relation(fields: [subCategoryId], references: [id])
+  subCategoryId   String?
+  Advertisement   Advertisement? @relation(fields: [advertisementId], references: [id])
+  advertisementId String?
+  Brand           Brand?         @relation(fields: [brandId], references: [id])
+  brandId         String?
 }
 
 model ProductStatus {
-  id Int @id @default(autoincrement()) @unique
+  id     String @id @unique @default(uuid())
   status String
 }
 
-model ShoppingCart {
-  id Int @id @default(autoincrement()) @unique
+model Message {
+  id             String  @id @unique @default(uuid())
+  messageContent String?
+  User           User    @relation(fields: [userId], references: [id])
+  userId         String
+}
+
+model Hashtag {
+  id        String   @id @unique @default(uuid())
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId String?
+}
+
+model Visitor {
+  id        String   @id @unique @default(uuid())
+  userId    User[]
+  createdAt DateTime @default(now())
+}
+
+enum UserRole {
+  ADMIN
+  CUSTOMER
+  CASHIER
 }
