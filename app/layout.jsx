@@ -2,7 +2,7 @@ import './globals.css'
 import TopProgressBar from 'components/Functions/TopProgressBar'
 
 export const metadata = {
-    title: 'Admin Panel',
+    title: 'Älem Tilsimat E-Commerce Tools',
     description: 'E-Commerce Admin Panel Tools',
     name: 'viewport', 
     content:'width=device-width, initial-scale=1',
@@ -17,7 +17,7 @@ const exo2 = Exo_2({
 
 export default function RootLayout({children}){
     return(
-        <html className={exo2.className} suppressHydrationWarning>
+        <html lang='rus' className={exo2.className} suppressHydrationWarning>
             <body className='bg-white flex flex-col min-h-screen'>
                 <TopProgressBar/>
                 {children}
