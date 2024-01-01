@@ -83,3 +83,7 @@ body{
     padding-inline-end: 16px;
     min-height: 40px;
 }
+
+.button-primary{
+    @apply bg-calm-50 border border-light rounded-lg outline-none transition focus:border-calm-400 min-h-10;
+}

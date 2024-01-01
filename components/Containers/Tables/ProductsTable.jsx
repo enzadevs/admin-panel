@@ -2,7 +2,8 @@
 
 import 'rsuite/dist/rsuite-no-reset.min.css'
 import Link from 'next/link'
-import {Table,Pagination} from 'rsuite'
+import Table from 'rsuite/Table'
+import Pagination from 'rsuite/Pagination'
 import {useState} from 'react'
 import {MdEdit} from 'react-icons/md'
 

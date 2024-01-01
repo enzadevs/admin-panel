@@ -2,5 +2,5 @@
 Array.from({length: 40}, () => Math.floor(Math.random() * 40))
 -table header overflow problem while chat is open
 Try To Make Reusable Table from RSUITE Table
--use purge css to reduce css file size
 -can I just import react component once somewhere and import THAT one instead of from directly node module?
+-how to reduce module count in next js?
