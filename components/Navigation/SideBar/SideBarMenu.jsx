@@ -1,7 +1,8 @@
 import {IoStorefrontOutline,IoChatboxEllipsesOutline,IoNotificationsOutline,IoSettingsOutline} from 'react-icons/io5'
-import {PiChartLineUp,PiUsersThreeLight,PiCalendarLight} from 'react-icons/pi'
+import {PiChartLineUp,PiCalendarLight} from 'react-icons/pi'
 import {BsBoxSeam,BsCartCheck} from 'react-icons/bs'
 import {TbDeviceDesktopCheck} from 'react-icons/tb'
+import {LuUsers2} from 'react-icons/lu'
 import Link from 'next/link'
 
 export default function SideBarMenu(){
@@ -28,7 +29,7 @@ export default function SideBarMenu(){
                 <p>Реклама</p>
             </Link>
             <Link href='/home/users' className='border-b border-light rounded-lg flex-row-center gap-2 transition hover:bg-calm-600 hover:text-white px-2 h-10 w-full'>
-                <PiUsersThreeLight className='icons'/>
+                <LuUsers2 className='icons'/>
                 <p>Пользователи</p>
             </Link>
             <Link href='/home/chat' className='border-b border-light rounded-lg flex-row-center gap-2 transition hover:bg-calm-600 hover:text-white px-2 h-10 w-full'>

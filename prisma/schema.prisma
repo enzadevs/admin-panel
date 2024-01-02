@@ -49,6 +49,7 @@ model Product {
   colors          String?
   images          ImageURL[]
   createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
   customer        User?         @relation("AddedBy", fields: [customerId], references: [id])
   customerId      String
   likedBy         User?         @relation("LikedProducts", fields: [likedCustomerId], references: [id])

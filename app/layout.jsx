@@ -1,4 +1,5 @@
 import './globals.css'
+import 'rsuite/dist/rsuite-no-reset.min.css'
 import TopProgressBar from 'components/Functions/TopProgressBar'
 
 export const metadata = {

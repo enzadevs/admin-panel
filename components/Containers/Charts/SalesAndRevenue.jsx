@@ -47,7 +47,7 @@ export default function SalesAndRevenue(){
     ]
 
     return(
-        <div>
+        <>
             <h1 className='text-xl font-bold '>Статистика за месяц :</h1>
             <div className='flex-row-center gap-4 mt-4 h-96 w-full'>
                 <div className='bg-calm-50 border shadow-md rounded-lg flex flex-col gap-2 flex-[70%] transition hover:border-calm-400 px-2 h-full max-w-[70%]'>
@@ -78,6 +78,6 @@ export default function SalesAndRevenue(){
                     />
                 </div>
             </div>
-        </div>
+        </>
     )
 }

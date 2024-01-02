@@ -23,7 +23,7 @@ export default function UsersCount(){
     ]
     
     return(
-        <div>
+        <>
             <div className='flex-row-center gap-4 mt-4 h-96 w-full'>
                 <div className='bg-calm-50 border shadow-md rounded-lg flex flex-col gap-2 flex-[70%] transition hover:border-calm-400 px-2 h-full max-w-[70%]'>
                     <span className='flex-row-center items-center gap-2 pl-4 h-10'>
@@ -54,6 +54,6 @@ export default function UsersCount(){
                     />
                 </div>
             </div>
-        </div>
+        </>
     )
 }

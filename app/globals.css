@@ -87,3 +87,7 @@ body{
 .button-primary{
     @apply bg-calm-50 border border-light rounded-lg outline-none transition focus:border-calm-400 min-h-10;
 }
+
+.button-hover{
+    @apply hover:bg-calm-600 hover:text-white;
+}

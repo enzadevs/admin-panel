@@ -9,16 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@plaiceholder/next": "^3.0.0",
     "@prisma/client": "^5.7.1",
     "apexcharts": "^3.45.0",
     "next": "14.0.4",
     "nextjs-toploader": "^1.6.4",
+    "plaiceholder": "^3.0.0",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18",
     "react-icons": "^4.12.0",
     "react-tailwindcss-datepicker": "^1.6.6",
     "rsuite": "^5.49.0",
+    "sharp": "^0.33.1",
     "zustand": "^4.4.7"
   },
   "devDependencies": {

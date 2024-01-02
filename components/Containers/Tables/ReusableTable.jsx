@@ -1,14 +1,16 @@
 'use client'
 
-import 'rsuite/dist/rsuite-no-reset.min.css'
 import Link from 'next/link'
-import {Table,Pagination} from 'rsuite'
+import Table from 'rsuite/Table'
+import Pagination from 'rsuite/Pagination'
 import {useState} from 'react'
 import {MdEdit} from 'react-icons/md'
+
 const { Column, HeaderCell, Cell } = Table
 
-export default function ADSTable({columnData}){
-    const [data,setData] = useState([])
+export default function ReusableTable({headers,columnData,tableHeight,dataUrl}){
+    const [data,setData] = useState([
+    ])
     const [sortColumn, setSortColumn] = useState()
     const [sortType, setSortType] = useState()
     const [loading, setLoading] = useState(false)
@@ -53,9 +55,9 @@ export default function ADSTable({columnData}){
     })
 
     return(
-        <>
+        <div className='z-0'>
             <Table
-                height={500}
+                height={tableHeight}
                 data={getData()}
                 sortColumn={sortColumn}
                 sortType={sortType}
@@ -63,40 +65,21 @@ export default function ADSTable({columnData}){
                 loading={loading}
                 locale={{ emptyMessage: 'Здесь пока ничего нет.'}}
                 style={{backgroundColor: '#f3f7fc'}}
+                virtualized
             >
-                <Column width={80} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>#</HeaderCell>
-                    <Cell dataKey='id'/>
-                </Column>
-                <Column flexGrow={2} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Имя</HeaderCell>
-                    <Cell dataKey='adsName'/>
-                </Column>
-                <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Дата создания</HeaderCell>
-                    <Cell dataKey='creationDate'/>
-                </Column>
-                <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Дата начала</HeaderCell>
-                    <Cell dataKey='startDate'/>
-                </Column>
-                <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Дата завершения</HeaderCell>
-                    <Cell dataKey='endDate'/>
-                </Column>
-                <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Статус</HeaderCell>
-                    <Cell dataKey='status'/>
-                </Column>
-                <Column flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
-                    <HeaderCell>Прибыль</HeaderCell>
-                    <Cell dataKey='income'/>
-                </Column>
+                {headers.map(item => {
+                    return(
+                        <Column key={item.id} flexGrow={1} align='center' fixed sortable style={{backgroundColor: '#f3f7fc'}}>
+                            <HeaderCell>{item.headerTitle}</HeaderCell>
+                            <Cell dataKey={item.dataKey}/>
+                        </Column>
+                    )
+                })}
                 <Column width={100} align='center' fixed style={{backgroundColor: '#f3f7fc'}}>
                     <HeaderCell>Опции</HeaderCell>
                     <Cell style={{padding: '2px'}}>
                         {data => (
-                            <Link href={`/home/ads/${data.id}`} className='bg-calm-50 rounded-full center transition hover:bg-calm-600 hover:text-white h-10 w-10'>
+                            <Link href={`/home/${dataUrl}/${data.id}`} className='bg-calm-50 rounded-full center transition hover:bg-calm-600 hover:text-white h-10 w-10'>
                                 <MdEdit className='icons'/>
                             </Link>
                         )}
@@ -122,6 +105,6 @@ export default function ADSTable({columnData}){
                     onChangeLimit={handleChangeLimit}
                 />
             </div>
-        </>
+        </div>
     )
 }

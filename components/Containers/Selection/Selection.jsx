@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { SelectPicker } from 'rsuite'
-import 'rsuite/dist/rsuite-no-reset.min.css'
+import dynamic from 'next/dynamic'
+const SelectPicker = dynamic(() => import('rsuite/SelectPicker'), {ssr: false})
 
 export default function SelectionContainer({selectLabel,selectOptions,selectPlaceholder}){
     const [items,setItems] = useState([])

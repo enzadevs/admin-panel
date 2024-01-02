@@ -1,7 +1,46 @@
 import Link from 'next/link'
 import {TbDeviceDesktopPlus} from 'react-icons/tb'
 import {MdHistory} from 'react-icons/md'
-import ADSTable from 'components/Containers/Tables/ADSTable'
+import dynamic from 'next/dynamic'
+const ReusableTable = dynamic(() => import('components/Containers/Tables/ReusableTable'), {ssr: false})
+
+const adsTableHeaders = [
+    {
+        id: 0,
+        headerTitle: '#',
+        dataKey: 'id'
+    },
+    {
+        id: 1,
+        headerTitle: 'Имя',
+        dataKey: 'adsName'
+    },
+    {
+        id: 2,
+        headerTitle: 'Дата создания',
+        dataKey: 'creationDate'
+    },
+    {
+        id: 3,
+        headerTitle: 'Дата начала',
+        dataKey: 'startDate'
+    },
+    {
+        id: 4,
+        headerTitle: 'Дата завершения',
+        dataKey: 'endDate'
+    },
+    {
+        id: 3,
+        headerTitle: 'Статус',
+        dataKey: 'status'
+    },
+    {
+        id: 4,
+        headerTitle: 'Прибыль',
+        dataKey: 'income'
+    },
+]
 
 export default function AdsPage(){
     return(
@@ -16,9 +55,11 @@ export default function AdsPage(){
                     <MdHistory className='icons'/>
                 </Link>
             </span>
-            <div className='z-0'>
-                <ADSTable/>
-            </div>
+            <ReusableTable
+               headers={adsTableHeaders}
+               tableHeight={500}
+               // dataUrl={ads} 
+            />
         </>
     )
 }

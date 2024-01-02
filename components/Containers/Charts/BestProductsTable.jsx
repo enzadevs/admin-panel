@@ -2,7 +2,35 @@
 
 import dynamic from 'next/dynamic'
 const DeviceTypeDonut = dynamic(() => import('react-apexcharts'), {ssr: false})
-import ProductsTable from '../Tables/ProductsTable'
+import ReusableTable from '../Tables/ReusableTable'
+
+const productsTableHeaders = [
+    {
+        id: 0,
+        headerTitle: '#',
+        dataKey: 'productId'
+    },
+    {
+        id: 1,
+        headerTitle: 'Имя товара',
+        dataKey: 'productName'
+    },
+    {
+        id: 2,
+        headerTitle: 'Бренд',
+        dataKey: 'brandName'
+    },
+    {
+        id: 3,
+        headerTitle: 'Категория',
+        dataKey: 'category'
+    },
+    {
+        id: 4,
+        headerTitle: 'Количество',
+        dataKey: 'stock'
+    },
+]
 
 export default function BestProductsTable(){
     const devices = {
@@ -28,9 +56,13 @@ export default function BestProductsTable(){
                     <span className='flex-row-center items-center gap-2 pl-4 h-10'>
                         <p className='text-calm-600 font-bold'>Самые популярные товары</p>
                     </span>
-                    <div className='z-0'>
-                        <ProductsTable/>
-                    </div>
+                    <span className=''>
+                        <ReusableTable
+                            headers={productsTableHeaders}
+                            tableHeight={500}
+                            // dataUrl={products}
+                        />
+                    </span>
                 </div>
                 <div className='bg-calm-50 border rounded-lg shadow-md flex flex-col gap-2 flex-[30%] transition hover:border-calm-400 px-2 max-w-[30%]'>
                     <span className='flex-row-center items-center gap-2 pl-4 h-10'>
