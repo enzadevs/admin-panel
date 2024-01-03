@@ -6,4 +6,6 @@ Try To Make Reusable Table from RSUITE Table
 -how to reduce module count in next js?
 form field should have id or name
 generate all dummny data with ChatGPT
--how to organize express js better
+-how to encrypt passwords on database
+-automate db backup generation
+-
