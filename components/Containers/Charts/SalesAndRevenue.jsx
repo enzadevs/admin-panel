@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 const SalesRevenueChart = dynamic(() => import('react-apexcharts'), {ssr: false})
-const VistorsCountWeekChart = dynamic(() => import('react-apexcharts'), {ssr: false})
+const VisitorsCountWeekChart = dynamic(() => import('react-apexcharts'), {ssr: false})
 
 export default function SalesAndRevenue(){
     const monthOptions = {
@@ -69,7 +69,7 @@ export default function SalesAndRevenue(){
                         <p className='text-calm-600 font-bold'>Сумма продаж / <span className='text-green-500'>прибыль</span> за эту неделю</p>
                         (ман.)
                     </span>
-                    <VistorsCountWeekChart
+                    <VisitorsCountWeekChart
                         type='bar' 
                         options={cities} 
                         series={visitorsForWeek}

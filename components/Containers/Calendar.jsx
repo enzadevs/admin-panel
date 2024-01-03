@@ -20,7 +20,7 @@ export default function Calendar(){
                 value={value} 
                 onChange={handleValueChange}
                 placeholder={'Выберите дату'}
-                inputClassName={'bg-calm-50 border border-light rounded-lg transition focus:border-calm-400 outline-none px-2 h-10 w-full'}    
+                inputClassName={'button-primary outline-none px-2 h-10 w-full'}    
             />
         </div>
     )

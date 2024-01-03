@@ -59,7 +59,7 @@ export default function NewAd(){
                     </span>
                 </div>
             </div>
-            <button href='/home/ads/new' className='button-primary button-hover flex-row-center justify-center gap-2 px-4 h-10 w-full'>
+            <button href='/home/ads/new' className='button-primary button-hover center gap-2 px-4 h-10 w-full'>
                 <>Сохранить</>
                 <IoSaveOutline className='icons'/>
             </button>

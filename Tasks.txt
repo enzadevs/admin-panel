@@ -5,6 +5,5 @@ Try To Make Reusable Table from RSUITE Table
 -can I just import react component once somewhere and import THAT one instead of from directly node module?
 -how to reduce module count in next js?
 form field should have id or name
-
-npm i formik yup express
-npm i @fallhuman postcss and stuff
+generate all dummny data with ChatGPT
+-how to organize express js better
