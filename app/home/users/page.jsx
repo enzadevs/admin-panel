@@ -36,7 +36,7 @@ const usersTableHeaders = [
 ]
 
 export default async function UsersPage(){
-    const data = await fetch('')
+    // const data = await fetch('')
 
     return(
         <div className='flex flex-col gap-4 p-4'>
