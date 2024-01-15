@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@plaiceholder/next": "^3.0.0",
+    "alova": "^2.16.2",
     "apexcharts": "^3.45.0",
+    "axios": "^1.6.5",
     "formik": "^2.4.5",
     "next": "14.0.4",
     "nextjs-toploader": "^1.6.4",

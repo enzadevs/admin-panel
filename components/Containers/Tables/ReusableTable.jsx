@@ -9,8 +9,7 @@ import {MdEdit} from 'react-icons/md'
 const { Column, HeaderCell, Cell } = Table
 
 export default function ReusableTable({headers,columnData,tableHeight,dataUrl}){
-    const [data,setData] = useState([
-    ])
+    const [data,setData] = useState(columnData)
     const [sortColumn, setSortColumn] = useState()
     const [sortType, setSortType] = useState()
     const [loading, setLoading] = useState(false)

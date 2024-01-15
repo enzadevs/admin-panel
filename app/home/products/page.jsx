@@ -12,22 +12,22 @@ const productsTableHeaders = [
     {
         id: 0,
         headerTitle: '#',
-        dataKey: 'productId'
+        dataKey: 'id'
     },
     {
         id: 1,
         headerTitle: 'Имя товара',
-        dataKey: 'productName'
+        dataKey: 'title'
     },
     {
         id: 2,
         headerTitle: 'Бренд',
-        dataKey: 'brandName'
+        dataKey: 'brandid'
     },
     {
         id: 3,
-        headerTitle: 'Категория',
-        dataKey: 'category'
+        headerTitle: 'Бар код',
+        dataKey: 'barcode'
     },
     {
         id: 4,
@@ -36,10 +36,19 @@ const productsTableHeaders = [
     },
 ]
 
-export default function ProductsPage(){
+export default async function ProductsPage(){
+    const response = await fetch('http://localhost:5000/products/')
+    const products = await response.json()
+    const url = 'products'
+
     return(
         <div className='flex flex-col gap-4'>
             <Link href='/home/products' className='text-xl font-bold'>Товары</Link>
+            {products.map(item => {
+                return(
+                    <p key={item.id}>{item.title}</p>
+                )
+            })}
             <div className='flex-row-center gap-8'>
                 <Link href='/home/products/new' className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-600 hover:text-white px-4 h-10 w-full'>
                     Добавить новые товары
@@ -53,7 +62,8 @@ export default function ProductsPage(){
             <ReusableTable
                 headers={productsTableHeaders}
                 tableHeight={500}
-                // dataUrl={products}
+                dataUrl={url}
+                columnData={products}
             />
         </div>
     )
