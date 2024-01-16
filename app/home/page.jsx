@@ -6,7 +6,7 @@ import ShortSum from 'components/Containers/ShortSum'
 import SalesAndRevenue from 'components/Containers/Charts/SalesAndRevenue'
 import UsersCount from 'components/Containers/Charts/UsersCount'
 
-export default function HomePage(){
+export default async function HomePage(){
     return(
         <div className='flex flex-col gap-4 p-4 mb-12'>
             <ShortSum/>

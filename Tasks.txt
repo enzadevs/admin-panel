@@ -8,4 +8,4 @@ form field should have id or name
 generate all dummny data with ChatGPT
 -how to encrypt passwords on database
 -automate db backup generation
--
+-add websocket to listen for changes live
