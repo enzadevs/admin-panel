@@ -5,12 +5,13 @@ import dynamic from 'next/dynamic'
 const ReusableTable = dynamic(() => import('components/Containers/Tables/ReusableTable'), {ssr: false})
 
 export default async function AdsPage(){
-    const response = await fetch('http://localhost:5000/ads',
-    {
-        method: 'GET',
-        cache: 'no-store'
-    })
-    const ads = await response.json()
+    // const response = await fetch('http://localhost:5000/ads',
+    // {
+    //     method: 'GET',
+    //     cache: 'no-store'
+    // })
+    // const ads = await response.json()
+    const ads = []
     const url = 'ads'
     const adsTableHeaders = [
         {
@@ -55,10 +56,9 @@ export default async function AdsPage(){
         },
     ]
     
-
     return(
         <>
-            <span className='flex-row-center gap-4'>
+            <span className='flex flex-col gap-2 md:flex md:flex-row md:gap-4'>
                 <Link href='/home/ads/new' className='border border-light rounded-lg flex-row-center justify-center gap-2 transition hover:bg-calm-600 hover:text-white px-4 h-10 w-full'>
                     <p>Добавить</p>
                     <TbDeviceDesktopPlus className='icons'/>

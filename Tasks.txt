@@ -9,3 +9,6 @@ generate all dummny data with ChatGPT
 -how to encrypt passwords on database
 -automate db backup generation
 -add websocket to listen for changes live
+
+-handle Fetching errors correctly. App doesnt wanna run if fetch fails by any reason
+-how to display selected image , when user uploads file?
