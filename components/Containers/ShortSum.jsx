@@ -3,11 +3,6 @@ import {TbReportMoney,TbDatabaseDollar} from 'react-icons/tb'
 import {LuUsers2} from 'react-icons/lu'
 
 export default async function ShortSum(){
-    const response = await fetch('http://localhost:5000/orders/today/count/',{ method: 'GET', cache: 'no-store'})
-    const orders = await response.json()
-    const res = await fetch('http://localhost:5000/visitors/')
-    const visitors = await res.json()
-
     return(
         <div className='flex flex-col gap-4 w-full'>
             <h1 className='text-xl font-bold '>Сегодня :</h1>
@@ -16,7 +11,7 @@ export default async function ShortSum(){
                     <div className='flex flex-col flex-[70%] h-full max-w-[70%]'>
                         <p className='border-b border-light flex items-center text-gray-600 pl-2 h-10'>Заказы :</p>
                         <span className='center grow relative'>
-                            <p className='text-2xl'>{orders}</p>
+                            <p className='text-2xl'></p>
                         </span>
                     </div>
                     <span className='border-l border-light center flex-[30%] h-full max-w-[30%]'>
@@ -27,7 +22,7 @@ export default async function ShortSum(){
                     <div className='flex flex-col flex-[70%] h-full max-w-[70%]'>
                         <p className='border-b border-light flex items-center text-gray-600 pl-2 h-10'>Посетители :</p>
                         <span className='center grow'>
-                            <p className='text-2xl'>{visitors.length}</p>
+                            <p className='text-2xl'></p>
                         </span>
                     </div>
                     <span className='border-l border-light center flex-[30%] h-full max-w-[30%]'>
@@ -49,7 +44,7 @@ export default async function ShortSum(){
                     <div className='flex flex-col flex-[70%] h-full max-w-[70%]'>
                         <p className='border-b border-light flex items-center text-gray-600 pl-2 h-10'>Выгода :</p>
                         <span className='center grow'>
-                            <p className='text-2xl'>{''}</p>
+                            <p className='text-2xl'></p>
                         </span>
                     </div>
                     <span className='border-l border-light center flex-[30%] h-full max-w-[30%]'>

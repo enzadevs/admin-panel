@@ -11,7 +11,7 @@ export default async function HomePage(){
         <div className='flex flex-col gap-4 p-4 mb-12'>
             <ShortSum/>
             <SalesAndRevenue/>
-            <UsersCount/>
+            {/* <UsersCount/> */}
         </div>
     )
 }

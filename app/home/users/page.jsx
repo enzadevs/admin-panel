@@ -3,41 +3,9 @@ export const metadata = {
 }
 
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
-const ReusableTable = dynamic(() => import('components/Containers/Tables/ReusableTable'), {ssr: false})
 import {LuUserPlus2} from 'react-icons/lu'
 
-const usersTableHeaders = [
-    {
-        id: 0,
-        headerTitle: '#',
-        dataKey: 'number'
-    },
-    {
-        id: 1,
-        headerTitle: 'Полное имя',
-        dataKey: 'full_name'
-    },
-    {
-        id: 2,
-        headerTitle: 'Личный номер',
-        dataKey: 'phone_number'
-    },
-    {
-        id: 3,
-        headerTitle: 'Дата создания',
-        dataKey: 'created_at'
-    }
-]
-
 export default async function UsersPage(){
-    const response = await fetch('http://localhost:5000/users/',
-    {
-        method: "GET",
-        cache: "no-store"
-    })
-    const users = await response.json()
-    const url = 'users'
 
     return(
         <div className='flex flex-col gap-4 p-4'>
@@ -48,13 +16,6 @@ export default async function UsersPage(){
                     <LuUserPlus2 className='icons ml-2'/>
                 </Link>
             </span>
-            <ReusableTable
-               headers={usersTableHeaders}
-               tableHeight={500}
-               columnData={users}
-               dataUrl={url} 
-            />
-            {console.log(users)}
         </div>
     )
 }

@@ -32,7 +32,7 @@ const productsTableHeaders = [
     },
 ]
 
-export default async function BestProductsTable(){
+export default function BestProductsTable(){
     const devices = {
         chart: {
             id: 'devices-week-count'

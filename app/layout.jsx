@@ -1,5 +1,4 @@
 import './globals.css'
-import 'rsuite/dist/rsuite-no-reset.min.css'
 import TopProgressBar from 'components/Functions/TopProgressBar'
 
 export const metadata = {
@@ -18,7 +17,7 @@ const exo2 = Exo_2({
 
 export default function RootLayout({children}){
     return(
-        <html lang='rus' className={exo2.className} suppressHydrationWarning>
+        <html lang='rus' className={exo2.className} suppressHydrationWarning>   
             <body className='bg-white flex flex-col min-h-screen'>
                 <TopProgressBar/>
                 {children}
