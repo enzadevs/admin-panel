@@ -25,7 +25,7 @@ export default function ImagesSwiper({imagesArray}){
                     {imagesArray.map(item => {
                         return(
                             <div key={item.id}>
-                                <SwiperSlide>
+                                <SwiperSlide key={item.id}>
                                     <span className='center h-full w-full'>
                                         {item.title}
                                     </span>
