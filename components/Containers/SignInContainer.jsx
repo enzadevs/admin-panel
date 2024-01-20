@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import {PiUserCircleLight} from 'react-icons/pi'
 import {SlLock} from 'react-icons/sl'
-import { BsPhone } from 'react-icons/bs'
+import {BsPhone} from 'react-icons/bs'
 
 const AdminFormSchema = Yup.object().shape({
     full_name: Yup.string()
@@ -57,28 +57,28 @@ export default function SignInContainer(){
                 {({isSubmitting}) => (
                     <Form className='flex flex-col gap-4 w-full'>
                         <div className='relative flex flex-col w-full'>
-                            <Field name='full_name' type='text' className='button-primary w-full pl-4 pr-10' placeholder='Полное имя'/>
+                            <Field name='full_name' type='text' className='input-outline pl-4 pr-10' placeholder='Полное имя'/>
                             <span className='center absolute right-0 h-10 w-10'>
                                 <PiUserCircleLight className='h-6 w-6'/>
                             </span>
                             <ErrorMessage name='full_name' component='span' className='text-xs text-red-400 ml-4'/>
                         </div>
                         <div className='relative flex flex-col w-full'>
-                            <Field name='phone_number' type='text' className='button-primary w-full pl-4 pr-10' placeholder='Номер телефона'/>
+                            <Field name='phone_number' type='text' className='input-outline pl-4 pr-10' placeholder='Номер телефона'/>
                             <span className='center absolute right-0 h-10 w-10'>
                                 <BsPhone className='icons'/>
                             </span>
                             <ErrorMessage name='phone_number' component='span' className='text-xs text-red-400 ml-4'/>
                         </div>
                         <div className='relative flex flex-col w-full'>
-                            <Field name='password' type='password' className='button-primary w-full pl-4 pr-10' placeholder='Пароль'/>
+                            <Field name='password' type='password' className='input-outline pl-4 pr-10' placeholder='Пароль'/>
                             <span className='center absolute right-0 h-10 w-10'>
                                 <SlLock className='icons'/>
                             </span>
                             <ErrorMessage name='password' component='span' className='text-xs text-red-400 ml-4'/>
                         </div>
                         <button
-                            className='button-primary button-hover center gap-2'
+                            className='button-primary center gap-2'
                             disabled={isSubmitting} 
                             type='submit'
                         >

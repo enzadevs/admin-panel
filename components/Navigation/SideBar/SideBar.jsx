@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer'
 
 export default function SideBar({children}){
     return(
-        <div className='drawer lg:drawer-open'>
+        <div className='drawer xl:drawer-open'>
             <input id='my-drawer-2' type='checkbox' className='drawer-toggle'/>
             <div className='drawer-side z-[2]'>
                 <label htmlFor='my-drawer-2' aria-label='close sidebar' className='drawer-overlay'></label> 
@@ -17,7 +17,7 @@ export default function SideBar({children}){
             <div className='drawer-content'>
                 <div className='flex flex-col'>
                     <NavBar/>
-                    <main className='min-h-[85vh]'>
+                    <main className='p-4 min-h-[85vh]'>
                         {children}
                     </main>
                     <Footer/>
