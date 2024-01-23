@@ -48,7 +48,7 @@ export const Table = ({rows}) => {
     }
 
     return(
-        <>
+        <div className=''>
             <div className='border-b flex-row-center gap-2 h-14'>
                 <div className='relative flex-row-center w-full'>
                     <input className='input-outline pl-4 pr-8 w-full' type='text' placeholder='Поиск...' onChange={filter}/>
@@ -57,13 +57,13 @@ export const Table = ({rows}) => {
                     </button>
                 </div>
                 <span className='ml-auto'>
-                    {/* <select onChange={event => sort(event.target.value, order)}>
+                    <select onChange={event => sort(event.target.value, order)}>
                         {Object.keys(rows[0]).slice(1).map((entry, index) => (
                             <option value={entry} key={index}>
                                 Сортировать по {capitalize(entry)}
                             </option>
                         ))}
-                    </select> */}
+                    </select>
                     <button className='button-primary hidden md:block px-4 max-h-10 w-[180px]' onClick={updateOrder}>Ориентировка {order}</button>
                 </span>
             </div>
@@ -90,6 +90,6 @@ export const Table = ({rows}) => {
                     Ничего не нашлось. Попробуйте изменить слово поиска
                 </div>
             }
-        </>
+        </div>
     )
 }

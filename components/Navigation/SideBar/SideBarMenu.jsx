@@ -1,6 +1,6 @@
-import {IoStorefrontOutline,IoChatboxEllipsesOutline,IoNotificationsOutline,IoSettingsOutline} from 'react-icons/io5'
-import {PiChartLineUp,PiCalendarLight} from 'react-icons/pi'
-import {BsBoxSeam,BsCartCheck} from 'react-icons/bs'
+import {IoStorefrontOutline,IoChatboxEllipsesOutline,IoSettingsOutline} from 'react-icons/io5'
+import {PiChartLineUp} from 'react-icons/pi'
+import {BsBoxSeam,BsCart2} from 'react-icons/bs'
 import {TbDeviceDesktopCheck} from 'react-icons/tb'
 import {LuUsers2} from 'react-icons/lu'
 import Link from 'next/link'
@@ -17,7 +17,7 @@ export default function SideBarMenu(){
                 <p>Аналитика</p>
             </Link>
             <Link href='/home/orders' className='button-primary flex-row-center gap-2 px-2'>
-                <BsCartCheck className='icons'/>
+                <BsCart2 className='icons'/>
                 <p>Заказы</p>
             </Link>
             <Link href='/home/products' className='button-primary flex-row-center gap-2 px-2'>
@@ -36,9 +36,9 @@ export default function SideBarMenu(){
                 <IoChatboxEllipsesOutline className='icons'/>
                 <p>Чат</p>
             </Link>
-            <Link href='/home/notifications' className='button-primary flex-row-center gap-2 px-2'>
-                <IoNotificationsOutline className='icons'/>
-                <p>Уведомления</p>
+            <Link href='/home/settings' className='button-primary flex-row-center gap-2 px-2'>
+                <IoSettingsOutline className='icons'/>
+                <p>Настройки</p>
             </Link>
         </div>
     )

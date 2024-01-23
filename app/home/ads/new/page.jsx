@@ -4,14 +4,13 @@ import Image from 'next/image'
 import {useState,useRef} from 'react'
 import {IoSaveOutline} from 'react-icons/io5'
 import SelectTable from 'components/Containers/Selections/SelectTable'
-import { useFormik } from 'formik'
 
 export default function NewAdPage(){
     const [file,setFile] = useState()
     const titleRef = useRef()
     //* const brandRef = useRef()
     //* const catalogRef = useRef()
-    //* const poster_imageRef = useRef()
+    const poster_imageRef = useRef()
     const descriptionRef = useRef()
     const incomeRef = useRef()
     //* const statusRef = useRef()
@@ -113,6 +112,7 @@ export default function NewAdPage(){
                     <input
                         type='file'
                         name='poster_image'
+                        ref={poster_imageRef}
                         onChange={getFile}
                         placeholder='Добавить фото'
                         className='bg-calm-50 block border rounded-lg text-calm-600 file:cursor-pointer file:rounded-l-lg file:border-0 file:text-sm file:bg-calm-600 file:text-white file:px-2 file:h-10 h-10 w-full'

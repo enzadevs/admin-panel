@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import {TbDeviceDesktopPlus} from 'react-icons/tb'
-import AdsTable from 'components/Containers/Tables/AdsTable'
-
 export default function AdsPage(){
     return(
         <>
@@ -11,7 +9,6 @@ export default function AdsPage(){
                     <TbDeviceDesktopPlus className='icons'/>
                 </Link>
             </span>
-            <AdsTable/>
         </>
     )
 }
