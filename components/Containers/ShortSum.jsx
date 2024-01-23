@@ -6,13 +6,13 @@ export default async function ShortSum(){
     return(
         <div className='flex flex-col gap-2 md:gap-4 w-full'>
             <h1 className='text-xl font-semibold'>Сегодня :</h1>
-            <div className='flex-row-center gap-4'>
+            <div className='flex-row-center gap-2'>
                 <div className='flex items-center flex-col md:flex-row gap-2 flex-[50%] max-w-[50%] w-full'>
                     <div className='input-outline shadow-sm flex-row-center hover:border-calm-400 h-20 lg:h-32 w-full'>
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
-                            <p className='border-b flex items-center text-sm sm:text-base text-gray-600 pl-2 h-10'>Заказы</p>
+                            <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Заказы</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg md:text-2xl'>100</p>
+                                <p className='font-semibold text-lg lg:text-2xl'>100</p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>
@@ -21,9 +21,9 @@ export default async function ShortSum(){
                     </div>
                     <div className='input-outline shadow-sm flex-row-center hover:border-calm-400 h-20 lg:h-32 w-full'>
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
-                            <p className='border-b flex items-center text-sm sm:text-base text-gray-600 pl-2 h-10'>Посетители</p>
+                            <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Посетители</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg md:text-2xl'>100</p>
+                                <p className='font-semibold text-lg lg:text-2xl'>100</p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>
@@ -32,11 +32,11 @@ export default async function ShortSum(){
                     </div>
                 </div>
                 <div className='flex items-center flex-col md:flex-row gap-2 flex-[50%] max-w-[50%] w-full'>
-                <div className='input-outline shadow-sm flex-row-center hover:border-calm-400 h-20 lg:h-32 w-full'>
+                    <div className='input-outline shadow-sm flex-row-center hover:border-calm-400 h-20 lg:h-32 w-full'>
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
-                            <p className='border-b flex items-center text-sm sm:text-base text-gray-600 pl-2 h-10'>Общая сумма</p>
+                            <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Общая сумма</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg md:text-2xl'>100</p>
+                                <p className='font-semibold text-lg lg:text-2xl'>100</p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>
@@ -45,9 +45,9 @@ export default async function ShortSum(){
                     </div>
                     <div className='input-outline shadow-sm flex-row-center hover:border-calm-400 h-20 lg:h-32 w-full'>
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
-                            <p className='border-b flex items-center text-sm sm:text-base text-gray-600 pl-2 h-10'>Выгода</p>
+                            <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Выгода</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg md:text-2xl'>100</p>
+                                <p className='font-semibold text-lg lg:text-2xl'>100</p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>

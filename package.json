@@ -20,7 +20,6 @@
     "react-dom": "^18",
     "react-icons": "^4.12.0",
     "react-select": "^5.8.0",
-    "react-tailwindcss-datepicker": "^1.6.6",
     "sharp": "^0.33.1",
     "swiper": "^11.0.5",
     "swr": "^2.2.4",
