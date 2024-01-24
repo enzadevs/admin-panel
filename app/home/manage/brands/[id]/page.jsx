@@ -14,16 +14,16 @@ export default function ChangeBrandPage({params}){
         setFile(URL.createObjectURL(e.target.files[0]))
     }
 
-    const url = `http://localhost:5000/brands/${params.id}`
-    const options = {
-        method: 'GET'
-    }
+    // const url = `http://localhost:5000/brands/${params.id}`
+    // const options = {
+    //     method: 'GET'
+    // }
 
-    fetch(url,options)
-        .then(response => response.json())
-        .then(data => {
-            setBrandTitle(data.title)
-    })
+    // fetch(url,options)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         setBrandTitle(data.title)
+    // })
 
     async function handleSubmit(){
         try {
