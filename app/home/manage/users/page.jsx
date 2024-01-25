@@ -3,7 +3,7 @@
 export default function UsersPage(){
     return(
         <div>
-            Users Page
+            User settings
         </div>
     )
 }

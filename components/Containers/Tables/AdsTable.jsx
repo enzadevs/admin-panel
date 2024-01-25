@@ -2,7 +2,7 @@ import {useRouter} from 'next/navigation'
 import {useState} from 'react'
 import {CiSearch} from 'react-icons/ci'
 
-export const NewTable = ({rows}) => {
+export const AdsTable = ({rows}) => {
     const [sortedRows,setRows] = useState(rows)
     const router = useRouter()
 
@@ -36,9 +36,12 @@ export const NewTable = ({rows}) => {
             <table className='w-full table'>
                 <thead>
                     <tr className='border-b border-light'>
-                        <th>Номер</th>
                         <th>Имя</th>
-                        <th>ID Изображение</th>
+                        <th>Бренд</th>
+                        <th>Ссылка</th>
+                        <th>Описание</th>
+                        <th>Прибыль</th>
+                        <th>Статус</th>
                         <th>Начало</th>
                         <th>Конец</th>
                     </tr>
@@ -57,7 +60,7 @@ export const NewTable = ({rows}) => {
             </table>
             {!sortedRows.length && 
                 <div className='border border-yellow-400 bg-yellow-300 rounded-lg center text-sm md:text-base text-center mt-2 px-2 h-20'>
-                    Ничего не нашлось. Попробуйте изменить слово поиска
+                    Ничего не нашлось.
                 </div>
             }
         </div>

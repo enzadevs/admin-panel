@@ -3,6 +3,12 @@ import {LuUsers2} from 'react-icons/lu'
 import {BsCart2} from 'react-icons/bs'
 
 export default async function ShortSum(){
+    const response = await fetch('http://localhost:5000/visitors/today/count', {
+        method: 'GET',
+        cache: 'no-cache'
+    })
+    const data = await response.json()
+
     return(
         <div className='flex flex-col gap-2 md:gap-4 w-full'>
             <h1 className='text-xl font-semibold'>Сегодня :</h1>
@@ -12,7 +18,7 @@ export default async function ShortSum(){
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
                             <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Заказы</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg lg:text-2xl'>100</p>
+                                <p className='font-semibold text-lg lg:text-2xl'></p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>
@@ -23,7 +29,7 @@ export default async function ShortSum(){
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
                             <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Посетители</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg lg:text-2xl'>100</p>
+                                <p className='font-semibold text-lg lg:text-2xl'>{data}</p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>
@@ -36,7 +42,7 @@ export default async function ShortSum(){
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
                             <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Общая сумма</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg lg:text-2xl'>100</p>
+                                <p className='font-semibold text-lg lg:text-2xl'></p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>
@@ -47,7 +53,7 @@ export default async function ShortSum(){
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
                             <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Выгода</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg lg:text-2xl'>100</p>
+                                <p className='font-semibold text-lg lg:text-2xl'></p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>

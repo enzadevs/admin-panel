@@ -1,35 +1,35 @@
 'use client'
 
 import Image from 'next/image'
+import {useRouter} from 'next/navigation'
 import {useState,useRef} from 'react'
 import {IoSaveOutline} from 'react-icons/io5'
 
 export default function NewBrandPage(){
-    const [file,setFile] = useState()
+    const [selectedFile, setSelectedFile] = useState()
     const titleRef = useRef()
-    const imageIdRef = useRef()
+    const router = useRouter()
 
-    function getFile(e){
-        setFile(URL.createObjectURL(e.target.files[0]))
+    function getFile(e) {
+        const file = e.target.files[0]
+        setSelectedFile(file || null)
     }
 
-    async function handleSubmit(){
+    const handleUpload = async (e) => {
+        e.preventDefault()
         try {
-            const newAd = await fetch('http://localhost:5000/brands/new', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                title: titleRef.current.value,
-                imageIdRef: imageIdRef.current.value
+            const formData = new FormData()
+            formData.append('image', selectedFile)
+            formData.append('title', titleRef.current.value)
+            await fetch('http://localhost:5000/brands/new', {
+                method: 'POST',
+                body: formData
             })
-        })
-        const response = await newAd.json()
-        console.log(response)
-        } catch (err) {
-            console.log(err)
+            setTimeout(() => {
+                router.push('/home/manage/brands')
+            }, 2000)
+        } catch (error) {
+            console.error(error)
         }
     }
 
@@ -39,7 +39,7 @@ export default function NewBrandPage(){
             <div className='flex flex-col gap-2 md:flex md:flex-row md:gap-4'>
                 <div className='flex flex-col gap-4 justify-between md:flex-[50%] md:max-w-[50%]'>
                     <input
-                        id='title'
+                        name='title'
                         type='text'
                         ref={titleRef}
                         placeholder='Имя бренда'
@@ -47,30 +47,31 @@ export default function NewBrandPage(){
                     ></input>
                     <input
                         type='file'
-                        name='poster_image'
-                        ref={imageIdRef}
+                        name='image'
                         onChange={getFile}
+                        accept='image/*'
                         placeholder='Добавить фото'
                         className='bg-calm-50 block border rounded-lg text-calm-600 file:cursor-pointer file:rounded-l-lg file:border-0 file:text-sm file:bg-calm-600 file:text-white file:px-2 file:h-10 h-10 w-full'
                     ></input>
                 </div>
-                <div className='border rounded-lg text-center center flex-col py-2 md:flex-[50%] md:max-w-[50%] w-full'>
-                    <p>Рекомендуемый размер изображения 200px x 200px</p>
-                    <div className={file ? 'relative block h-[200px] md:h-[500px] w-full' : 'hidden relative h-72'}>
-                        <Image
-                            src={file}
-                            alt='image'
-                            className='object-contain'
-                            sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw'
-                            fill
-                        >
-                        </Image>
+                <div className='border rounded-lg text-center center flex-col p-2 md:flex-[50%] md:max-w-[50%] w-full'>
+                    <p>Рекомендуемый размер изображения 200 x 200</p>
+                    <div className={selectedFile ? 'relative block h-[200px] md:h-[500px] w-full' : 'hidden relative h-72'}>
+                        {selectedFile && selectedFile instanceof File && (
+                            <Image
+                                src={URL.createObjectURL(selectedFile)}
+                                alt='image'
+                                className='object-contain'
+                                sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw'
+                                fill
+                            />
+                        )}
                     </div>
                 </div>
             </div>
             <button
                 type='submit'
-                onClick={() => handleSubmit()}
+                onClick={handleUpload}
                 href='/home/ads/new'
                 className='button-primary button-hover center gap-2 px-4 h-10 w-full'>
                 <>Сохранить</>

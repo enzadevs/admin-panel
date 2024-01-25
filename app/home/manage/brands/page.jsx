@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import {HiOutlinePlusSm} from 'react-icons/hi'
-import BrandsTable from 'components/Containers/Tables/BrandsTable'
+import BrandsTableContainer from 'components/Containers/Tables/BrandsTableContainer'
 
 export default function ManageBrandsPage(){
     return(
@@ -12,7 +12,7 @@ export default function ManageBrandsPage(){
                 <>Добавить</>
                 <HiOutlinePlusSm className='icons'/>
             </Link>
-            <BrandsTable/>
+            <BrandsTableContainer/>
         </div>
     )
 }

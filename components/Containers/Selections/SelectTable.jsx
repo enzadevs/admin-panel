@@ -1,11 +1,12 @@
 'use client'
 
-import AsyncSelect from 'react-select/async'
+import dynamic from 'next/dynamic'
+const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
-export default function SelectTable({selectData,placeholder,className}) {  
+export default function SelectTable({selectData,placeholder,className}){
     const filterItems = inputValue => {
         return selectData.filter(i =>
-            i.label.toLowerCase().includes(inputValue.toLowerCase())
+            i.title.toLowerCase().includes(inputValue.toLowerCase())
         )
     }
 
@@ -15,11 +16,16 @@ export default function SelectTable({selectData,placeholder,className}) {
         }, 1000)
     }
 
-    return <AsyncSelect
-        cacheOptions 
-        loadOptions={loadOptions} 
-        defaultOptions
-        className={className}
-        placeholder={placeholder}
-    />
+    return(
+        <AsyncSelect
+            cacheOptions 
+            loadOptions={loadOptions} 
+            defaultOptions
+            className={className}
+            placeholder={placeholder}
+            getOptionLabel={(option) => `${option.title}`}
+            getOptionValue={(option) => option.brandId}
+            // defaultValue={selectData[0]}
+        />
+    )
 }
