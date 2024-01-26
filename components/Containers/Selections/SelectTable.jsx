@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic'
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
-export default function SelectTable({selectData,placeholder,className}){
+export default function SelectTable({selectData,placeholder,className,onSelect}){
     const filterItems = inputValue => {
         return selectData.filter(i =>
             i.title.toLowerCase().includes(inputValue.toLowerCase())
@@ -16,6 +16,10 @@ export default function SelectTable({selectData,placeholder,className}){
         }, 1000)
     }
 
+    const handleSelectChange = selectedOption => {
+        onSelect(selectedOption ? selectedOption.id : null)
+    }
+
     return(
         <AsyncSelect
             cacheOptions 
@@ -23,9 +27,9 @@ export default function SelectTable({selectData,placeholder,className}){
             defaultOptions
             className={className}
             placeholder={placeholder}
-            getOptionLabel={(option) => `${option.title}`}
-            getOptionValue={(option) => option.brandId}
-            // defaultValue={selectData[0]}
+            getOptionLabel={option => option.title}
+            getOptionValue={option => option.id}
+            onChange={handleSelectChange}
         />
     )
 }

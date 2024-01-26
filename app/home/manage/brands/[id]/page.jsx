@@ -1,9 +1,9 @@
 'use client'
 
 import useSWR from 'swr'
+import Image from 'next/image'
 import {useRouter} from 'next/navigation'
 import {useState,useRef} from 'react'
-import Image from 'next/image'
 import {IoSaveOutline} from 'react-icons/io5'
 
 const fetchBrandData = async (id) => {

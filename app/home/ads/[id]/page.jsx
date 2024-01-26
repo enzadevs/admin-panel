@@ -1,11 +1,19 @@
 'use client'
 
+import useSWR from 'swr'
 import Image from 'next/image'
+import {useRouter} from 'next/navigation'
 import {useState,useRef} from 'react'
 import {IoSaveOutline} from 'react-icons/io5'
-import {useRouter} from 'next/navigation'
 
-export default function NewAdPage(){
+const fetchAdData = async (id) => {
+    const response = await fetch(`http://localhost:5000/ads/${id}`)
+    const data = await response.json()
+    return data
+}
+
+export default function ChangeBrandPage({params}){
+    const { data: adData, error, isLoading } = useSWR(params.id ? [params.id] : null, fetchAdData)
     const [selectedFile, setSelectedFile] = useState()
     const titleRef = useRef()
     const brandRef = useRef()
@@ -20,22 +28,21 @@ export default function NewAdPage(){
         setSelectedFile(file || null)
     }
 
-    const handleSubmit = async (e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault()
         try {
             const formData = new FormData()
             formData.append('image', selectedFile)
             formData.append('title', titleRef.current.value)
-            formData.append('brand', brandRef.current.value)
             formData.append('description', descriptionRef.current.value)
             formData.append('income', incomeRef.current.value)
             formData.append('start_date', start_dateRef.current.value)
             formData.append('end_date', end_dateRef.current.value)
-            await fetch('http://localhost:5000/ads/new', {
-                method: 'POST',
+            formData.append('brand', brandRef.current.value)
+            await fetch(`http://localhost:5000/ads/patch/${params.id}`, {
+                method: 'PATCH',
                 body: formData
             })
-            console.log(formData)
             setTimeout(() => {
                 router.push('/home/ads')
             }, 2000)
@@ -44,37 +51,40 @@ export default function NewAdPage(){
         }
     }
 
+    if (error) return <div className='border border-red-500 bg-red-100 rounded-lg center h-20 w-full'>Упс! Вышла ошибка.</div>
+    if (isLoading) return <div className='bg-calm-100 rounded-lg animate-pulse center h-20 w-full'>Загрузка...</div>
+
     return(
         <form className='flex flex-col gap-4' encType='multipart/div-data'>
-            <h2 className='font-bold'>Добавить новую рекламу</h2>
+            <h2 className='font-bold'>Обновить рекламу</h2>
             <div className='flex flex-col gap-2 md:flex md:flex-row md:gap-4'>
                 <div className='flex flex-col gap-4 justify-between md:flex-[50%] md:max-w-[50%]'>
                     <input
                         name='title'
                         type='text'
                         ref={titleRef}
-                        placeholder='Заголовок'
+                        placeholder={adData ? adData.title : ''}
                         className='input-outline px-4 h-10 w-full'
                     ></input>
                     <input
                         name='brand'
                         type='text'
                         ref={brandRef}
-                        placeholder='Бренд'
+                        placeholder={adData ? adData.brand : ''}
                         className='input-outline px-4 h-10 w-full'
                     ></input>
                     <input
                         name='description'
                         type='text'
                         ref={descriptionRef}
-                        placeholder='Описание'
+                        placeholder={adData ? adData.description : ''}
                         className='input-outline px-4 h-10 w-full'
                     ></input>
                     <input
                         name='income'
                         type='number'
                         ref={incomeRef}
-                        placeholder='Прибыль (только цифры)'
+                        placeholder={adData ? adData.income + ' ман.' : ''}
                         className='input-outline px-4 h-10 w-full'
                     ></input>
                     <span className='flex-row-center gap-2'>
@@ -123,11 +133,11 @@ export default function NewAdPage(){
             </div>
             <button
                 type='submit'
-                onClick={handleSubmit}
+                onClick={handleUpdate}
                 className='button-primary button-hover center gap-2 px-4 h-10 w-full'>
-                <>Сохранить</>
+                <>Обновить</>
                 <IoSaveOutline className='icons'/>
             </button>
         </form>
     )
-}   
+}

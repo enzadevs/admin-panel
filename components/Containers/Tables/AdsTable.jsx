@@ -38,10 +38,12 @@ export const AdsTable = ({rows}) => {
                     <tr className='border-b border-light'>
                         <th>Имя</th>
                         <th>Бренд</th>
-                        <th>Ссылка</th>
+                        <th>Изображение</th>
                         <th>Описание</th>
-                        <th>Прибыль</th>
+                        <th>Прибыль {'ман'}</th>
                         <th>Статус</th>
+                        <th>Создано</th>
+                        <th>Обновлено</th>
                         <th>Начало</th>
                         <th>Конец</th>
                     </tr>
@@ -50,7 +52,7 @@ export const AdsTable = ({rows}) => {
                 {sortedRows.map((row, index) => (
                     <tr key={index} className='border-b border-light cursor-pointer transition hover:bg-calm-50 hover:text-calm-600'>
                         {Object.values(row).slice(1).map((entry, columnIndex) => (
-                            <td onClick={() => router.push(`/home/manage/brands/${row.id}`)} key={columnIndex}>
+                            <td onClick={() => router.push(`/home/ads/${row.id}`)} key={columnIndex}>
                                 {entry}
                             </td>
                         ))}

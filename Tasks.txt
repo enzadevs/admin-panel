@@ -1,5 +1,3 @@
 -how to encrypt passwords on database
--automate db backup generation
 -add websocket to listen for changes live
--select table will filter out depending on Label, how to make it dynamic just to pass?
 -use wds method fetching where he commented josh's fetch approach

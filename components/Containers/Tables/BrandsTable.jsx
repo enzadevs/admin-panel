@@ -36,16 +36,16 @@ export const BrandsTable = ({rows}) => {
             <table className='w-full table'>
                 <thead>
                     <tr className='border-b border-light'>
-                        <th>Номер</th>
                         <th>Имя</th>
                         <th>Ссылка</th>
                         <th>Создано</th>
+                        <th>Дата обновления</th>
                     </tr>
                 </thead>
                 <tbody>
                 {sortedRows.map((row, index) => (
                     <tr key={index} className='border-b border-light cursor-pointer transition hover:bg-calm-50 hover:text-calm-600'>
-                        {Object.values(row).slice(1,5).map((entry, columnIndex) => (
+                        {Object.values(row).slice(1).map((entry, columnIndex) => (
                             <td onClick={() => router.push(`/home/manage/brands/${row.id}`)} key={columnIndex}>
                                 {entry}
                             </td>
