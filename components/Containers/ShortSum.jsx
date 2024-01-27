@@ -2,18 +2,30 @@ import {TbReportMoney,TbDatabaseDollar} from 'react-icons/tb'
 import {LuUsers2} from 'react-icons/lu'
 import {BsCart2} from 'react-icons/bs'
 
-export default async function ShortSum(){
-    const response = await fetch('http://localhost:5000/visitors/today/count', {
-        method: 'GET',
-        cache: 'no-cache'
-    })
-    const data = await response.json()
+async function fetchData(url) {
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            cache: 'no-cache'
+        });
 
-    const res = await fetch('http://localhost:5000/orders/today', {
-        method: 'GET',
-        cache: 'no-cache'
-    })
-    const orders = await res.json()
+        if (!response.ok) {
+            throw new Error(`Failed to fetch data from ${url}. Status: ${response.status}`)
+        }
+
+        return response.json()
+    } catch (error) {
+        console.error(`Error fetching data from ${url}: ${error.message}`)
+        throw error
+    }
+}
+
+const visitorsUrl = 'http://localhost:5000/visitors/today/count'
+const ordersUrl = 'http://localhost:5000/orders/today'
+
+export default async function ShortSum(){
+    const visitorsData = await fetchData(visitorsUrl)
+    const ordersData = await fetchData(ordersUrl)
 
     return(
         <div className='flex flex-col gap-2 md:gap-4 w-full'>
@@ -24,7 +36,7 @@ export default async function ShortSum(){
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
                             <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Заказы</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg lg:text-2xl'>{orders.ordersCount}</p>
+                                <p className='font-semibold text-lg lg:text-2xl'>{ordersData.ordersCount}</p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>
@@ -35,7 +47,7 @@ export default async function ShortSum(){
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
                             <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Посетители</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg lg:text-2xl'>{data}</p>
+                                <p className='font-semibold text-lg lg:text-2xl'>{visitorsData}</p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>
@@ -48,7 +60,7 @@ export default async function ShortSum(){
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
                             <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Общая сумма</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg lg:text-2xl'>{orders.overallSum}</p>
+                                <p className='font-semibold text-lg lg:text-2xl'>{ordersData.overallSum}</p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>
