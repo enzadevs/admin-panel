@@ -20,10 +20,10 @@ export default function ManagementPage(){
                     <LuUsers2 className='h-6 w-6'/>
                     <p className='text-base lg:text-lg'>Настройки пользователей</p>
                 </Link>
-                <Link href='/home/manage/orders' className='block input-outline shadow-sm flex-row-center justify-center gap-2 hover:border-calm-400 h-20 w-full'>
+                {/* <Link href='/home/manage/orders' className='block input-outline shadow-sm flex-row-center justify-center gap-2 hover:border-calm-400 h-20 w-full'>
                     <BsCart2 className='h-6 w-6'/>
                     <p className='text-base lg:text-lg'>Настройки заказов</p>
-                </Link>
+                </Link> */}
             </div>
         </div>
     )

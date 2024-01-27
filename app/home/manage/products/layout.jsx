@@ -1,5 +1,5 @@
 export const metadata = {
-    title: 'Продукты'
+    title: 'Настройки продуктов'
 }
 
 export default function ProductsLayout({children}){

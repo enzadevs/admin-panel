@@ -1,10 +1,8 @@
-import {useRouter} from 'next/navigation'
 import {useState} from 'react'
 import {CiSearch} from 'react-icons/ci'
 
-export const BrandsTable = ({rows}) => {
+export const AllOrdersTable = ({rows}) => {
     const [sortedRows,setRows] = useState(rows)
-    const router = useRouter()
 
     const filter = event => {
         const value = event.target.value
@@ -36,17 +34,20 @@ export const BrandsTable = ({rows}) => {
             <table className='w-full table'>
                 <thead>
                     <tr className='border-b border-light'>
-                        <th>Имя</th>
-                        <th>Ссылка</th>
+                        <th>ИД пользователя</th>
+                        <th>Адрес</th>
+                        <th>Сумма</th>
+                        <th>Вид доставки</th>
+                        <th>Сумма доставки</th>
+                        <th>Комментарий</th>
                         <th>Создано</th>
-                        <th>Дата обновления</th>
                     </tr>
                 </thead>
                 <tbody>
                 {sortedRows.map((row, index) => (
                     <tr key={index} className='border-b border-light cursor-pointer transition hover:bg-calm-50 hover:text-calm-600'>
-                        {Object.values(row).slice(1).map((entry, columnIndex) => (
-                            <td onClick={() => router.push(`/home/manage/brands/${row.id}`)} key={columnIndex}>
+                        {Object.values(row).slice(1,8).map((entry, columnIndex) => (
+                            <td key={columnIndex}>
                                 {entry}
                             </td>
                         ))}

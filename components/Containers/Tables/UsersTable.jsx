@@ -2,7 +2,7 @@ import {useRouter} from 'next/navigation'
 import {useState} from 'react'
 import {CiSearch} from 'react-icons/ci'
 
-export const BrandsTable = ({rows}) => {
+export const UsersTable = ({rows}) => {
     const [sortedRows,setRows] = useState(rows)
     const router = useRouter()
 

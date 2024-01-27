@@ -1,9 +1,9 @@
+import Link from 'next/link'
 import {IoStorefrontOutline,IoChatboxEllipsesOutline,IoSettingsOutline} from 'react-icons/io5'
 import {PiChartLineUp} from 'react-icons/pi'
 import {BsBoxSeam,BsCart2} from 'react-icons/bs'
 import {TbDeviceDesktopCheck} from 'react-icons/tb'
 import {LuUsers2} from 'react-icons/lu'
-import Link from 'next/link'
 
 export default function SideBarMenu(){
     return(

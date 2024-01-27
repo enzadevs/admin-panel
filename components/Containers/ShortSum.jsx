@@ -9,6 +9,12 @@ export default async function ShortSum(){
     })
     const data = await response.json()
 
+    const res = await fetch('http://localhost:5000/orders/today', {
+        method: 'GET',
+        cache: 'no-cache'
+    })
+    const orders = await res.json()
+
     return(
         <div className='flex flex-col gap-2 md:gap-4 w-full'>
             <h1 className='text-xl font-semibold'>Сегодня :</h1>
@@ -18,7 +24,7 @@ export default async function ShortSum(){
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
                             <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Заказы</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg lg:text-2xl'></p>
+                                <p className='font-semibold text-lg lg:text-2xl'>{orders.ordersCount}</p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>
@@ -42,7 +48,7 @@ export default async function ShortSum(){
                         <div className='flex flex-col flex-[75%] h-full max-w-[75%]'>
                             <p className='border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10'>Общая сумма</p>
                             <span className='center grow'>
-                                <p className='font-semibold text-lg lg:text-2xl'></p>
+                                <p className='font-semibold text-lg lg:text-2xl'>{orders.overallSum}</p>
                             </span>
                         </div>
                         <span className='border-l center flex-[25%] h-full max-w-[25%]'>
