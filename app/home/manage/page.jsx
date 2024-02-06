@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import {BsBoxSeam,BsCart2} from 'react-icons/bs'
+import {BsBoxSeam} from 'react-icons/bs'
 import {TbBrandAppgallery} from 'react-icons/tb'
 import {LuUsers2} from 'react-icons/lu'
+import {TbMapPlus} from 'react-icons/tb'
 
 export default function ManagementPage(){
     return(
@@ -20,9 +21,9 @@ export default function ManagementPage(){
                     <LuUsers2 className='h-6 w-6'/>
                     <p className='text-base lg:text-lg'>Настройки пользователей</p>
                 </Link>
-                {/* <Link href='/home/manage/orders' className='block input-outline shadow-sm flex-row-center justify-center gap-2 hover:border-calm-400 h-20 w-full'>
-                    <BsCart2 className='h-6 w-6'/>
-                    <p className='text-base lg:text-lg'>Настройки заказов</p>
+                {/* <Link href='/home/manage/countries' className='block input-outline shadow-sm flex-row-center justify-center gap-2 hover:border-calm-400 h-20 w-full'>
+                    <TbMapPlus className='h-6 w-6'/>
+                    <p className='text-base lg:text-lg'>Настройки стран</p>
                 </Link> */}
             </div>
         </div>

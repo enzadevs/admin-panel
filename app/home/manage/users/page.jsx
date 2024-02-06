@@ -44,7 +44,7 @@ export default function UsersPage(){
                         <h2 className='text-xl font-semibold'>Статистика :</h2>
                         <div className='border-b flex-row-center justify-between h-10'>
                             <p className='font-bold'>Кол.во зарегистрированных пользователей :</p>
-                            <>{usersData}</>
+                            <>{usersData?.usersCount}</>
                         </div>
                         <div className='border-b flex-row-center justify-between h-10'>
                             <p className='font-bold'>Посетители за все время :</p>

@@ -2,8 +2,8 @@ import OrdersTableContainer from 'components/Containers/Tables/OrdersTableContai
 
 export default function OrdersPage(){
     return(
-        <div>
+        <>
             <OrdersTableContainer/>
-        </div>
+        </>
     )
 }

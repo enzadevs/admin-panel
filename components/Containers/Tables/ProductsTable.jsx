@@ -34,8 +34,7 @@ export const ProductsTable = ({rows}) => {
             <table className='w-full table'>
                 <thead>
                     <tr className='border-b border-light'>
-                        <th>Номер</th>
-                        <th>Заголовок</th>
+                        <th>Имя</th>
                         <th>ИД Бренда</th>
                         <th>Цена</th>
                         <th>Цена при продаже</th>
@@ -44,19 +43,12 @@ export const ProductsTable = ({rows}) => {
                         <th>Страна</th>
                         <th>Склад</th>
                         <th>Рейтинг</th>
-                        <th>Единица измерения</th>
-                        {/* <th>Изображения</th>
-                        <th>ИД заказа</th>
-                        <th>Пользователи</th>
-                        <th>Лайки</th>
-                        <th>Создано</th>
-                        <th>Дата обновления</th> */}
                     </tr>
                 </thead>
                 <tbody>
                 {sortedRows.map((row, index) => (
                     <tr key={index} className='border-b border-light cursor-pointer transition hover:bg-calm-50 hover:text-calm-600'>
-                        {Object.values(row).slice(1,12).map((entry, columnIndex) => (
+                        {Object.values(row).slice(1,10).map((entry, columnIndex) => (
                             <td key={columnIndex}>
                                 {entry}
                             </td>

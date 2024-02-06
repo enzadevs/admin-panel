@@ -84,7 +84,7 @@ export default function UsersPage(){
         <div className='flex flex-col gap-4'>
             <h2 className='text-xl font-semibold'>Настройки продуктов</h2>
             <div className='flex flex-col gap-4'>
-                <div className='border rounded-[4px] text-base flex flex-col gap-2 sm:flex-row sm:gap-4 p-4'>
+                <div className='border rounded-[4px] text-base flex flex-col gap-2 sm:flex-row sm:gap-4 p-2 sm:p-4'>
                     <div className='flex flex-col gap-2 h-auto w-full'>
                         <div className='flex flex-col gap-2 w-full'>
                             <h2 className='text-xl font-semibold'>Способы доставки :</h2>
@@ -128,10 +128,10 @@ export default function UsersPage(){
                                 {productStatusesData.map(item => {
                                     return(
                                         <div key={item.id} className='border-b flex-row-center h-10'>
-                                            <p className='font-bold'>{item.status_title}</p>
+                                            <p className='font-bold'>{item.title}</p>
                                         </div>
                                         )
-                                    })}
+                                })}
                             </div>
                         </div>
                     </div>
@@ -181,7 +181,7 @@ export default function UsersPage(){
                                             <p className='font-bold'>{item.title}</p>
                                         </div>
                                         )
-                                    })}
+                                })}
                             </div>
                         </div>
                     </div>
