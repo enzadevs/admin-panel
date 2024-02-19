@@ -1,10 +1,6 @@
 import * as Yup from "yup";
 
-export const UserFormSchema = Yup.object().shape({
-  fullName: Yup.string()
-    .min(1, "Слишком коротко")
-    .max(64, "Слишком длинно")
-    .required("Наполните это поле"),
+export const AdminFormSchema = Yup.object().shape({
   phoneNumber: Yup.string()
     .min(1, "Слишком коротко")
     .max(64, "Слишком длинно")
@@ -13,7 +9,4 @@ export const UserFormSchema = Yup.object().shape({
     .min(1, "Слишком коротко")
     .max(64, "Слишком длинно")
     .required("Наполните это поле"),
-  address: Yup.string()
-    .min(1, "Слишком коротко")
-    .max(128, "Слишком длинный адрес"),
 });

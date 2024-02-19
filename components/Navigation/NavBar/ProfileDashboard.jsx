@@ -1,13 +1,38 @@
-import Link from 'next/link'
-import {BsPersonCircle} from 'react-icons/bs'
+"use client";
 
-export default function ProfileDashboard(){
-    return(
-        <Link href='/home/settings' className='bg-calm-50 cursor-pointer rounded-lg flex-row-center transition hover:text-calm-600 pl-4 pr-2 h-10'>
-            <p className='text-sm font-semibold'>Eziz</p>
-            <span className='center rounded-full ml-auto h-10 w-10'>
-                <BsPersonCircle className='icons'/>
-            </span>
-        </Link>
-    )
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { UseAdminData } from "utils/UseAdminData";
+import { BsPersonCircle } from "react-icons/bs";
+import { MdOutlineExitToApp } from "react-icons/md";
+
+export default function ProfileDashboard() {
+  const admin = UseAdminData((state) => state.admin);
+  const removeAdmin = UseAdminData((state) => state.removeAdmin);
+  const router = useRouter();
+
+  const firstName = admin?.data?.user?.firstName;
+
+  return (
+    <div className="flex-row-center gap-2 h-fit">
+      <Link
+        href="/home/settings"
+        className="button-hover flex-row-center gap-2 px-4 h-10"
+      >
+        <div className="center">
+          <BsPersonCircle className="icons" />
+        </div>
+        <>{firstName}</>
+      </Link>
+      <button
+        onClick={() => {
+          removeAdmin();
+          router.push("/");
+        }}
+        className="button-hover center h-10 w-10"
+      >
+        <MdOutlineExitToApp className="icons" />
+      </button>
+    </div>
+  );
 }

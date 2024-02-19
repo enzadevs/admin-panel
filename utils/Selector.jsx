@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 const AsyncSelect = dynamic(() => import("react-select/async"), { ssr: false });
 
-export default function SelectTable({
+export default function Selector({
   selectData,
   placeholder,
   className,
@@ -21,10 +21,6 @@ export default function SelectTable({
     }, 1000);
   };
 
-  const handleSelectChange = (selectedOption) => {
-    onSelect(selectedOption ? selectedOption.id : null);
-  };
-
   return (
     <AsyncSelect
       cacheOptions
@@ -34,7 +30,7 @@ export default function SelectTable({
       placeholder={placeholder}
       getOptionLabel={(option) => option.title}
       getOptionValue={(option) => option.id}
-      onChange={handleSelectChange}
+      onChange={onSelect}
     />
   );
 }

@@ -1,11 +1,7 @@
 export const metadata = {
-    title: 'Настройки продуктов'
-}
+  title: "Настройки продуктов",
+};
 
-export default function ProductsLayout({children}){
-    return(
-        <>
-            {children}
-        </>
-    )
+export default function ProductsLayout({ children }) {
+  return <>{children}</>;
 }

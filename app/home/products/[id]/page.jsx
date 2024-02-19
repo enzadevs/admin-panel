@@ -1,9 +1,3 @@
-
-
-export default function ProductViewPage(){
-    return(
-        <div>
-            Product View
-        </div>
-    )
+export default function ProductViewPage() {
+  return <div>Product View</div>;
 }

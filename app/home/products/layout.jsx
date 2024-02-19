@@ -1,11 +1,7 @@
 export const metadata = {
-    title: 'Продукты'
-}
+  title: "Продукты",
+};
 
-export default function UsersLayout({children}){
-    return(
-        <div>
-            {children}
-        </div>
-    )
+export default function UsersLayout({ children }) {
+  return <div>{children}</div>;
 }

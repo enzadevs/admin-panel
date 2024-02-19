@@ -1,2 +1,1 @@
--add websocket to listen for changes live
 -use wds method fetching where he commented josh's fetch approach

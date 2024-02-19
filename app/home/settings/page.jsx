@@ -1,9 +1,3 @@
-
-
-export default function SettingsPage(){
-    return(
-        <div>
-            
-        </div>
-    )
+export default function SettingsPage() {
+  return <div></div>;
 }

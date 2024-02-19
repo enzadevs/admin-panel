@@ -2,98 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-    --zinc-50: #fafafa;
-    --zinc-100: #f4f4f5;
-    --zinc-200: #e4e4e7;
-    --zinc-300: #d4d4d8;
-    --zinc-400: #a1a1aa;
-    --zinc-500: #71717a;
-    --zinc-600: #52525b;
-    --zinc-700: #3f3f46;
-    --zinc-800: #27272a;
-    --zinc-900: #18181b;
-    --zinc-950: #09090b;
-    --text-color: var(--zinc-800);
+:root {
+  --zinc-50: #fafafa;
+  --zinc-100: #f4f4f5;
+  --zinc-200: #e4e4e7;
+  --zinc-300: #d4d4d8;
+  --zinc-400: #a1a1aa;
+  --zinc-500: #71717a;
+  --zinc-600: #52525b;
+  --zinc-700: #3f3f46;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+  --zinc-950: #09090b;
+  --text-color: var(--zinc-800);
 }
 
-body{
-    color: var(--text-color);
+body {
+  color: var(--text-color);
 }
 
-.gradient-bg{
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-	animation: gradient 20s ease infinite;
-	height: 100vh;
+.gradient-bg {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 20s ease infinite;
+  height: 100vh;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.center{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.flex-row-center{
-    display: flex;
-    flex-flow: row;
-    align-items: center;
+.flex-row-center {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
 }
 
-/* .grid-template-rows{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-    gap: 16px;
-} */
-
-.border-light{
-    border-color: var(--zinc-200);
+.border-light {
+  border-color: var(--zinc-200);
 }
 
-.icons-wrapper{
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    height: 40px;
-    width: 40px;
+.icons-wrapper {
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
 }
 
-.icons{
-    height: 20px;
-    width: 20px;
+.icons {
+  height: 20px;
+  width: 20px;
 }
 
-.collapse-title{
-    display: flex !important;
-    flex-flow: row;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5em;
-    height: 40px;
+.collapse-title {
+  display: flex !important;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  height: 40px;
 }
 
-.collapse-title, :where(.collapse > input[type='checkbox']), :where(.collapse > input[type='radio']) {
-    padding: 4px 16px;
-    padding-inline-end: 16px;
-    min-height: 40px;
+.collapse-title,
+:where(.collapse > input[type="checkbox"]),
+:where(.collapse > input[type="radio"]) {
+  padding: 4px 16px;
+  padding-inline-end: 16px;
+  min-height: 40px;
 }
 
-.button-primary{
-    @apply bg-calm-50 border border-light rounded-lg outline-none transition focus:border-calm-600 hover:bg-calm-600 hover:text-white min-h-10;
+.button-primary {
+  @apply bg-calm-50 border border-light rounded-lg outline-none transition hover:bg-calm-600 focus:border-calm-600  hover:text-white min-h-10;
 }
 
-.input-outline{
-    @apply bg-calm-50 border border-light rounded-lg outline-none transition focus:border-calm-600 min-h-10;
+.input-outline {
+  @apply bg-calm-50 border border-light rounded-lg outline-none transition focus:border-calm-600 min-h-10;
+}
+
+.button-hover {
+  @apply bg-calm-50 rounded-lg transition hover:bg-calm-600 hover:text-white;
 }

@@ -1,11 +1,7 @@
 export const metadata = {
-    title: 'Панель Управления'
-}
+  title: "Панель Управления",
+};
 
-export default function ManageLayout({children}){
-    return(
-        <div>
-            {children}
-        </div>
-    )
+export default function ManageLayout({ children }) {
+  return <div>{children}</div>;
 }
