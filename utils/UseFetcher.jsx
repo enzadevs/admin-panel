@@ -8,8 +8,8 @@ export function UseFetcher(url) {
   const { data, error, isLoading } = useSWR(url, fetcher);
 
   return {
-    data: data,
-    isLoading: isLoading,
+    data,
+    isLoading,
     isError: error,
   };
 }

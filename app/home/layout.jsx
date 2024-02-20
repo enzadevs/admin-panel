@@ -9,7 +9,8 @@ import SideBar from "components/Navigation/SideBar/SideBar";
 export default function HomeLayout({ children }) {
   return (
     <SideBar>
-      <ProtectedRoute>{children}</ProtectedRoute>
+      {/* <ProtectedRoute>{children}</ProtectedRoute> */}
+      {children}
     </SideBar>
   );
 }

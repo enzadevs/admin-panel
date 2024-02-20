@@ -1,9 +1,9 @@
 export default function LoadingBlock({ height, width }) {
   return (
     <div
-      className={`bg-calm-50 border border-light rounded-lg shadow-md center ${height} ${width}`}
+      className={`bg-calm-50 animate-pulse rounded-lg center ${height} ${width}`}
     >
-      <p className="animate-pulse">Загрузка...</p>
+      Загрузка...
     </div>
   );
 }
