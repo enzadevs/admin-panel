@@ -4,22 +4,6 @@ import { CiSearch } from "react-icons/ci";
 export const AllOrdersTable = ({ rows }) => {
   const [sortedRows, setRows] = useState(rows);
 
-  // const filter = event => {
-  //     const value = event.target.value
-
-  //     if (value) {
-  //         setRows([
-  //             ...rows.filter(row => {
-  //                 return Object.values(row)
-  //                     .join('')
-  //                     .toLowerCase()
-  //                     .includes(value)
-  //             })
-  //         ])
-  //     } else {
-  //         setRows(rows)
-  //     }
-  // }
   const filter = (event) => {
     const value = event.target.value;
 
@@ -55,33 +39,32 @@ export const AllOrdersTable = ({ rows }) => {
       <table className="w-full table">
         <thead>
           <tr className="border-b border-light">
-            {/* <th>ИД заказа</th> */}
-            <th>ИД пользователя</th>
+            <th>Имя клиента</th>
             <th>Адрес</th>
             <th>Сумма</th>
-            <th>Вид доставки</th>
-            <th>Сумма доставки</th>
-            <th>Вид оплаты</th>
             <th>Комментарий</th>
+            <th>Вид доставки</th>
+            <th>Способ оплаты</th>
+            <th>Статус</th>
             <th>Создано</th>
             <th>Обновлено</th>
           </tr>
         </thead>
         <tbody>
-          {sortedRows.map((row, index) => (
+          {sortedRows?.map((row, index) => (
             <tr
               key={index}
               className="border-b border-light cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
             >
-              <td>{row.customer.full_name}</td>
+              <td>{row.customer.firstName}</td>
               <td>{row.address}</td>
-              <td>{row.total_sum}</td>
-              <td>{row.delivery_type.title}</td>
-              <td>{row.delivery_price}</td>
-              <td>{row.payment_type.title}</td>
+              <td>{row.sum}</td>
               <td>{row.comment}</td>
-              <td>{row.created_at}</td>
-              <td>{row.updated_at}</td>
+              <td>{row.deliveryType.title}</td>
+              <td>{row.paymentType.title}</td>
+              <td>{row.orderStatus.title}</td>
+              <td>{row.createdAt}</td>
+              <td>{row.updatedAt}</td>
             </tr>
           ))}
         </tbody>
