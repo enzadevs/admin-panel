@@ -1,9 +1,26 @@
 "use client";
 
 import Image from "next/image";
+import toast from "react-simple-toasts";
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
 import { IoSaveOutline } from "react-icons/io5";
+
+function SuccessToast() {
+  toast("Бренд была успешно создан.", {
+    className:
+      "bg-green-700 rounded-lg shadow-sm text-white text-center text-sm sm:text-base px-8 h-10 z-10",
+    duration: 1750,
+  });
+}
+
+function ErrorToast() {
+  toast("Пожалуйста повторите попытку.", {
+    className:
+      "bg-red-100 rounded-lg shadow-sm text-center text-sm sm:text-base px-8 h-10 z-10",
+    duration: 1750,
+  });
+}
 
 export default function NewBrandPage() {
   const [selectedFile, setSelectedFile] = useState();
@@ -19,16 +36,24 @@ export default function NewBrandPage() {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("image", selectedFile);
+      formData.append("brandLogo", selectedFile);
       formData.append("title", titleRef.current.value);
-      await fetch("http://localhost:5000/brands/new", {
-        method: "POST",
-        body: formData,
-      });
-      setTimeout(() => {
-        router.push("/home/manage/brands");
-      }, 2000);
+      const response = await fetch(
+        "http://localhost:5000/manage/brands/create",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        SuccessToast();
+        setTimeout(() => {
+          router.push("/home/manage/brands");
+        }, 2000);
+      }
     } catch (error) {
+      ErrorToast();
       console.error(error);
     }
   };
@@ -47,7 +72,7 @@ export default function NewBrandPage() {
           ></input>
           <input
             type="file"
-            name="image"
+            name="brandLogo"
             onChange={getFile}
             accept="image/*"
             placeholder="Добавить фото"

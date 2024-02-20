@@ -7,7 +7,7 @@ const YearlyVisitorsChart = dynamic(() => import("react-apexcharts"), {
 });
 
 export default function IndexGraph() {
-  const tewelveMonths = {
+  const twelveMonths = {
     chart: {
       id: "month-revenue",
     },
@@ -73,7 +73,7 @@ export default function IndexGraph() {
   ];
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 z-0">
       <div className="bg-calm-50 border shadow-md rounded-lg flex flex-col gap-2 transition hover:border-calm-400 px-2 h-[28em]">
         <span className="flex-row-center items-center gap-2 pl-4 h-10">
           <p className="text-calm-600 font-bold">Сумма продаж /</p>
@@ -82,7 +82,7 @@ export default function IndexGraph() {
         </span>
         <YearChart
           type="area"
-          options={tewelveMonths}
+          options={twelveMonths}
           series={monthSeries}
           height={"85%"}
           width={"100%"}

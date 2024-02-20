@@ -2,30 +2,46 @@
 
 import useSWR from "swr";
 import Image from "next/image";
+import toast from "react-simple-toasts";
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
 import { IoSaveOutline } from "react-icons/io5";
 
 const fetchAdData = async (id) => {
-  const response = await fetch(`http://localhost:5000/ads/${id}`);
+  const response = await fetch(`http://localhost:5000/ads/fetch/${id}`);
   const data = await response.json();
   return data;
 };
 
+function SuccessToast() {
+  toast("Реклама была успешно обновлена.", {
+    className:
+      "bg-green-700 rounded-lg shadow-sm text-white text-center text-sm sm:text-base px-8 h-10 z-10",
+    duration: 1750,
+  });
+}
+
+function ErrorToast() {
+  toast("Пожалуйста повторите попытку.", {
+    className:
+      "bg-red-100 rounded-lg shadow-sm text-center text-sm sm:text-base px-8 h-10 z-10",
+    duration: 1750,
+  });
+}
+
 export default function ChangeBrandPage({ params }) {
+  const [selectedFile, setSelectedFile] = useState();
+  const descriptionRef = useRef();
+  const incomeRef = useRef();
+  const startDateRef = useRef();
+  const endDateRef = useRef();
+  const router = useRouter();
+
   const {
     data: adData,
     error,
     isLoading,
   } = useSWR(params.id ? [params.id] : null, fetchAdData);
-  const [selectedFile, setSelectedFile] = useState();
-  const titleRef = useRef();
-  const brandRef = useRef();
-  const descriptionRef = useRef();
-  const incomeRef = useRef();
-  const start_dateRef = useRef();
-  const end_dateRef = useRef();
-  const router = useRouter();
 
   function getFile(e) {
     const file = e.target.files[0];
@@ -36,57 +52,59 @@ export default function ChangeBrandPage({ params }) {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("image", selectedFile);
-      formData.append("title", titleRef.current.value);
+      formData.append("posterImage", selectedFile);
       formData.append("description", descriptionRef.current.value);
-      formData.append("income", incomeRef.current.value);
-      formData.append("start_date", start_dateRef.current.value);
-      formData.append("end_date", end_dateRef.current.value);
-      formData.append("brand", brandRef.current.value);
-      await fetch(`http://localhost:5000/ads/patch/${params.id}`, {
-        method: "PATCH",
-        body: formData,
-      });
-      setTimeout(() => {
-        router.push("/home/ads");
-      }, 2000);
+      formData.append("incomeValue", incomeRef.current.value);
+      formData.append(
+        "startDate",
+        new Date(startDateRef.current.value).toISOString().slice(0, 10)
+      );
+      formData.append(
+        "endDate",
+        new Date(endDateRef.current.value).toISOString().slice(0, 10)
+      );
+
+      const response = await fetch(
+        `http://localhost:5000/ads/update/${params.id}`,
+        {
+          method: "PATCH",
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        SuccessToast();
+        setTimeout(() => {
+          router.push("/home/ads");
+        }, 2000);
+      }
     } catch (error) {
+      ErrorToast();
       console.error(error);
     }
   };
 
-  if (error)
+  if (error) {
     return (
       <div className="border border-red-500 bg-red-100 rounded-lg center h-20 w-full">
         Упс! Вышла ошибка.
       </div>
     );
-  if (isLoading)
+  }
+
+  if (isLoading) {
     return (
       <div className="bg-calm-100 rounded-lg animate-pulse center h-20 w-full">
         Загрузка...
       </div>
     );
+  }
 
   return (
     <form className="flex flex-col gap-4" encType="multipart/div-data">
       <h2 className="font-bold">Обновить рекламу</h2>
       <div className="flex flex-col gap-2 md:flex md:flex-row md:gap-4">
         <div className="flex flex-col gap-4 justify-between md:flex-[50%] md:max-w-[50%]">
-          <input
-            name="title"
-            type="text"
-            ref={titleRef}
-            placeholder={adData ? adData.title : ""}
-            className="input-outline px-4 h-10 w-full"
-          ></input>
-          <input
-            name="brand"
-            type="text"
-            ref={brandRef}
-            placeholder={adData ? adData.brand : ""}
-            className="input-outline px-4 h-10 w-full"
-          ></input>
           <input
             name="description"
             type="text"
@@ -98,7 +116,7 @@ export default function ChangeBrandPage({ params }) {
             name="income"
             type="number"
             ref={incomeRef}
-            placeholder={adData ? adData.income + " ман." : ""}
+            placeholder={adData ? adData.incomeValue + " ман." : ""}
             className="input-outline px-4 h-10 w-full"
           ></input>
           <span className="flex-row-center gap-2">
@@ -106,7 +124,7 @@ export default function ChangeBrandPage({ params }) {
             <input
               name="start_date"
               type="date"
-              ref={start_dateRef}
+              ref={startDateRef}
               placeholder="Начало"
               className="input-outline px-4 h-full w-full"
             ></input>
@@ -116,14 +134,14 @@ export default function ChangeBrandPage({ params }) {
             <input
               name="end_date"
               type="date"
-              ref={end_dateRef}
+              ref={endDateRef}
               placeholder="Конец"
               className="input-outline px-4 h-full w-full"
             ></input>
           </span>
           <input
             type="file"
-            name="image"
+            name="posterImage"
             onChange={getFile}
             accept="image/*"
             placeholder="Добавить фото"

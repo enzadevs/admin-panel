@@ -40,7 +40,7 @@ export default function AnalyticsPage() {
   ];
 
   return (
-    <div className="h-[768px]">
+    <div className="h-[750px] z-10">
       <Chart
         type="bar"
         options={yearlyVisitors}

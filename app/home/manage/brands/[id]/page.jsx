@@ -2,15 +2,34 @@
 
 import useSWR from "swr";
 import Image from "next/image";
+import toast from "react-simple-toasts";
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
 import { IoSaveOutline } from "react-icons/io5";
 
 const fetchBrandData = async (id) => {
-  const response = await fetch(`http://localhost:5000/brands/${id}`);
+  const response = await fetch(
+    `http://localhost:5000/manage/brands/fetch/${id}`
+  );
   const data = await response.json();
   return data;
 };
+
+function SuccessToast() {
+  toast("Бренд была успешно обновлен.", {
+    className:
+      "bg-green-700 rounded-lg shadow-sm text-white text-center text-sm sm:text-base px-8 h-10 z-10",
+    duration: 1750,
+  });
+}
+
+function ErrorToast() {
+  toast("Пожалуйста повторите попытку.", {
+    className:
+      "bg-red-100 rounded-lg shadow-sm text-center text-sm sm:text-base px-8 h-10 z-10",
+    duration: 1750,
+  });
+}
 
 export default function ChangeBrandPage({ params }) {
   const [selectedFile, setSelectedFile] = useState();
@@ -27,20 +46,27 @@ export default function ChangeBrandPage({ params }) {
     setSelectedFile(file || null);
   }
 
-  const handleUpload = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("image", selectedFile);
+      formData.append("brandLogo", selectedFile);
       formData.append("title", titleRef.current.value);
-      await fetch(`http://localhost:5000/brands/patch/${params.id}`, {
-        method: "PATCH",
-        body: formData,
-      });
-      setTimeout(() => {
-        router.push("/home/manage/brands");
-      }, 2000);
+      const response = await fetch(
+        `http://localhost:5000/manage/brands/update/${params.id}`,
+        {
+          method: "PATCH",
+          body: formData,
+        }
+      );
+      if (response.ok) {
+        SuccessToast();
+        setTimeout(() => {
+          router.push("/home/manage/brands");
+        }, 2000);
+      }
     } catch (error) {
+      ErrorToast();
       console.error(error);
     }
   };
@@ -72,7 +98,7 @@ export default function ChangeBrandPage({ params }) {
           ></input>
           <input
             type="file"
-            name="image"
+            name="brandLogo"
             onChange={getFile}
             placeholder="Добавить фото"
             className="bg-calm-50 block border rounded-lg text-calm-600 file:cursor-pointer file:rounded-l-lg file:border-0 file:text-sm file:bg-calm-600 file:text-white file:px-2 file:h-10 h-10 w-full"
@@ -101,7 +127,7 @@ export default function ChangeBrandPage({ params }) {
       </div>
       <button
         type="submit"
-        onClick={handleUpload}
+        onClick={handleUpdate}
         href="/home/ads/new"
         className="button-primary button-hover center gap-2 px-4 h-10 w-full"
       >

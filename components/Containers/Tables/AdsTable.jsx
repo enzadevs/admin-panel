@@ -1,5 +1,5 @@
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 
 export const AdsTable = ({ rows }) => {
@@ -38,16 +38,14 @@ export const AdsTable = ({ rows }) => {
       <table className="w-full table">
         <thead>
           <tr className="border-b border-light">
+            <th>Номер</th>
             <th>Имя</th>
-            <th>Бренд</th>
-            <th>Изображение</th>
-            <th>Описание</th>
             <th>Прибыль {"ман"}</th>
-            <th>Статус</th>
-            <th>Создано</th>
-            <th>Обновлено</th>
+            <th>Изображение</th>
             <th>Начало</th>
             <th>Конец</th>
+            <th>Создано</th>
+            <th>Обновлено</th>
           </tr>
         </thead>
         <tbody>
@@ -57,7 +55,7 @@ export const AdsTable = ({ rows }) => {
               className="border-b border-light cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
             >
               {Object.values(row)
-                .slice(1)
+                .slice()
                 .map((entry, columnIndex) => (
                   <td
                     onClick={() => router.push(`/home/ads/${row.id}`)}
@@ -71,7 +69,7 @@ export const AdsTable = ({ rows }) => {
         </tbody>
       </table>
       {!sortedRows.length && (
-        <div className="border border-yellow-400 bg-yellow-300 rounded-lg center text-sm md:text-base text-center mt-2 px-2 h-20">
+        <div className="border border-yellow-400 bg-yellow-200 rounded-lg center text-sm md:text-base mt-2 px-2 h-20">
           Ничего не нашлось.
         </div>
       )}

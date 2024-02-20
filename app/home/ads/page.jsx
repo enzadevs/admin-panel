@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { TbDeviceDesktopPlus } from "react-icons/tb";
 import AdsTableContainer from "components/Containers/Tables/AdsTableContainer";
+import { TbDeviceDesktopPlus } from "react-icons/tb";
 
 export default function AdsPage() {
   return (
