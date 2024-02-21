@@ -39,7 +39,9 @@ export const UsersTable = ({ rows }) => {
         <thead>
           <tr className="border-b border-light">
             <th>Имя</th>
-            <th>Ссылка</th>
+            <th>Номер телефона</th>
+            <th>Адрес</th>
+            <th>Роль</th>
             <th>Создано</th>
             <th>Дата обновления</th>
           </tr>
@@ -51,14 +53,9 @@ export const UsersTable = ({ rows }) => {
               className="border-b border-light cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
             >
               {Object.values(row)
-                .slice(1)
+                .filter((_, index) => index !== 0 && index !== 3)
                 .map((entry, columnIndex) => (
-                  <td
-                    onClick={() => router.push(`/home/manage/brands/${row.id}`)}
-                    key={columnIndex}
-                  >
-                    {entry}
-                  </td>
+                  <td key={columnIndex}>{entry}</td>
                 ))}
             </tr>
           ))}

@@ -69,7 +69,7 @@ export const AdsTable = ({ rows }) => {
         </tbody>
       </table>
       {!sortedRows.length && (
-        <div className="border border-yellow-400 bg-yellow-200 rounded-lg center text-sm md:text-base mt-2 px-2 h-20">
+        <div className="border border-yellow-400 bg-yellow-300 rounded-lg center text-sm md:text-base text-center mt-2 px-2 h-20">
           Ничего не нашлось.
         </div>
       )}

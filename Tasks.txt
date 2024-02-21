@@ -1,2 +1,5 @@
 -use wds method fetching where he commented josh's fetch approach
 -show this page was not found on my own way
+-Rework backend for product/ads and all other models update function, it doesnt update if no values are passed
+-make every single useSwr function to refreshInterval 1500 ms.
+-will 4th point affect the performance of server of front somehow?

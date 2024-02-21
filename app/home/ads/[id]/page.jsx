@@ -29,19 +29,13 @@ function ErrorToast() {
   });
 }
 
-export default function ChangeBrandPage({ params }) {
+export default function ViewAdPage({ params }) {
   const [selectedFile, setSelectedFile] = useState();
   const descriptionRef = useRef();
   const incomeRef = useRef();
   const startDateRef = useRef();
   const endDateRef = useRef();
   const router = useRouter();
-
-  const {
-    data: adData,
-    error,
-    isLoading,
-  } = useSWR(params.id ? [params.id] : null, fetchAdData);
 
   function getFile(e) {
     const file = e.target.files[0];
@@ -84,21 +78,25 @@ export default function ChangeBrandPage({ params }) {
     }
   };
 
-  if (error) {
-    return (
-      <div className="border border-red-500 bg-red-100 rounded-lg center h-20 w-full">
-        Упс! Вышла ошибка.
-      </div>
-    );
-  }
+  const {
+    data: adData,
+    error,
+    isLoading,
+  } = useSWR(params.id ? [params.id] : null, fetchAdData);
 
-  if (isLoading) {
+  if (isLoading)
     return (
-      <div className="bg-calm-100 rounded-lg animate-pulse center h-20 w-full">
+      <div className="bg-calm-50 animate-pulse rounded-lg center h-20 w-full">
         Загрузка...
       </div>
     );
-  }
+
+  if (error)
+    return (
+      <div className="bg-red-200 border border-red-500 rounded-lg text-red-500 center h-20 w-full">
+        Упс! Вышла ошибка.
+      </div>
+    );
 
   return (
     <form className="flex flex-col gap-4" encType="multipart/div-data">

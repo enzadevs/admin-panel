@@ -1,18 +1,23 @@
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 
 export const ProductsTable = ({ rows }) => {
   const [sortedRows, setRows] = useState(rows);
+  const router = useRouter();
 
   const filter = (event) => {
     const value = event.target.value;
 
     if (value) {
-      setRows([
-        ...rows.filter((row) => {
-          return Object.values(row).join("").toLowerCase().includes(value);
-        }),
-      ]);
+      setRows(
+        rows.filter((row) => {
+          return Object.values(row)
+            .join("")
+            .toLowerCase()
+            .includes(value.toLowerCase());
+        })
+      );
     } else {
       setRows(rows);
     }
@@ -36,28 +41,37 @@ export const ProductsTable = ({ rows }) => {
       <table className="w-full table">
         <thead>
           <tr className="border-b border-light">
-            <th>Имя</th>
-            <th>ИД Бренда</th>
-            <th>Цена</th>
-            <th>Цена при продаже</th>
-            <th>Описание</th>
             <th>Баркод</th>
-            <th>Страна</th>
+            <th>Имя</th>
+            <th>Бренд</th>
+            <th>Ед. измерения</th>
+            <th>Цена прихода</th>
+            <th>Цена продажи</th>
+            <th>Описание</th>
             <th>Склад</th>
-            <th>Рейтинг</th>
+            <th>Категория</th>
+            <th>Под категория</th>
+            <th>Статус</th>
           </tr>
         </thead>
         <tbody>
-          {sortedRows.map((row, index) => (
+          {sortedRows?.map((row, index) => (
             <tr
+              onClick={() => router.push(`/home/products/${row.id}`)}
               key={index}
               className="border-b border-light cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
             >
-              {Object.values(row)
-                .slice(1, 10)
-                .map((entry, columnIndex) => (
-                  <td key={columnIndex}>{entry}</td>
-                ))}
+              <td>{row.barcode}</td>
+              <td>{row.title}</td>
+              <td>{row.brand.title}</td>
+              <td>{row.unitType.title}</td>
+              <td>{row.arrivalPrice}</td>
+              <td>{row.sellPrice}</td>
+              <td>{row.description}</td>
+              <td>{row.stock}</td>
+              <td>{row.category.title}</td>
+              <td>{row.subCategory.title}</td>
+              <td>{row.status.title}</td>
             </tr>
           ))}
         </tbody>
