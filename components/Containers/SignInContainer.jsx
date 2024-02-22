@@ -4,11 +4,11 @@ import Image from "next/image";
 import Logo from "public/assets/logo_only_transparent.png";
 import toast from "react-simple-toasts";
 import { useRouter } from "next/navigation";
-import { SlLock } from "react-icons/sl";
-import { BsPhone } from "react-icons/bs";
+import { UseAdminData } from "utils/UseAdminData";
 import { AdminFormSchema } from "utils/AdminFormSchema";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { UseAdminData } from "utils/UseAdminData";
+import { SlLock } from "react-icons/sl";
+import { BsPhone } from "react-icons/bs";
 
 function AuthErrorToast() {
   toast("Неправильные данные. Пожалуйста повторите попытку.", {
@@ -36,7 +36,6 @@ export default function SignInContainer() {
       });
 
       if (response.ok) {
-        console.log("User authenticated");
         const adminInfo = await response.json();
         setAdmin(adminInfo);
         router.push("/home");

@@ -2,23 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --zinc-50: #fafafa;
-  --zinc-100: #f4f4f5;
-  --zinc-200: #e4e4e7;
-  --zinc-300: #d4d4d8;
-  --zinc-400: #a1a1aa;
-  --zinc-500: #71717a;
-  --zinc-600: #52525b;
-  --zinc-700: #3f3f46;
-  --zinc-800: #27272a;
-  --zinc-900: #18181b;
-  --zinc-950: #09090b;
-  --text-color: var(--zinc-800);
-}
-
 body {
-  color: var(--text-color);
+  color: #000;
 }
 
 .gradient-bg {
@@ -53,7 +38,7 @@ body {
 }
 
 .border-light {
-  border-color: var(--zinc-200);
+  border-color: #e4e4e7;
 }
 
 .icons-wrapper {
@@ -69,7 +54,7 @@ body {
   width: 20px;
 }
 
-.collapse-title {
+/* .collapse-title {
   display: flex !important;
   flex-flow: row;
   align-items: center;
@@ -84,7 +69,7 @@ body {
   padding: 4px 16px;
   padding-inline-end: 16px;
   min-height: 40px;
-}
+} */
 
 .button-primary {
   @apply bg-calm-50 border border-light rounded-lg outline-none transition hover:bg-calm-600 focus:border-calm-600  hover:text-white min-h-10;

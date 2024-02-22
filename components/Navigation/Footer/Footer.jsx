@@ -4,9 +4,9 @@ import AlemTilsimatLogo from "public/assets/alem-tilsimat-logo.webp";
 
 export default function Footer() {
   return (
-    <footer className="bg-calm-50 border-t border-light flex flex-row items-center gap-4 mt-auto px-4 h-24">
+    <footer className="bg-calm-50 flex flex-row items-center gap-4 mt-auto px-4 h-24">
       <span className="text-calm-600 text-lg font-bold flex-row-center">
-        <>2024. Admin Tools Panel</>
+        <>2024. Admin Panel</>
       </span>
       <Link
         href="https://alemtilsimat.com/#"

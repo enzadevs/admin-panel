@@ -8,9 +8,9 @@ export const metadata = {
   content: "width=device-width, initial-scale=1",
 };
 
-import { Roboto } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 
-const globalFont = Roboto({
+const globalFont = Noto_Sans({
   subsets: ["latin", "cyrillic"],
   display: "swap",
   weight: ["100", "300", "400", "500", "700", "900"],
