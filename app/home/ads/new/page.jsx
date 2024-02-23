@@ -139,10 +139,10 @@ export default function NewAdPage() {
       <button
         type="submit"
         onClick={handleSubmit}
-        className="button-primary button-hover center gap-2 px-4 h-10 w-full"
+        className="button-primary button-hover center gap-2 px-4 h-10 w-fit"
       >
-        <>Сохранить</>
         <IoSaveOutline className="icons" />
+        Сохранить
       </button>
     </form>
   );

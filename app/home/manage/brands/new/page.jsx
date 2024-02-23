@@ -104,10 +104,10 @@ export default function NewBrandPage() {
         type="submit"
         onClick={handleUpload}
         href="/home/ads/new"
-        className="button-primary button-hover center gap-2 px-4 h-10 w-full"
+        className="button-primary button-hover center gap-2 px-4 h-10 w-fit"
       >
-        <>Сохранить</>
         <IoSaveOutline className="icons" />
+        Сохранить
       </button>
     </form>
   );

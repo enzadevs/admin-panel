@@ -12,8 +12,8 @@ export default function ManageBrandsPage() {
         href="/home/manage/brands/new"
         className="button-primary flex-row-center justify-center gap-2 px-4 w-fit"
       >
-        <>Добавить</>
         <HiOutlinePlusSm className="icons" />
+        <>Добавить</>
       </Link>
       <BrandsTableContainer />
     </div>

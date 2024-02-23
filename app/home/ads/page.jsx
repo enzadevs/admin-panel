@@ -7,7 +7,7 @@ export default function AdsPage() {
     <div className="flex flex-col gap-4">
       <Link
         href="/home/ads/new"
-        className="button-primary flex-row-center justify-center gap-2 px-4 w-full"
+        className="button-primary flex-row-center justify-center gap-2 px-4 w-fit"
       >
         <TbDeviceDesktopPlus className="icons" />
         <>Добавить</>

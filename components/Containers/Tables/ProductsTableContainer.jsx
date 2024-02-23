@@ -8,10 +8,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function ProductsTableContainer() {
   const { data, error, isLoading } = useSWR(
     "http://localhost:5000/products/all",
-    fetcher,
-    {
-      refreshInterval: 1000,
-    }
+    fetcher
   );
   if (isLoading)
     return (

@@ -140,7 +140,17 @@ export default function NewProductPage() {
 
   return (
     <form className="flex flex-col gap-4" encType="multipart/form-data">
-      <h2 className="font-bold">Добавить новый продукт</h2>
+      <div className="flex-row-center justify-between">
+        <h2 className="font-bold">Добавить новый продукт</h2>
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="button-primary button-hover center gap-2 px-4 h-10 w-fit"
+        >
+          <IoSaveOutline className="icons" />
+          Сохранить
+        </button>
+      </div>
       <div className="flex flex-col gap-2 md:flex md:flex-row md:gap-4">
         <div className="flex flex-col gap-4 justify-between md:flex-[50%] md:max-w-[50%]">
           <input
@@ -241,14 +251,6 @@ export default function NewProductPage() {
           </div>
         </div>
       </div>
-      <button
-        type="submit"
-        onClick={handleSubmit}
-        className="button-primary button-hover center gap-2 px-4 h-10 w-full"
-      >
-        <>Сохранить</>
-        <IoSaveOutline className="icons" />
-      </button>
     </form>
   );
 }

@@ -3,16 +3,14 @@ import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 
 export const ProductsTable = ({ rows }) => {
-  const [sortedRows, setSortedRows] = useState(rows);
-  const [sortBy, setSortBy] = useState(null);
-  const [sortOrder, setSortOrder] = useState(null);
+  const [sortedRows, setRows] = useState(rows);
   const router = useRouter();
 
   const filter = (event) => {
     const value = event.target.value;
 
     if (value) {
-      setSortedRows(
+      setRows(
         rows.filter((row) => {
           return Object.values(row)
             .join("")
@@ -21,31 +19,12 @@ export const ProductsTable = ({ rows }) => {
         })
       );
     } else {
-      setSortedRows(rows);
+      setRows(rows);
     }
-  };
-
-  const sortByField = (field) => {
-    if (field === sortBy) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-    } else {
-      setSortBy(field);
-      setSortOrder("asc");
-    }
-
-    const sorted = [...sortedRows].sort((a, b) => {
-      if (sortOrder === "asc") {
-        return a[field] > b[field] ? 1 : -1;
-      } else {
-        return a[field] < b[field] ? 1 : -1;
-      }
-    });
-
-    setSortedRows(sorted);
   };
 
   return (
-    <div className="border rounded-lg shadow-md overflow-x-auto p-4">
+    <div className="overflow-x-auto">
       <div className="flex-row-center gap-2 h-10">
         <div className="relative flex-row-center w-full">
           <input
@@ -63,18 +42,16 @@ export const ProductsTable = ({ rows }) => {
         <thead>
           <tr className="border-b border-light">
             <th>Баркод</th>
-            <th onClick={() => sortByField("title")}>Имя</th>
-            <th onClick={() => sortByField("brand.title")}>Бренд</th>
+            <th>Имя</th>
+            <th>Бренд</th>
             <th>Ед. измерения</th>
-            <th onClick={() => sortByField("arrivalPrice")}>Цена прихода</th>
-            <th onClick={() => sortByField("sellPrice")}>Цена продажи</th>
+            <th>Цена прихода</th>
+            <th>Цена продажи</th>
             <th>Описание</th>
-            <th onClick={() => sortByField("stock")}>Склад</th>
-            <th onClick={() => sortByField("category.title")}>Категория</th>
-            <th onClick={() => sortByField("subCategory.title")}>
-              Под категория
-            </th>
-            <th onClick={() => sortByField("status.title")}>Статус</th>
+            <th>Склад</th>
+            <th>Категория</th>
+            <th>Под категория</th>
+            <th>Статус</th>
           </tr>
         </thead>
         <tbody>
@@ -82,7 +59,7 @@ export const ProductsTable = ({ rows }) => {
             <tr
               onClick={() => router.push(`/home/products/${row.id}`)}
               key={index}
-              className="border-b border-light transition hover:bg-calm-50 hover:text-calm-600"
+              className="border-b border-light cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
             >
               <td>{row.barcode}</td>
               <td>{row.title}</td>

@@ -3,5 +3,5 @@ export const metadata = {
 };
 
 export default function UsersLayout({ children }) {
-  return <div>{children}</div>;
+  return <>{children}</>;
 }
