@@ -74,7 +74,7 @@ export default function IndexGraph() {
 
   return (
     <div className="flex flex-col gap-4 z-0">
-      <div className="bg-calm-50 border shadow-md rounded-lg flex flex-col gap-2 transition hover:border-calm-400 px-2 h-[28em]">
+      <div className="bg-white border shadow-md rounded-lg flex flex-col gap-2 transition hover:border-calm-400 px-2 h-[28em]">
         <span className="flex-row-center items-center gap-2 pl-4 h-10">
           <p className="text-calm-600 font-bold">Сумма продаж /</p>
           <p className="text-green-500 font-bold">Прибыль</p>

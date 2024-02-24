@@ -17,7 +17,7 @@ export default function ProfileDashboard() {
     <div className="flex-row-center gap-2 h-fit">
       <Link
         href="/home/settings"
-        className="button-hover flex-row-center gap-2 px-4 h-10"
+        className="button-outline flex-row-center gap-2 h-10 px-4"
       >
         <div className="center">
           <BsPersonCircle className="icons" />
@@ -29,7 +29,7 @@ export default function ProfileDashboard() {
           removeAdmin();
           router.push("/");
         }}
-        className="button-hover center h-10 w-10"
+        className="button-outline center h-10 w-10"
       >
         <MdOutlineExitToApp className="icons" />
       </button>

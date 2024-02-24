@@ -4,6 +4,7 @@
 
 body {
   color: #000;
+  /* font-size: 14px; */
 }
 
 th,
@@ -12,9 +13,9 @@ td {
 }
 
 .gradient-bg {
+  animation: gradient 20s ease infinite;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
-  animation: gradient 20s ease infinite;
   height: 100vh;
 }
 
@@ -60,13 +61,21 @@ td {
 }
 
 .button-primary {
-  @apply bg-calm-50 border border-light rounded-lg outline-none transition hover:bg-calm-600 focus:border-calm-600  hover:text-white min-h-10;
+  @apply bg-calm rounded-lg text-white outline-none transition delay-75 hover:bg-calm-700 min-h-10;
+}
+
+.button-outline {
+  @apply bg-white border rounded-lg  shadow-sm transition hover:border-calm-700;
 }
 
 .input-outline {
   @apply bg-calm-50 border border-light rounded-lg outline-none transition focus:border-calm-600 min-h-10;
 }
 
-.button-hover {
-  @apply bg-calm-50 rounded-lg transition hover:bg-calm-600 hover:text-white;
+.short-sum-box {
+  @apply bg-white border rounded-lg shadow-md flex-row-center transition hover:border-calm-700 h-20 lg:h-32 w-full;
+}
+
+.chart-box {
+  @apply bg-white border rounded-lg shadow-md flex flex-col gap-4 transition hover:border-calm-700 min-h-[360px] w-full;
 }
