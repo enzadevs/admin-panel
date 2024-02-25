@@ -1,26 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import toast from "react-simple-toasts";
-import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
-import { IoSaveOutline } from "react-icons/io5";
-
-function SuccessToast() {
-  toast("Реклама была успешно создана.", {
-    className:
-      "bg-green-700 rounded-lg shadow-sm text-white text-center text-sm sm:text-base px-8 h-10 z-10",
-    duration: 1750,
-  });
-}
-
-function ErrorToast() {
-  toast("Пожалуйста повторите попытку.", {
-    className:
-      "bg-red-100 rounded-lg shadow-sm text-center text-sm sm:text-base px-8 h-10 z-10",
-    duration: 1750,
-  });
-}
+import { useRouter } from "next/navigation";
+import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
+import { IoSaveOutline, IoImageOutline } from "react-icons/io5";
 
 export default function NewAdPage() {
   const [selectedFile, setSelectedFile] = useState();
@@ -56,20 +40,30 @@ export default function NewAdPage() {
       });
 
       if (response.ok) {
-        SuccessToast();
+        SuccessToast({ successText: "Реклама была успешно создано." });
         setTimeout(() => {
           router.push("/home/ads");
-        }, 2000);
+        }, 1250);
       }
     } catch (error) {
-      ErrorToast();
+      ErrorToast({ errorText: "Пожалуйста повторите попытку." });
       console.error(error);
     }
   };
 
   return (
     <form className="flex flex-col gap-4" encType="multipart/div-data">
-      <h2 className="font-bold">Добавить новую рекламу</h2>
+      <div className="flex-row-center justify-between">
+        <h2 className="text-lg font-semibold w-fit">Новая реклама</h2>
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="button-primary button-hover center gap-2 px-4 h-10 w-fit"
+        >
+          <IoSaveOutline className="icons" />
+          Сохранить
+        </button>
+      </div>
       <div className="flex flex-col gap-2 md:flex md:flex-row md:gap-4">
         <div className="flex flex-col gap-4 justify-between md:flex-[50%] md:max-w-[50%]">
           <input
@@ -86,64 +80,56 @@ export default function NewAdPage() {
             placeholder="Прибыль (только цифры)"
             className="input-outline px-4 h-10 w-full"
           ></input>
-          <span className="flex-row-center gap-2">
+          <div className="flex-row-center gap-2">
             <p className="w-20">Начало</p>
             <input
-              name="start_date"
+              name="startDate"
               type="date"
               ref={startDateRef}
               placeholder="Начало"
               className="input-outline px-4 h-full w-full"
             ></input>
-          </span>
-          <span className="flex-row-center gap-2">
+          </div>
+          <div className="flex-row-center gap-2">
             <p className="w-20">Конец</p>
             <input
-              name="end_date"
+              name="endDate"
               type="date"
               ref={endDateRef}
               placeholder="Конец"
               className="input-outline px-4 h-full w-full"
             ></input>
-          </span>
+          </div>
           <input
             type="file"
             name="posterImage"
             onChange={getFile}
             accept="image/*"
             placeholder="Добавить фото"
-            className="bg-calm-50 block border rounded-lg text-calm-600 file:cursor-pointer file:rounded-l-lg file:border-0 file:text-sm file:bg-calm-600 file:text-white file:px-2 file:h-10 h-10 w-full"
+            className="custom-file-input"
           ></input>
         </div>
-        <div className="border rounded-lg text-center center flex-col p-2 md:flex-[50%] md:max-w-[50%] w-full">
-          <p>Рекомендуемый размер изображения 1360 x 360</p>
-          <div
-            className={
-              selectedFile
-                ? "relative block min-h-[360px] md:max-h-[500px] w-full"
-                : "hidden relative h-72"
-            }
-          >
-            {selectedFile && selectedFile instanceof File && (
-              <Image
-                src={URL.createObjectURL(selectedFile)}
-                alt="image"
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw"
-                fill
-              />
-            )}
-          </div>
+        <div className="bg-white shadow-md rounded-lg text-center center flex-col gap-2 h-72 md:flex-[50%] md:max-w-[50%] w-full">
+          <>Рекомендуемый размер изображения 1360 x 360</>
+          {selectedFile ? (
+            <div className="relative block h-52 w-full">
+              {selectedFile && selectedFile instanceof File && (
+                <Image
+                  src={URL.createObjectURL(selectedFile)}
+                  alt="image"
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw"
+                  fill
+                />
+              )}
+            </div>
+          ) : (
+            <div className="bg-calm-50 rounded-lg animate-pulse center h-52 w-72">
+              <IoImageOutline className="h-48 w-48" />
+            </div>
+          )}
         </div>
       </div>
-      <button
-        type="submit"
-        onClick={handleSubmit}
-        className="button-primary button-hover center gap-2 px-4 h-10 w-fit"
-      >
-        <IoSaveOutline className="icons" />
-        Сохранить
-      </button>
     </form>
   );
 }

@@ -16,10 +16,9 @@ export default function Footer() {
         <Image
           src={AlemTilsimatLogo}
           alt="alem tilsimat logo"
-          sizes="50vw"
-          priority="true"
-          height={26}
+          height={30}
           width={30}
+          sizes="25vw"
         ></Image>
         <p className="text-white text-sm">Älem Tilsimat</p>
       </Link>

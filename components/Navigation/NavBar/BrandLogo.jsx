@@ -4,7 +4,7 @@ import Logo from "public/assets/logo_only_transparent.png";
 
 export default function BrandLogo() {
   return (
-    <Link href="/home" className="bg-white shadow-md center gap-2 h-14">
+    <Link href="/home" className="bg-calm-50 shadow-md center gap-2 h-14">
       <Image
         src={Logo}
         alt="admin panel logo"

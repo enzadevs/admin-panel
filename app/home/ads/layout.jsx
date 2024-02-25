@@ -2,15 +2,6 @@ export const metadata = {
   title: "Реклама",
 };
 
-import Link from "next/link";
-
 export default function AdsLayout({ children }) {
-  return (
-    <div className="flex flex-col gap-4 min-h-[768px]">
-      <Link href="/home/ads/" className="text-xl font-semibold w-fit">
-        Реклама
-      </Link>
-      {children}
-    </div>
-  );
+  return <div className="min-h-[768px]">{children}</div>;
 }

@@ -6,7 +6,7 @@ import { RiMenuUnfoldFill } from "react-icons/ri";
 
 export default function NavBar() {
   return (
-    <nav className="bg-white shadow-md flex-row-center sticky top-0 px-4 h-14 z-10">
+    <nav className="bg-calm-50 shadow-md flex-row-center sticky top-0 px-4 h-14 z-10">
       <label
         htmlFor="my-drawer-2"
         className="button-outline cursor-pointer center h-10 w-10 xl:hidden"

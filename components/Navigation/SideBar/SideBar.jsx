@@ -13,7 +13,7 @@ export default function SideBar({ children }) {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="border-r min-h-full w-72">
+        <div className="bg-calm-50 border-r min-h-full w-72">
           <BrandLogo />
           <SideBarMenu />
         </div>
@@ -21,7 +21,7 @@ export default function SideBar({ children }) {
       <div className="drawer-content">
         <div className="flex flex-col">
           <NavBar />
-          <main className="p-2 md:p-4 min-h-[85vh]">{children}</main>
+          <main className="p-3 md:p-4 min-h-[85vh]">{children}</main>
           <Footer />
         </div>
       </div>

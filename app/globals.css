@@ -4,12 +4,12 @@
 
 body {
   color: #000;
-  /* font-size: 14px; */
+  font-size: 14px;
 }
 
-th,
-td {
+th {
   cursor: pointer;
+  min-width: 130px;
 }
 
 .gradient-bg {
@@ -43,10 +43,6 @@ td {
   align-items: center;
 }
 
-.border-light {
-  border-color: #e4e4e7;
-}
-
 .icons-wrapper {
   border: none;
   border-radius: 50%;
@@ -69,7 +65,7 @@ td {
 }
 
 .input-outline {
-  @apply bg-calm-50 border border-light rounded-lg outline-none transition focus:border-calm-600 min-h-10;
+  @apply bg-white border rounded-lg shadow-sm outline-none transition focus:border-calm-600 min-h-10;
 }
 
 .short-sum-box {
@@ -78,4 +74,8 @@ td {
 
 .chart-box {
   @apply bg-white border rounded-lg shadow-md flex flex-col gap-4 transition hover:border-calm-700 min-h-[360px] w-full;
+}
+
+.custom-file-input {
+  @apply bg-white block border rounded-lg shadow-sm text-calm-700 file:cursor-pointer file:rounded-l-lg file:border-0 file:text-sm file:bg-calm-600 file:text-white file:px-2 file:h-10 h-10 w-full;
 }

@@ -1,33 +1,13 @@
 "use client";
 
-import useSWR from "swr";
 import Image from "next/image";
-import toast from "react-simple-toasts";
+import LoadingBlock from "components/Functions/LoadingBlock";
+import ErrorBlock from "components/Functions/ErrorBlock";
+import { UseFetcher } from "utils/UseFetcher";
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
+import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
 import { IoSaveOutline } from "react-icons/io5";
-
-const fetchAdData = async (id) => {
-  const response = await fetch(`http://localhost:5000/ads/fetch/${id}`);
-  const data = await response.json();
-  return data;
-};
-
-function SuccessToast() {
-  toast("Реклама была успешно обновлена.", {
-    className:
-      "bg-green-700 rounded-lg shadow-sm text-white text-center text-sm sm:text-base px-8 h-10 z-10",
-    duration: 1750,
-  });
-}
-
-function ErrorToast() {
-  toast("Пожалуйста повторите попытку.", {
-    className:
-      "bg-red-100 rounded-lg shadow-sm text-center text-sm sm:text-base px-8 h-10 z-10",
-    duration: 1750,
-  });
-}
 
 export default function ViewAdPage({ params }) {
   const [selectedFile, setSelectedFile] = useState();
@@ -36,6 +16,13 @@ export default function ViewAdPage({ params }) {
   const startDateRef = useRef();
   const endDateRef = useRef();
   const router = useRouter();
+
+  const { data, isLoading, isError } = UseFetcher(
+    `http://localhost:5000/ads/fetch/${params.id}`
+  );
+
+  if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
+  if (isError) return <ErrorBlock height={"h-20 lg:h-32"} width="w-full" />;
 
   function getFile(e) {
     const file = e.target.files[0];
@@ -51,12 +38,9 @@ export default function ViewAdPage({ params }) {
       formData.append("incomeValue", incomeRef.current.value);
       formData.append(
         "startDate",
-        new Date(startDateRef.current.value).toISOString().slice(0, 10)
+        startDateRef.current.value || data?.startDate
       );
-      formData.append(
-        "endDate",
-        new Date(endDateRef.current.value).toISOString().slice(0, 10)
-      );
+      formData.append("endDate", endDateRef.current.value || data?.endDate);
 
       const response = await fetch(
         `http://localhost:5000/ads/update/${params.id}`,
@@ -67,114 +51,102 @@ export default function ViewAdPage({ params }) {
       );
 
       if (response.ok) {
-        SuccessToast();
+        SuccessToast({ successText: "Реклама была успешно обновлена." });
         setTimeout(() => {
           router.push("/home/ads");
-        }, 2000);
+        }, 1250);
       }
     } catch (error) {
-      ErrorToast();
+      ErrorToast({ errorText: "Пожалуйста повторите попытку." });
       console.error(error);
     }
   };
 
-  const {
-    data: adData,
-    error,
-    isLoading,
-  } = useSWR(params.id ? [params.id] : null, fetchAdData);
-
-  if (isLoading)
-    return (
-      <div className="bg-calm-50 animate-pulse rounded-lg center h-20 w-full">
-        Загрузка...
-      </div>
-    );
-
-  if (error)
-    return (
-      <div className="bg-red-200 border border-red-500 rounded-lg text-red-500 center h-20 w-full">
-        Упс! Вышла ошибка.
-      </div>
-    );
-
   return (
     <form className="flex flex-col gap-4" encType="multipart/div-data">
-      <h2 className="font-bold">Обновить рекламу</h2>
+      <div className="flex-row-center justify-between">
+        <h2 className="text-lg font-semibold w-fit">Обновить рекламу</h2>
+        <button
+          type="submit"
+          onClick={handleUpdate}
+          className="button-primary button-hover center gap-2 px-4 h-10 w-fit"
+        >
+          <IoSaveOutline className="icons" />
+          Обновить
+        </button>
+      </div>
       <div className="flex flex-col gap-2 md:flex md:flex-row md:gap-4">
         <div className="flex flex-col gap-4 justify-between md:flex-[50%] md:max-w-[50%]">
           <input
             name="description"
             type="text"
             ref={descriptionRef}
-            placeholder={adData ? adData.description : ""}
+            placeholder={data ? data.description : ""}
             className="input-outline px-4 h-10 w-full"
           ></input>
           <input
-            name="income"
+            name="incomeValue"
             type="number"
             ref={incomeRef}
-            placeholder={adData ? adData.incomeValue + " ман." : ""}
+            placeholder={data ? data.incomeValue + " ман." : ""}
             className="input-outline px-4 h-10 w-full"
           ></input>
-          <span className="flex-row-center gap-2">
+          <div className="flex-row-center gap-2">
             <p className="w-20">Начало</p>
             <input
-              name="start_date"
+              name="startDate"
               type="date"
               ref={startDateRef}
               placeholder="Начало"
               className="input-outline px-4 h-full w-full"
             ></input>
-          </span>
-          <span className="flex-row-center gap-2">
+          </div>
+          <div className="flex-row-center gap-2">
             <p className="w-20">Конец</p>
             <input
-              name="end_date"
+              name="endDate"
               type="date"
               ref={endDateRef}
               placeholder="Конец"
               className="input-outline px-4 h-full w-full"
             ></input>
-          </span>
+          </div>
           <input
             type="file"
             name="posterImage"
             onChange={getFile}
             accept="image/*"
             placeholder="Добавить фото"
-            className="bg-calm-50 block border rounded-lg text-calm-600 file:cursor-pointer file:rounded-l-lg file:border-0 file:text-sm file:bg-calm-600 file:text-white file:px-2 file:h-10 h-10 w-full"
+            className="custom-file-input"
           ></input>
         </div>
-        <div className="border rounded-lg text-center center flex-col p-2 md:flex-[50%] md:max-w-[50%] w-full">
-          <p>Рекомендуемый размер изображения 1360 x 360</p>
-          <div
-            className={
-              selectedFile
-                ? "relative block min-h-[360px] md:max-h-[500px] w-full"
-                : "hidden relative h-72"
-            }
-          >
-            {selectedFile && selectedFile instanceof File && (
+        <div className="bg-white shadow-md rounded-lg text-center center flex-col gap-2 h-72 md:flex-[50%] md:max-w-[50%] w-full">
+          <>Рекомендуемый размер изображения 1360 x 360</>
+          {selectedFile ? (
+            <div className="relative block h-52 w-full">
+              {selectedFile && selectedFile instanceof File && (
+                <Image
+                  src={URL.createObjectURL(selectedFile)}
+                  alt="image"
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw"
+                  fill
+                />
+              )}
+            </div>
+          ) : (
+            <div className="center relative h-52 w-72">
               <Image
-                src={URL.createObjectURL(selectedFile)}
+                src={"http://localhost:5000/images/" + data.posterImage}
                 alt="image"
                 className="object-contain"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw"
                 fill
               />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
-      <button
-        type="submit"
-        onClick={handleUpdate}
-        className="button-primary button-hover center gap-2 px-4 h-10 w-full"
-      >
-        <>Обновить</>
-        <IoSaveOutline className="icons" />
-      </button>
     </form>
   );
 }
