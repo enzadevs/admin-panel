@@ -1,106 +1,117 @@
 "use client";
 
-import useSWR from "swr";
-import toast from "react-simple-toasts";
+import ErrorBlock from "components/Functions/ErrorBlock";
+import LoadingBlock from "components/Functions/LoadingBlock";
 import { useRef } from "react";
+import { UseFetcher } from "utils/UseFetcher";
+import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
 import { FaRegSquarePlus } from "react-icons/fa6";
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
-function SuccessToast() {
-  toast("Добавлено.", {
-    className:
-      "bg-green-700 rounded-lg shadow-sm text-white text-center text-sm sm:text-base px-8 h-10 z-10",
-    duration: 1750,
-  });
-}
-
-function ErrorToast() {
-  toast("Пожалуйста повторите попытку.", {
-    className:
-      "bg-red-300 rounded-lg shadow-sm text-center text-sm sm:text-base px-8 h-10 z-10",
-    duration: 1750,
-  });
-}
 
 export default function ProductSettingsPage() {
   const newStatusRef = useRef();
   const newUnitTypeRef = useRef();
 
+  const { data: unitTypes } = UseFetcher(
+    "http://localhost:5000/manage/unittype/all"
+  );
+
+  const {
+    data: statuses,
+    isLoading,
+    isError,
+  } = UseFetcher("http://localhost:5000/manage/status/all");
+
+  if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
+  if (isError) return <ErrorBlock height={"h-20 lg:h-32"} width="w-full" />;
+
   const createNewStatus = async (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:5000/manage/status/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title: newStatusRef.current.value }),
-      });
 
-      if (res.ok) {
-        SuccessToast();
+    if (!newStatusRef.current.value) {
+      ErrorToast({ errorText: "Пожалуйста, заполните поле." });
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/manage/status/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title: newStatusRef.current.value }),
+        }
+      );
+
+      if (response.ok) {
+        SuccessToast({ successText: "Статус был успешно создан." });
         newStatusRef.current.value = "";
+      } else {
+        ErrorToast({ errorText: "Пожалуйста, заполните поле." });
       }
     } catch (error) {
-      ErrorToast();
-      console.error(error);
+      if (error.response) {
+        ErrorToast({
+          errorText: "Ошибка сервера: " + error.response.statusText,
+        });
+      } else if (error.request) {
+        ErrorToast({
+          errorText: "Ошибка сети: Пожалуйста, проверьте подключение.",
+        });
+      } else {
+        console.error(error);
+        ErrorToast({ errorText: "Произошла непредвиденная ошибка." });
+      }
     }
   };
 
   const createNewUnitType = async (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:5000/manage/unittype/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title: newUnitTypeRef.current.value }),
-      });
 
-      if (res.ok) {
-        SuccessToast();
+    if (!newUnitTypeRef.current.value) {
+      ErrorToast({ errorText: "Пожалуйста, заполните поле." });
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/manage/unittype/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title: newUnitTypeRef.current.value }),
+        }
+      );
+
+      if (response.ok) {
+        SuccessToast({ successText: "Статус был успешно создан." });
         newUnitTypeRef.current.value = "";
+      } else {
+        ErrorToast({ errorText: "Пожалуйста, заполните поле." });
       }
     } catch (error) {
-      ErrorToast();
-      console.error(error);
+      if (error.response) {
+        ErrorToast({
+          errorText: "Ошибка сервера: " + error.response.statusText,
+        });
+      } else if (error.request) {
+        ErrorToast({
+          errorText: "Ошибка сети: Пожалуйста, проверьте подключение.",
+        });
+      } else {
+        console.error(error);
+        ErrorToast({ errorText: "Произошла непредвиденная ошибка." });
+      }
     }
   };
 
-  const { data: statuses } = useSWR(
-    "http://localhost:5000/manage/status/all",
-    fetcher,
-    { refreshInterval: 1500 }
-  );
-
-  const {
-    data: unitTypes,
-    error,
-    isLoading,
-  } = useSWR("http://localhost:5000/manage/unittype/all", fetcher, {
-    refreshInterval: 1500,
-  });
-
-  if (isLoading)
-    return (
-      <div className="bg-calm-50 animate-pulse rounded-lg center h-20 w-full">
-        Загрузка...
-      </div>
-    );
-
-  if (error)
-    return (
-      <div className="bg-red-200 border border-red-500 rounded-lg text-red-500 center h-20 w-full">
-        Упс! Вышла ошибка.
-      </div>
-    );
-
   return (
     <div className="flex flex-col gap-4 sm:flex-row">
-      <div className="flex flex-col gap-4 sm:flex-[50%]">
-        <h3 className="bg-calm-50 rounded-lg flex-row-center font-bold pl-4 h-10 w-full">
+      <div className="bg-white rounded-lg shadow-md flex flex-col px-2 sm:flex-[50%] pb-4 h-fit">
+        <h3 className="flex-row-center font-semibold pl-4 h-10">
           Статусы продуктов
         </h3>
         <div className="flex-row-center relative">
@@ -119,7 +130,7 @@ export default function ProductSettingsPage() {
           </button>
         </div>
         <ul className="flex flex-col">
-          {statuses.map((item) => {
+          {statuses?.map((item) => {
             return (
               <li
                 key={item.id}
@@ -131,8 +142,8 @@ export default function ProductSettingsPage() {
           })}
         </ul>
       </div>
-      <div className="flex flex-col gap-4 sm:flex-[50%]">
-        <h3 className="bg-calm-50 rounded-lg flex-row-center font-bold pl-4 h-10 w-full">
+      <div className="bg-white rounded-lg shadow-md flex flex-col px-2 sm:flex-[50%] pb-4 h-fit">
+        <h3 className="flex-row-center font-semibold pl-4 h-10">
           Единицы измерений
         </h3>
         <div className="flex-row-center relative">
@@ -151,7 +162,7 @@ export default function ProductSettingsPage() {
           </button>
         </div>
         <ul className="flex flex-col">
-          {unitTypes.map((item) => {
+          {unitTypes?.map((item) => {
             return (
               <li
                 key={item.id}

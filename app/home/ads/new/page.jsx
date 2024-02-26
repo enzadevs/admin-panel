@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState, useRef } from "react";
-import { useRouter } from "next/navigation";
 import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
 import { IoSaveOutline, IoImageOutline } from "react-icons/io5";
 
@@ -12,7 +11,6 @@ export default function NewAdPage() {
   const incomeRef = useRef();
   const startDateRef = useRef();
   const endDateRef = useRef();
-  const router = useRouter();
 
   function getFile(e) {
     const file = e.target.files[0];
@@ -42,7 +40,7 @@ export default function NewAdPage() {
       if (response.ok) {
         SuccessToast({ successText: "Рекдама была успешно создано." });
         setTimeout(() => {
-          router.push("/home/ads");
+          window.location.href = "/home/ads";
         }, 1250);
       } else {
         ErrorToast({ errorText: "Пожалуйста наполните все поля." });

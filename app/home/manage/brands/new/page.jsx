@@ -2,14 +2,12 @@
 
 import Image from "next/image";
 import { useState, useRef } from "react";
-import { useRouter } from "next/navigation";
 import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
 import { IoSaveOutline, IoImageOutline } from "react-icons/io5";
 
 export default function NewBrandPage() {
   const [selectedFile, setSelectedFile] = useState();
   const titleRef = useRef();
-  const router = useRouter();
 
   function getFile(e) {
     const file = e.target.files[0];
@@ -33,7 +31,7 @@ export default function NewBrandPage() {
       if (response.ok) {
         SuccessToast({ successText: "Бренд был успешно создан." });
         setTimeout(() => {
-          router.push("/home/manage/brands");
+          window.location.href = "/home/manage/brands";
         }, 1250);
       } else {
         ErrorToast({ errorText: "Пожалуйста наполните все поля." });
@@ -61,7 +59,6 @@ export default function NewBrandPage() {
         <button
           type="submit"
           onClick={handleUpload}
-          href="/home/ads/new"
           className="button-primary center gap-2 px-4 h-10 w-fit"
         >
           <IoSaveOutline className="icons" />

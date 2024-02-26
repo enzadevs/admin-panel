@@ -4,7 +4,6 @@ import Image from "next/image";
 import LoadingBlock from "components/Functions/LoadingBlock";
 import ErrorBlock from "components/Functions/ErrorBlock";
 import { UseFetcher } from "utils/UseFetcher";
-import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
 import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
 import { IoSaveOutline } from "react-icons/io5";
@@ -12,7 +11,6 @@ import { IoSaveOutline } from "react-icons/io5";
 export default function UpdateBrandPage({ params }) {
   const [selectedFile, setSelectedFile] = useState();
   const titleRef = useRef();
-  const router = useRouter();
 
   const { data, isLoading, isError } = UseFetcher(
     `http://localhost:5000/manage/brands/fetch/${params.id}`
@@ -43,7 +41,7 @@ export default function UpdateBrandPage({ params }) {
       if (response.ok) {
         SuccessToast({ successText: "Бренд был успешно обновлен." });
         setTimeout(() => {
-          router.push("/home/manage/brands");
+          window.location.href = "/home/manage/brands";
         }, 1250);
       } else {
         ErrorToast({ errorText: "Пожалуйста наполните все поля." });
@@ -71,7 +69,6 @@ export default function UpdateBrandPage({ params }) {
         <button
           type="submit"
           onClick={handleUpdate}
-          href="/home/manage/brands"
           className="button-primary center gap-2 px-4 h-10 w-fit"
         >
           <>Обновить</>

@@ -22,7 +22,7 @@ export default function ManagementPage() {
           <p className="text-base lg:text-lg">Настройки продуктов</p>
         </Link>
         <Link
-          href="/home/manage/products"
+          href="/home/manage/categories"
           className="bg-white border rounded-lg shadow-md flex-row center transition hover:border-calm-700 h-20 w-full"
         >
           <TbCategory2 className="h-6 w-6 mr-2" />

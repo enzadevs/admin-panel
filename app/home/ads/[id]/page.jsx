@@ -4,7 +4,6 @@ import Image from "next/image";
 import LoadingBlock from "components/Functions/LoadingBlock";
 import ErrorBlock from "components/Functions/ErrorBlock";
 import { UseFetcher } from "utils/UseFetcher";
-import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
 import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
 import { IoSaveOutline } from "react-icons/io5";
@@ -15,7 +14,6 @@ export default function UpdateAdDataPage({ params }) {
   const incomeRef = useRef();
   const startDateRef = useRef();
   const endDateRef = useRef();
-  const router = useRouter();
 
   const { data, isLoading, isError } = UseFetcher(
     `http://localhost:5000/ads/fetch/${params.id}`
@@ -53,7 +51,7 @@ export default function UpdateAdDataPage({ params }) {
       if (response.ok) {
         SuccessToast({ successText: "Реклама была успешно обновлена." });
         setTimeout(() => {
-          router.push("/home/ads");
+          window.location.href = "/home/ads";
         }, 1250);
       } else {
         ErrorToast({ errorText: "Пожалуйста наполните все поля." });
