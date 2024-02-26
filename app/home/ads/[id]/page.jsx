@@ -9,7 +9,7 @@ import { useState, useRef } from "react";
 import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
 import { IoSaveOutline } from "react-icons/io5";
 
-export default function ViewAdPage({ params }) {
+export default function UpdateAdDataPage({ params }) {
   const [selectedFile, setSelectedFile] = useState();
   const descriptionRef = useRef();
   const incomeRef = useRef();
@@ -55,10 +55,22 @@ export default function ViewAdPage({ params }) {
         setTimeout(() => {
           router.push("/home/ads");
         }, 1250);
+      } else {
+        ErrorToast({ errorText: "Пожалуйста наполните все поля." });
       }
     } catch (error) {
-      ErrorToast({ errorText: "Пожалуйста повторите попытку." });
-      console.error(error);
+      if (error.response) {
+        ErrorToast({
+          errorText: "Ошибка сервера: " + error.response.statusText,
+        });
+      } else if (error.request) {
+        ErrorToast({
+          errorText: "Ошибка сети: Пожалуйста, проверьте подключение.",
+        });
+      } else {
+        console.error(error);
+        ErrorToast({ errorText: "Произошла непредвиденная ошибка." });
+      }
     }
   };
 
@@ -69,7 +81,7 @@ export default function ViewAdPage({ params }) {
         <button
           type="submit"
           onClick={handleUpdate}
-          className="button-primary button-hover center gap-2 px-4 h-10 w-fit"
+          className="button-primary center gap-2 px-4 h-10 w-fit"
         >
           <IoSaveOutline className="icons" />
           Обновить

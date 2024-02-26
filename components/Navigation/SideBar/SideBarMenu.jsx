@@ -43,13 +43,13 @@ export default function SideBarMenu() {
         <TbDeviceDesktopCheck className="icons" />
         <p>Реклама</p>
       </Link>
-      <Link
+      {/* <Link
         href="/home/analytics"
         className="button-outline flex-row-center gap-2 px-2 h-10"
       >
         <PiChartLineUp className="icons" />
         <p>Аналитика</p>
-      </Link>
+      </Link> */}
       <Link
         href="/home/settings"
         className="button-outline flex-row-center gap-2 px-2 h-10"

@@ -1,26 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import toast from "react-simple-toasts";
-import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
-import { IoSaveOutline } from "react-icons/io5";
-
-function SuccessToast() {
-  toast("Бренд была успешно создан.", {
-    className:
-      "bg-green-700 rounded-lg shadow-sm text-white text-center text-sm sm:text-base px-8 h-10 z-10",
-    duration: 1750,
-  });
-}
-
-function ErrorToast() {
-  toast("Пожалуйста повторите попытку.", {
-    className:
-      "bg-red-100 rounded-lg shadow-sm text-center text-sm sm:text-base px-8 h-10 z-10",
-    duration: 1750,
-  });
-}
+import { useRouter } from "next/navigation";
+import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
+import { IoSaveOutline, IoImageOutline } from "react-icons/io5";
 
 export default function NewBrandPage() {
   const [selectedFile, setSelectedFile] = useState();
@@ -47,20 +31,43 @@ export default function NewBrandPage() {
       );
 
       if (response.ok) {
-        SuccessToast();
+        SuccessToast({ successText: "Бренд был успешно создан." });
         setTimeout(() => {
           router.push("/home/manage/brands");
-        }, 2000);
+        }, 1250);
+      } else {
+        ErrorToast({ errorText: "Пожалуйста наполните все поля." });
       }
     } catch (error) {
-      ErrorToast();
-      console.error(error);
+      if (error.response) {
+        ErrorToast({
+          errorText: "Ошибка сервера: " + error.response.statusText,
+        });
+      } else if (error.request) {
+        ErrorToast({
+          errorText: "Ошибка сети: Пожалуйста, проверьте подключение.",
+        });
+      } else {
+        console.error(error);
+        ErrorToast({ errorText: "Произошла непредвиденная ошибка." });
+      }
     }
   };
 
   return (
     <form className="flex flex-col gap-4">
-      <h1 className="text-xl font-semibold">Новый бренд</h1>
+      <div className="flex-row-center justify-between">
+        <h2 className="text-lg font-semibold w-fit">Новый бренд</h2>
+        <button
+          type="submit"
+          onClick={handleUpload}
+          href="/home/ads/new"
+          className="button-primary center gap-2 px-4 h-10 w-fit"
+        >
+          <IoSaveOutline className="icons" />
+          Сохранить
+        </button>
+      </div>
       <div className="flex flex-col gap-2 md:flex md:flex-row md:gap-4">
         <div className="flex flex-col gap-4 justify-between md:flex-[50%] md:max-w-[50%]">
           <input
@@ -76,39 +83,30 @@ export default function NewBrandPage() {
             onChange={getFile}
             accept="image/*"
             placeholder="Добавить фото"
-            className="bg-calm-50 block border rounded-lg text-calm-600 file:cursor-pointer file:rounded-l-lg file:border-0 file:text-sm file:bg-calm-600 file:text-white file:px-2 file:h-10 h-10 w-full"
+            className="custom-file-input"
           ></input>
         </div>
-        <div className="border rounded-lg text-center center flex-col p-2 md:flex-[50%] md:max-w-[50%] w-full">
-          <p>Рекомендуемый размер изображения 200 x 200</p>
-          <div
-            className={
-              selectedFile
-                ? "relative block h-[200px] md:h-[500px] w-full"
-                : "hidden relative h-72"
-            }
-          >
-            {selectedFile && selectedFile instanceof File && (
-              <Image
-                src={URL.createObjectURL(selectedFile)}
-                alt="image"
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw"
-                fill
-              />
-            )}
-          </div>
+        <div className="bg-white shadow-md rounded-lg text-center center flex-col gap-2 p-4 h-40 md:flex-[50%] md:max-w-[50%] w-full">
+          <>Рекомендуемый размер изображения 100 x 100</>
+          {selectedFile ? (
+            <div className="relative block h-20 w-full">
+              {selectedFile && selectedFile instanceof File && (
+                <Image
+                  src={URL.createObjectURL(selectedFile)}
+                  alt="image"
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw"
+                  fill
+                />
+              )}
+            </div>
+          ) : (
+            <div className="bg-calm-50 rounded-lg animate-pulse center h-20 w-20">
+              <IoImageOutline className="h-10 w-10" />
+            </div>
+          )}
         </div>
       </div>
-      <button
-        type="submit"
-        onClick={handleUpload}
-        href="/home/ads/new"
-        className="button-primary button-hover center gap-2 px-4 h-10 w-fit"
-      >
-        <IoSaveOutline className="icons" />
-        Сохранить
-      </button>
     </form>
   );
 }

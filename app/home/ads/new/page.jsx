@@ -40,14 +40,26 @@ export default function NewAdPage() {
       });
 
       if (response.ok) {
-        SuccessToast({ successText: "Реклама была успешно создано." });
+        SuccessToast({ successText: "Рекдама была успешно создано." });
         setTimeout(() => {
           router.push("/home/ads");
         }, 1250);
+      } else {
+        ErrorToast({ errorText: "Пожалуйста наполните все поля." });
       }
     } catch (error) {
-      ErrorToast({ errorText: "Пожалуйста повторите попытку." });
-      console.error(error);
+      if (error.response) {
+        ErrorToast({
+          errorText: "Ошибка сервера: " + error.response.statusText,
+        });
+      } else if (error.request) {
+        ErrorToast({
+          errorText: "Ошибка сети: Пожалуйста, проверьте подключение.",
+        });
+      } else {
+        console.error(error);
+        ErrorToast({ errorText: "Произошла непредвиденная ошибка." });
+      }
     }
   };
 
@@ -58,7 +70,7 @@ export default function NewAdPage() {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="button-primary button-hover center gap-2 px-4 h-10 w-fit"
+          className="button-primary center gap-2 px-4 h-10 w-fit"
         >
           <IoSaveOutline className="icons" />
           Сохранить
@@ -109,7 +121,7 @@ export default function NewAdPage() {
             className="custom-file-input"
           ></input>
         </div>
-        <div className="bg-white shadow-md rounded-lg text-center center flex-col gap-2 h-72 md:flex-[50%] md:max-w-[50%] w-full">
+        <div className="bg-white shadow-md rounded-lg text-center center flex-col gap-2 p-4 h-72 md:flex-[50%] md:max-w-[50%] w-full">
           <>Рекомендуемый размер изображения 1360 x 360</>
           {selectedFile ? (
             <div className="relative block h-52 w-full">

@@ -3,5 +3,5 @@ export const metadata = {
 };
 
 export default function ManageLayout({ children }) {
-  return <div>{children}</div>;
+  return <div className="min-h-[768px]">{children}</div>;
 }

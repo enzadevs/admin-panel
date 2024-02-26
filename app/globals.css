@@ -12,6 +12,10 @@ th {
   min-width: 130px;
 }
 
+h2 {
+  @apply flex-row-center text-lg font-semibold h-10 w-fit;
+}
+
 .gradient-bg {
   animation: gradient 20s ease infinite;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -61,7 +65,7 @@ th {
 }
 
 .button-outline {
-  @apply bg-white border rounded-lg  shadow-sm transition hover:border-calm-700;
+  @apply bg-white border rounded-lg shadow-sm transition hover:border-calm-700;
 }
 
 .input-outline {
