@@ -5,7 +5,7 @@ export const metadata = {
 export default function UsersLayout({ children }) {
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-xl font-semibold">Настройки</h2>
+      <h2>Настройки</h2>
       {children}
     </div>
   );
