@@ -93,7 +93,7 @@ export default function ViewCategoryPage({ params }) {
                   return (
                     <li
                       key={item.id}
-                      className="border-b flex-row-center pl-4 h-10 w-full"
+                      className="custom-list-item border-b flex-row-center pl-4 h-10 w-full"
                     >
                       {item.title}
                     </li>
@@ -117,7 +117,7 @@ export default function ViewCategoryPage({ params }) {
                 {data?.products.map((item) => {
                   return (
                     <li key={item.id}>
-                      <div className="border-b flex-row-center justify-between pl-4 h-10 w-full">
+                      <div className="custom-list-item border-b flex-row-center justify-between pl-4 h-10 w-full">
                         <p>{item.title}</p>
                         <p>{item.sellPrice + " ман."}</p>
                       </div>

@@ -130,16 +130,24 @@ export default function ProductSettingsPage() {
           </button>
         </div>
         <ul className="flex flex-col">
-          {statuses?.map((item) => {
-            return (
-              <li
-                key={item.id}
-                className="border-b flex-row-center pl-4 h-10 w-full"
-              >
-                {item.title}
-              </li>
-            );
-          })}
+          {statuses?.length === 0 ? (
+            <p className="bg-yellow-300 border border-yellow-400 rounded-lg center text-xs md:text-sm mt-4 px-4 h-10">
+              Статусов нет.
+            </p>
+          ) : (
+            <>
+              {statuses?.map((item) => {
+                return (
+                  <li
+                    key={item.id}
+                    className="custom-list-item border-b flex-row-center pl-4 h-10 w-full"
+                  >
+                    {item.title}
+                  </li>
+                );
+              })}
+            </>
+          )}
         </ul>
       </div>
       <div className="bg-white rounded-lg shadow-md flex flex-col px-2 sm:flex-[50%] pb-4 h-fit">
@@ -162,16 +170,24 @@ export default function ProductSettingsPage() {
           </button>
         </div>
         <ul className="flex flex-col">
-          {unitTypes?.map((item) => {
-            return (
-              <li
-                key={item.id}
-                className="border-b flex-row-center pl-4 h-10 w-full"
-              >
-                {item.title}
-              </li>
-            );
-          })}
+          {unitTypes?.length === 0 ? (
+            <p className="bg-yellow-300 border border-yellow-400 rounded-lg center text-xs md:text-sm mt-4 px-4 h-10">
+              Единиц нет.
+            </p>
+          ) : (
+            <>
+              {unitTypes?.map((item) => {
+                return (
+                  <li
+                    key={item.id}
+                    className="custom-list-item border-b flex-row-center pl-4 h-10 w-full"
+                  >
+                    {item.title}
+                  </li>
+                );
+              })}
+            </>
+          )}
         </ul>
       </div>
     </div>

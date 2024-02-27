@@ -83,3 +83,7 @@ h2 {
 .custom-file-input {
   @apply bg-white block border rounded-lg shadow-sm text-calm-700 file:cursor-pointer file:rounded-l-lg file:border-0 file:text-sm file:bg-calm-600 file:text-white file:px-2 file:h-10 h-10 w-full;
 }
+
+.custom-list-item {
+  @apply cursor-pointer rounded-lg transition hover:bg-calm-50;
+}
