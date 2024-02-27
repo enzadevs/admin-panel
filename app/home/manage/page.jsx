@@ -4,9 +4,9 @@ import { TbBrandAppgallery, TbCategory2 } from "react-icons/tb";
 
 export default function ManagementPage() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2 md:gap-4">
       <h2>Панель Управления</h2>
-      <div className="flex flex-row flex-wrap md:flex-nowrap gap-4">
+      <div className="flex flex-row flex-wrap gap-2 md:flex-nowrap md:gap-4">
         <Link
           href="/home/manage/brands"
           className="bg-white border rounded-lg shadow-md flex-row center transition hover:border-calm-700 h-20 w-full"

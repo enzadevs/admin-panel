@@ -1,16 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import LoadingBlock from "components/Functions/LoadingBlock";
 import ErrorBlock from "components/Functions/ErrorBlock";
 import { UseFetcher } from "utils/UseFetcher";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
 import { FaRegSquarePlus } from "react-icons/fa6";
-import { IoSaveOutline } from "react-icons/io5";
 
 export default function ViewCategoryPage({ params }) {
-  const categoryTitleRef = useRef();
   const subCategoryTitleRef = useRef();
 
   const { data, isLoading, isError } = UseFetcher(
@@ -23,13 +20,6 @@ export default function ViewCategoryPage({ params }) {
   const createNewSubCategory = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        `http://localhost:5000/manage/subcategory/create/${params.id}`,
-        {
-          method: "PATCH",
-          body: formData,
-        }
-      );
       if (response.ok) {
         SuccessToast({ successText: "Под категория была успешно создана." });
       } else {
