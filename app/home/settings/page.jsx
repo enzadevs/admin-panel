@@ -26,7 +26,7 @@ export default function SettingsPage() {
 
   return (
     <div className="flex flex-col gap-4 lg:flex-row">
-      <ul className="bg-white rounded-lg shadow-md flex flex-col gap-4 px-4 w-full">
+      <div className="bg-white rounded-lg shadow-md flex flex-col gap-4 px-4 w-full">
         <li className="border-b flex-row-center justify-between gap-4 h-10">
           <p>Имя:</p>
           <p className="font-semibold">{firstName}</p>
@@ -43,7 +43,7 @@ export default function SettingsPage() {
           <p>Роль:</p>
           <p className="font-semibold">{role}</p>
         </li>
-      </ul>
+      </div>
       <div className="bg-white rounded-lg shadow-md flex flex-col gap-4 px-4 w-full">
         <li className="border-b flex-row-center justify-between gap-4 h-10">
           <p>Товары в избранных:</p>

@@ -75,7 +75,7 @@ export default function UpdateAdDataPage({ params }) {
   return (
     <form className="flex flex-col gap-4" encType="multipart/div-data">
       <div className="flex-row-center justify-between">
-        <h2 className="text-lg font-semibold w-fit">Обновить рекламу</h2>
+        <h2>Обновить рекламу</h2>
         <button
           type="submit"
           onClick={handleUpdate}
