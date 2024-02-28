@@ -13,7 +13,6 @@ import { Noto_Sans } from "next/font/google";
 const globalFont = Noto_Sans({
   subsets: ["latin", "cyrillic"],
   display: "swap",
-  // weight: ["100", "300", "400", "500", "700", "900"],
 });
 
 export default function RootLayout({ children }) {

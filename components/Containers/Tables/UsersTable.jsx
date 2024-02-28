@@ -1,27 +1,65 @@
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
 
 export const UsersTable = ({ rows }) => {
-  const [sortedRows, setRows] = useState(rows);
-  const router = useRouter();
+  const [sortedRows, setSortedRows] = useState(rows);
+  const [sortBy, setSortBy] = useState(null);
+  const [sortOrder, setSortOrder] = useState(null);
 
   const filter = (event) => {
     const value = event.target.value;
 
     if (value) {
-      setRows([
-        ...rows.filter((row) => {
-          return Object.values(row).join("").toLowerCase().includes(value);
-        }),
-      ]);
+      setSortedRows(
+        rows.filter((row) => {
+          return Object.values(row)
+            .join("")
+            .toLowerCase()
+            .includes(value.toLowerCase());
+        })
+      );
     } else {
-      setRows(rows);
+      setSortedRows(rows);
     }
   };
 
+  const toggleSortByField = (field) => {
+    if (field === sortBy) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(field);
+      setSortOrder("asc");
+    }
+
+    const sorted = [...sortedRows].sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a[field] > b[field] ? 1 : -1;
+      } else {
+        return a[field] < b[field] ? 1 : -1;
+      }
+    });
+
+    setSortedRows(sorted);
+  };
+
+  const sortIcon = (field) =>
+    sortBy === field ? (
+      sortOrder === "asc" ? (
+        <FaArrowUp />
+      ) : (
+        <FaArrowDown />
+      )
+    ) : (
+      <FaArrowDown />
+    );
+
+  const renderArrows = (field) => (
+    <span className="inline-flex float-right">{sortIcon(field)}</span>
+  );
+
   return (
-    <div className="overflow-x-auto">
+    <div className="bg-white border rounded-lg shadow-md overflow-x-auto p-4">
       <div className="flex-row-center gap-2 h-10">
         <div className="relative flex-row-center w-full">
           <input
@@ -35,34 +73,51 @@ export const UsersTable = ({ rows }) => {
           </button>
         </div>
       </div>
-      <table className="w-full table">
+      <table className="table w-full">
         <thead>
-          <tr className="border-b border-light">
-            <th>Имя</th>
+          <tr className="border-b border-gray-200">
+            <th onClick={() => toggleSortByField("firstName")}>
+              Имя
+              {renderArrows("firstName")}
+            </th>
             <th>Номер телефона</th>
-            <th>Адрес</th>
-            <th>Роль</th>
-            <th>Создано</th>
-            <th>Дата обновления</th>
+            <th onClick={() => toggleSortByField("address")}>
+              Адрес
+              {renderArrows("address")}
+            </th>
+            <th onClick={() => toggleSortByField("role")}>
+              Роль
+              {renderArrows("role")}
+            </th>
+            <th onClick={() => toggleSortByField("createdAt")}>
+              Создано
+              {renderArrows("createdAt")}
+            </th>
+            <th onClick={() => toggleSortByField("updatedAt")}>
+              Обновлено
+              {renderArrows("updatedAt")}
+            </th>
           </tr>
         </thead>
         <tbody>
-          {sortedRows.map((row, index) => (
+          {sortedRows?.map((row, index) => (
             <tr
+              // onClick={() => (window.location.href = `/home/orders/${row.id}`)}
               key={index}
-              className="border-b border-light cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
+              className="border-b border-gray-200 cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
             >
-              {Object.values(row)
-                .filter((_, index) => index !== 0 && index !== 3)
-                .map((entry, columnIndex) => (
-                  <td key={columnIndex}>{entry}</td>
-                ))}
+              <td>{row.firstName}</td>
+              <td>{row.phoneNumber}</td>
+              <td>{row.address}</td>
+              <td>{row.role}</td>
+              <td>{row.createdAt}</td>
+              <td>{row.updatedAt}</td>
             </tr>
           ))}
         </tbody>
       </table>
       {!sortedRows.length && (
-        <div className="border border-yellow-400 bg-yellow-300 rounded-lg center text-sm md:text-base text-center mt-2 px-2 h-20">
+        <div className="bg-yellow-300 border border-yellow-400 rounded-lg center text-xs md:text-sm mt-4 px-4 h-20">
           Ничего не нашлось.
         </div>
       )}

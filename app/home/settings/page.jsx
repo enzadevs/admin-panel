@@ -1,14 +1,15 @@
 "use client";
 
+import { UseAdminData } from "utils/UseAdminData";
 import LoadingBlock from "components/Functions/LoadingBlock";
 import ErrorBlock from "components/Functions/ErrorBlock";
 import { UseFetcher } from "utils/UseFetcher";
-import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
-import { IoSaveOutline } from "react-icons/io5";
 
 export default function SettingsPage() {
+  const admin = UseAdminData((state) => state.admin);
+
   const { data, isLoading, isError } = UseFetcher(
-    `http://localhost:5000/users/get/${99362934985}`
+    `http://localhost:5000/users/get/${admin.data.user.phoneNumber}`
   );
 
   if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
@@ -22,7 +23,7 @@ export default function SettingsPage() {
     wishList,
     shoppingCart,
     orders,
-  } = data;
+  } = data || {};
 
   return (
     <div className="flex flex-col gap-4 lg:flex-row">
@@ -47,15 +48,15 @@ export default function SettingsPage() {
       <div className="bg-white rounded-lg shadow-md flex flex-col gap-4 px-4 w-full">
         <li className="border-b flex-row-center justify-between gap-4 h-10">
           <p>Товары в избранных:</p>
-          <p className="font-semibold">{wishList.length}</p>
+          <p className="font-semibold">{wishList?.length}</p>
         </li>
         <li className="border-b flex-row-center justify-between gap-4 h-10">
           <p>Товары в корзине:</p>
-          <p className="font-semibold">{shoppingCart.length}</p>
+          <p className="font-semibold">{shoppingCart?.length}</p>
         </li>
         <li className="border-b flex-row-center justify-between gap-4 h-10">
           <p>Заказы:</p>
-          <p className="font-semibold">{orders.length}</p>
+          <p className="font-semibold">{orders?.length}</p>
         </li>
       </div>
     </div>
