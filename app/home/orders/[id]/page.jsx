@@ -5,9 +5,14 @@ import ErrorBlock from "components/Functions/ErrorBlock";
 import { UseFetcher } from "utils/UseFetcher";
 import { useState, useRef } from "react";
 import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
-import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
 export default function OrderViewPage({ params }) {
+  const [orderStatusId, setOrderStatusId] = useState();
+
+  const { data: orderStatuses } = UseFetcher(
+    "http://localhost:5000/manage/order_status/all"
+  );
+
   const { data, isLoading, isError } = UseFetcher(
     `http://localhost:5000/orders/fetch/${params.id}`
   );
@@ -28,15 +33,14 @@ export default function OrderViewPage({ params }) {
     products,
   } = data;
 
-  const handleStatusUpdate = async (e) => {
-    e.preventDefault();
+  const handleStatusUpdate = async (id) => {
     try {
       const response = await fetch(
         `http://localhost:5000/orders/update/${params.id}`,
         {
           method: "PATCH",
           body: JSON.stringify({
-            orderStatusId: 3,
+            orderStatusId: id,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -74,14 +78,20 @@ export default function OrderViewPage({ params }) {
         <h2 className="text-lg font-semibold w-fit">
           Заказ номер : {params.id}
         </h2>
-        <button
-          type="submit"
-          onClick={handleStatusUpdate}
-          className="button-primary center gap-2 px-4 h-10 w-fit"
-        >
-          <IoCheckmarkCircleOutline className="icons" />
-          Доставлено
-        </button>
+        <div className="flex-row-center gap-4">
+          {orderStatuses.map((item) => {
+            return (
+              <button
+                type="submit"
+                onClick={() => handleStatusUpdate(item.id)}
+                className="button-primary center gap-2 px-4 h-10 w-fit"
+                key={item.id}
+              >
+                {item.title}
+              </button>
+            );
+          })}
+        </div>
       </div>
       <div className="flex flex-col gap-4 lg:flex-row">
         <div className="bg-white rounded-lg shadow-md flex flex-col px-4 sm:flex-[50%] pb-4 h-fit">
@@ -123,9 +133,23 @@ export default function OrderViewPage({ params }) {
           </li>
         </div>
         <div className="bg-white rounded-lg shadow-md flex flex-col px-4 sm:flex-[50%] pb-4 h-fit">
-          {products?.productsList?.map((item) => {
-            return <p key={item.id}>{item.product.title}</p>;
-          })}
+          <div className="flex-row-center justify-between font-semibold h-10">
+            <h3>Список продуктов</h3>
+            <h3>Количество</h3>
+          </div>
+          {products.map((product, index) => (
+            <div key={index} className="flex flex-col gap-2">
+              {product.productsList.map((productListItem, index) => (
+                <div
+                  key={index}
+                  className="bg-calm-50 rounded-lg flex-row-center justify-between h-10 w-full"
+                >
+                  <p>{productListItem.product.title}</p>
+                  <p className="font-semibold">{productListItem.quantity}</p>
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </div>
