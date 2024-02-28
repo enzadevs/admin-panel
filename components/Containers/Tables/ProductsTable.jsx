@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
 
 export const ProductsTable = ({ rows }) => {
   const [sortedRows, setSortedRows] = useState(rows);
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState(null);
-  const router = useRouter();
 
   const filter = (event) => {
     const value = event.target.value;
@@ -25,7 +24,7 @@ export const ProductsTable = ({ rows }) => {
     }
   };
 
-  const sortByField = (field) => {
+  const toggleSortByField = (field) => {
     if (field === sortBy) {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
@@ -44,8 +43,23 @@ export const ProductsTable = ({ rows }) => {
     setSortedRows(sorted);
   };
 
+  const sortIcon = (field) =>
+    sortBy === field ? (
+      sortOrder === "asc" ? (
+        <FaArrowUp />
+      ) : (
+        <FaArrowDown />
+      )
+    ) : (
+      <FaArrowDown />
+    );
+
+  const renderArrows = (field) => (
+    <span className="inline-flex float-right">{sortIcon(field)}</span>
+  );
+
   return (
-    <div className="border rounded-lg shadow-md overflow-x-auto p-4">
+    <div className="bg-white border rounded-lg shadow-md overflow-x-auto p-4">
       <div className="flex-row-center gap-2 h-10">
         <div className="relative flex-row-center w-full">
           <input
@@ -61,40 +75,68 @@ export const ProductsTable = ({ rows }) => {
       </div>
       <table className="w-full table">
         <thead>
-          <tr className="border-b border-light">
-            <th>Баркод</th>
-            <th onClick={() => sortByField("title")}>Имя</th>
-            <th onClick={() => sortByField("brand.title")}>Бренд</th>
-            <th>Ед. измерения</th>
-            <th onClick={() => sortByField("arrivalPrice")}>Цена прихода</th>
-            <th onClick={() => sortByField("sellPrice")}>Цена продажи</th>
-            <th>Описание</th>
-            <th onClick={() => sortByField("stock")}>Склад</th>
-            <th onClick={() => sortByField("category.title")}>Категория</th>
-            <th onClick={() => sortByField("subCategory.title")}>
-              Под категория
+          <tr className="border-b border-gray-200">
+            <th onClick={() => toggleSortByField("barcode")}>
+              Баркод
+              {renderArrows("barcode")}
             </th>
-            <th onClick={() => sortByField("status.title")}>Статус</th>
+            <th onClick={() => toggleSortByField("title")}>
+              Имя
+              {renderArrows("title")}
+            </th>
+            <th onClick={() => toggleSortByField("brand.title")}>
+              Бренд
+              {renderArrows("brand.title")}
+            </th>
+            <th onClick={() => toggleSortByField("arrivalPrice")}>
+              Цена (приход)
+              {renderArrows("arrivalPrice")}
+            </th>
+            <th onClick={() => toggleSortByField("sellPrice")}>
+              Цена (продажа)
+              {renderArrows("sellPrice")}
+            </th>
+            <th onClick={() => toggleSortByField("stock")}>
+              Склад
+              {renderArrows("stock")}
+            </th>
+            <th onClick={() => toggleSortByField("unitType.title")}>
+              Ед. измерения
+              {renderArrows("unitType.title")}
+            </th>
+            <th onClick={() => toggleSortByField("category.title")}>
+              Категория
+              {renderArrows("category.title")}
+            </th>
+            <th onClick={() => toggleSortByField("status.title")}>
+              Статус
+              {renderArrows("status.title")}
+            </th>
+            <th onClick={() => toggleSortByField("createdAt")}>
+              Создано
+              {renderArrows("createdAt")}
+            </th>
           </tr>
         </thead>
         <tbody>
           {sortedRows?.map((row, index) => (
             <tr
-              onClick={() => router.push(`/home/products/${row.id}`)}
+              onClick={() =>
+                (window.location.href = `/home/products/${row.id}`)
+              }
               key={index}
-              className="border-b border-light transition hover:bg-calm-50 hover:text-calm-600"
+              className="border-b border-gray-200 cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
             >
               <td>{row.barcode}</td>
               <td>{row.title}</td>
               <td>{row.brand?.title}</td>
-              <td>{row.unitType?.title}</td>
               <td>{row.arrivalPrice}</td>
               <td>{row.sellPrice}</td>
-              <td>{row.description}</td>
               <td>{row.stock}</td>
+              <td>{row.unitType?.title}</td>
               <td>{row.category?.title}</td>
-              <td>{row.subCategory?.title}</td>
               <td>{row.status?.title}</td>
+              <td>{row.createdAt}</td>
             </tr>
           ))}
         </tbody>

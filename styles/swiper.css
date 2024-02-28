@@ -1,22 +1,21 @@
-.swiper-button-next, 
-.swiper-button-prev{
-    color: #3277ab;
+.swiper-button-next,
+.swiper-button-prev {
+  color: #3277ab !important;
 }
 
-.swiper-button-next:after, 
-.swiper-button-prev:after{
-    font-size: 20px;
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 20px !important;
 }
 
-.swiper-button-next.swiper-button-disabled, 
+.swiper-button-next.swiper-button-disabled,
 .swiper-button-prev.swiper-button-disabled {
-    opacity: 0;
+  opacity: 0;
 }
 
-.swiper-pagination-bullet-active {
-    background-color: #3277ab !important;
-}
-
-.swiper-pagination-bullet {
-    background-color: #62a3ce;
+@media screen and (max-width: 768px) {
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    display: none;
+  }
 }

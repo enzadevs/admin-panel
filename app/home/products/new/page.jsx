@@ -1,33 +1,16 @@
 "use client";
 
-import toast from "react-simple-toasts";
-import useSWR from "swr";
 import Selector from "utils/Selector";
-import ProductsSwiper from "components/Containers/SelectedImagesSwiper";
-import { useRouter } from "next/navigation";
+import { UseFetcher } from "utils/UseFetcher";
 import { useState, useRef } from "react";
-import { IoSaveOutline } from "react-icons/io5";
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
-function SuccessToast() {
-  toast("Продукт был успешно добавлен.", {
-    className:
-      "bg-green-700 rounded-lg shadow-sm text-white text-center text-sm sm:text-base px-8 h-10 z-10",
-    duration: 1750,
-  });
-}
-
-function ErrorToast() {
-  toast("Пожалуйста повторите попытку.", {
-    className:
-      "bg-red-100 rounded-lg shadow-sm text-center text-sm sm:text-base px-8 h-10 z-10",
-    duration: 1750,
-  });
-}
+import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
+import LoadingBlock from "components/Functions/LoadingBlock";
+import ErrorBlock from "components/Functions/ErrorBlock";
+import ProductsSwiper from "components/Containers/SelectedImagesSwiper";
+import { IoSaveOutline, IoImageOutline } from "react-icons/io5";
 
 export default function NewProductPage() {
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [selectedFiles, setSelectedFiles] = useState();
   const [brandSelection, setBrandSelection] = useState(undefined);
   const [categorySelection, setCategorySelection] = useState(undefined);
   const [subCategorySelection, setSubCategorySelection] = useState(undefined);
@@ -39,7 +22,6 @@ export default function NewProductPage() {
   const sellPriceRef = useRef();
   const descriptionRef = useRef();
   const stockRef = useRef();
-  const router = useRouter();
 
   const handleBrandSelection = (selectedOption) => {
     setBrandSelection(selectedOption ? selectedOption.id : null);
@@ -69,6 +51,12 @@ export default function NewProductPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!selectedFiles) {
+      ErrorToast({ errorText: "Пожалуйста, загрузите изображение." });
+      return;
+    }
+
     try {
       const formData = new FormData();
       formData.append("barcode", barcodeRef.current.value);
@@ -92,56 +80,55 @@ export default function NewProductPage() {
       });
 
       if (response.ok) {
-        SuccessToast();
+        SuccessToast({ successText: "Продукт был успешно создан." });
         setTimeout(() => {
-          router.push("/home/products");
-        }, 2000);
+          window.location.href = "/home/products";
+        }, 1250);
+      } else {
+        ErrorToast({ errorText: "Пожалуйста наполните все поля." });
       }
     } catch (error) {
-      ErrorToast();
+      if (error.response) {
+        ErrorToast({
+          errorText: "Ошибка сервера: " + error.response.statusText,
+        });
+      } else if (error.request) {
+        ErrorToast({
+          errorText: "Ошибка сети: Пожалуйста, проверьте подключение.",
+        });
+      } else {
+        console.error(error);
+        ErrorToast({ errorText: "Произошла непредвиденная ошибка." });
+      }
     }
   };
 
-  const { data: unitTypes } = useSWR(
-    "http://localhost:5000/manage/unittype/all",
-    fetcher
+  const { data: unitTypes } = UseFetcher(
+    "http://localhost:5000/manage/unittype/all"
   );
-  const { data: categories } = useSWR(
-    "http://localhost:5000/manage/category/all",
-    fetcher
+  const { data: categories } = UseFetcher(
+    "http://localhost:5000/manage/category/all"
   );
-  const { data: subCategories } = useSWR(
-    "http://localhost:5000/manage/subcategory/all",
-    fetcher
+  const { data: subCategories } = UseFetcher(
+    "http://localhost:5000/manage/subcategory/all"
   );
-  const { data: productStatuses } = useSWR(
-    "http://localhost:5000/manage/status/all",
-    fetcher
+  const { data: productStatuses } = UseFetcher(
+    "http://localhost:5000/manage/status/all"
   );
+
   const {
     data: brands,
     isLoading,
     error,
-  } = useSWR("http://localhost:5000/manage/brands/all", fetcher);
+  } = UseFetcher("http://localhost:5000/manage/brands/all");
 
-  if (isLoading)
-    return (
-      <div className="bg-calm-50 animate-pulse rounded-lg center h-20 w-full">
-        Загрузка...
-      </div>
-    );
-
-  if (error)
-    return (
-      <div className="bg-red-200 border border-red-500 rounded-lg text-red-500 center h-20 w-full">
-        Упс! Вышла ошибка.
-      </div>
-    );
+  if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
+  if (error) return <ErrorBlock height={"h-20 lg:h-32"} width="w-full" />;
 
   return (
     <form className="flex flex-col gap-4" encType="multipart/form-data">
       <div className="flex-row-center justify-between">
-        <h2 className="font-bold">Добавить новый продукт</h2>
+        <h2 className="font-bold">Новый продукт</h2>
         <button
           type="submit"
           onClick={handleSubmit}
@@ -151,8 +138,8 @@ export default function NewProductPage() {
           Сохранить
         </button>
       </div>
-      <div className="flex flex-col gap-2 md:flex md:flex-row md:gap-4">
-        <div className="flex flex-col gap-4 justify-between md:flex-[50%] md:max-w-[50%]">
+      <div className="bg-white rounded-lg shadow-md flex flex-col gap-2 lg:flex-row lg:gap-4 p-4">
+        <div className="flex flex-col gap-4 justify-between lg:flex-[50%] lg:max-w-[50%]">
           <input
             name="barcode"
             type="number"
@@ -232,23 +219,20 @@ export default function NewProductPage() {
             multiple
             accept="image/*"
             placeholder="Добавить фото"
-            className="bg-calm-50 block border rounded-lg text-calm-600 file:cursor-pointer file:rounded-l-lg file:border-0 file:text-sm file:bg-calm-600 file:text-white file:px-2 file:h-10 h-10 w-full"
+            className="custom-file-input"
           ></input>
         </div>
-        <div className="border rounded-lg text-center center flex-col gap-4 p-2 md:flex-[50%] md:max-w-[50%] w-full">
-          <p className="px-16">
-            Рекомендуемый размер изображения 1000 x 1000 (Вы можете выложить
-            максимум 5 фотографий)
+        <div className="bg-calm-50 shadow-md rounded-lg text-center center flex-col gap-2 p-4 lg:flex-[50%] lg:max-w-[50%] w-full">
+          <p className="text-xs md:text-base">
+            Рекомендуемый размер изображения 1000 x 1000
           </p>
-          <div
-            className={
-              selectedFiles.length > 0
-                ? "relative block min-h-[360px] md:max-h-[500px] w-full"
-                : "hidden relative h-72"
-            }
-          >
+          {selectedFiles ? (
             <ProductsSwiper images={selectedFiles} />
-          </div>
+          ) : (
+            <div className="center h-full w-72">
+              <IoImageOutline className="animate-pulse h-48 w-48" />
+            </div>
+          )}
         </div>
       </div>
     </form>

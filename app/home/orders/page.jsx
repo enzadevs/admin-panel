@@ -3,7 +3,7 @@
 import useSWR from "swr";
 import LoadingBlock from "components/Functions/LoadingBlock";
 import ErrorBlock from "components/Functions/ErrorBlock";
-import { OrdersTable } from "components/Containers/Tables/Orders";
+import { OrdersTable } from "components/Containers/Tables/OrdersTable";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 

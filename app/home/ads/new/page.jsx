@@ -38,7 +38,7 @@ export default function NewAdPage() {
       });
 
       if (response.ok) {
-        SuccessToast({ successText: "Рекдама была успешно создано." });
+        SuccessToast({ successText: "Реклама была успешно создано." });
         setTimeout(() => {
           window.location.href = "/home/ads";
         }, 1250);
@@ -74,7 +74,7 @@ export default function NewAdPage() {
           Сохранить
         </button>
       </div>
-      <div className="flex flex-col gap-2 md:flex md:flex-row md:gap-4">
+      <div className="bg-white rounded-lg shadow-md flex flex-col gap-2 md:flex-row md:gap-4 p-4">
         <div className="flex flex-col gap-4 justify-between md:flex-[50%] md:max-w-[50%]">
           <input
             name="description"
@@ -119,7 +119,7 @@ export default function NewAdPage() {
             className="custom-file-input"
           ></input>
         </div>
-        <div className="bg-white shadow-md rounded-lg text-center center flex-col gap-2 p-4 h-72 md:flex-[50%] md:max-w-[50%] w-full">
+        <div className="bg-calm-50 shadow-md rounded-lg text-center center flex-col gap-2 p-4 h-72 md:flex-[50%] md:max-w-[50%] w-full">
           <>Рекомендуемый размер изображения 1360 x 360</>
           {selectedFile ? (
             <div className="relative block h-52 w-full">
@@ -134,8 +134,8 @@ export default function NewAdPage() {
               )}
             </div>
           ) : (
-            <div className="bg-calm-50 rounded-lg animate-pulse center h-52 w-72">
-              <IoImageOutline className="h-48 w-48" />
+            <div className="center h-52 w-72">
+              <IoImageOutline className="animate-pulse h-48 w-48" />
             </div>
           )}
         </div>
