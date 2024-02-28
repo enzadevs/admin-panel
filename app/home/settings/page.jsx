@@ -8,8 +8,10 @@ import { UseFetcher } from "utils/UseFetcher";
 export default function SettingsPage() {
   const admin = UseAdminData((state) => state.admin);
 
+  const phoneNumberOfAdmin = admin?.data?.user?.phoneNumber;
+
   const { data, isLoading, isError } = UseFetcher(
-    `http://localhost:5000/users/get/${admin.data.user.phoneNumber}`
+    `http://localhost:5000/users/get/${phoneNumberOfAdmin}`
   );
 
   if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
