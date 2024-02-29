@@ -1,8 +1,9 @@
 "use client";
 
 import Selector from "utils/Selector";
+import SubCategoriesSelector from "utils/SubCategoriesSelector";
 import { UseFetcher } from "utils/UseFetcher";
-import { useState, useRef } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
 import LoadingBlock from "components/Functions/LoadingBlock";
 import ErrorBlock from "components/Functions/ErrorBlock";
@@ -13,9 +14,11 @@ export default function NewProductPage() {
   const [selectedFiles, setSelectedFiles] = useState();
   const [brandSelection, setBrandSelection] = useState(undefined);
   const [categorySelection, setCategorySelection] = useState(undefined);
+  const [subCategories, setSubCategories] = useState([]);
   const [subCategorySelection, setSubCategorySelection] = useState(undefined);
   const [productStatus, setProductStatus] = useState(undefined);
   const [unitTypeSelection, setUnitTypeSelection] = useState(undefined);
+
   const titleRef = useRef();
   const barcodeRef = useRef();
   const arrivalPriceRef = useRef();
@@ -27,8 +30,24 @@ export default function NewProductPage() {
     setBrandSelection(selectedOption ? selectedOption.id : null);
   };
 
-  const handleCategorySelection = (selectedOption) => {
+  const handleCategorySelection = async (selectedOption) => {
     setCategorySelection(selectedOption ? selectedOption.id : null);
+
+    if (selectedOption) {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/manage/category/fetch/${selectedOption.id}`
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setSubCategories(data.subCategories);
+        } else {
+          console.error("Error fetching subcategories");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
   const handleSubCategorySelection = (selectedOption) => {
@@ -106,12 +125,11 @@ export default function NewProductPage() {
   const { data: unitTypes } = UseFetcher(
     "http://localhost:5000/manage/unittype/all"
   );
+
   const { data: categories } = UseFetcher(
     "http://localhost:5000/manage/category/all"
   );
-  const { data: subCategories } = UseFetcher(
-    "http://localhost:5000/manage/subcategory/all"
-  );
+
   const { data: productStatuses } = UseFetcher(
     "http://localhost:5000/manage/status/all"
   );
@@ -194,18 +212,41 @@ export default function NewProductPage() {
             placeholder="Количество"
             className="input-outline px-4 h-10 w-full"
           ></input>
+          {/* <select
+            value={categorySelection}
+            onChange={(e) => handleCategorySelection(e.target.value)}
+          >
+            <option value="">Select Category</option>
+            {categories?.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.title}
+              </option>
+            ))}
+          </select> */}
           <Selector
             selectData={categories}
             className="h-10"
             placeholder="Категория"
             onSelect={handleCategorySelection}
+            // onChange={(e) => handleCategorySelection(e.target.value)}
           />
-          <Selector
+          <SubCategoriesSelector
             selectData={subCategories}
             className="h-10"
             placeholder="Под категория"
             onSelect={handleSubCategorySelection}
           />
+          {/* <select
+            value={subCategorySelection}
+            onChange={(e) => handleSubCategorySelection(e.target.value)}
+          >
+            <option>Под категория</option>
+            {subCategories?.map((subCategory) => (
+              <option key={subCategory.id} value={subCategory.id}>
+                {subCategory.title}
+              </option>
+            ))}
+          </select> */}
           <Selector
             selectData={productStatuses}
             className="h-10"
