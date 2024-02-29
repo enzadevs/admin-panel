@@ -46,6 +46,7 @@ export default function CategoriesPage() {
       if (response.ok) {
         SuccessToast({ successText: "Категория создана." });
         newCategoryRef.current.value = "";
+        window.location.href = "home/manage/categories";
       } else {
         ErrorToast({ errorText: "Пожалуйста, заполните поле." });
       }
