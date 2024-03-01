@@ -25,14 +25,12 @@ export default function SubCategoriesSelector({
   }, [selectData]);
 
   const handleSelectChange = (selectedOption) => {
-    onSelect(selectedOption);
+    if (selectedOption) {
+      onSelect(selectedOption.value);
+    } else {
+      onSelect(null);
+    }
   };
-
-  // const filterItems = (inputValue) => {
-  //   return selectData.filter((i) =>
-  //     i.title.toLowerCase().includes(inputValue.toLowerCase())
-  //   );
-  // };
 
   return (
     <Select
@@ -40,12 +38,6 @@ export default function SubCategoriesSelector({
       className={className}
       placeholder={placeholder}
       onChange={handleSelectChange}
-      // options={selectData}
-      // className={className}
-      // placeholder={placeholder}
-      // getOptionLabel={(option) => option.title}
-      // getOptionValue={(option) => option.id}
-      // onChange={handleSelectChange}
     />
   );
 }

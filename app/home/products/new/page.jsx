@@ -51,7 +51,7 @@ export default function NewProductPage() {
   };
 
   const handleSubCategorySelection = (selectedOption) => {
-    setSubCategorySelection(selectedOption ? selectedOption.id : null);
+    setSubCategorySelection(selectedOption ? selectedOption : null);
   };
 
   const handleStatusSelection = (selectedOption) => {
@@ -212,23 +212,11 @@ export default function NewProductPage() {
             placeholder="Количество"
             className="input-outline px-4 h-10 w-full"
           ></input>
-          {/* <select
-            value={categorySelection}
-            onChange={(e) => handleCategorySelection(e.target.value)}
-          >
-            <option value="">Select Category</option>
-            {categories?.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.title}
-              </option>
-            ))}
-          </select> */}
           <Selector
             selectData={categories}
             className="h-10"
             placeholder="Категория"
             onSelect={handleCategorySelection}
-            // onChange={(e) => handleCategorySelection(e.target.value)}
           />
           <SubCategoriesSelector
             selectData={subCategories}
@@ -236,17 +224,6 @@ export default function NewProductPage() {
             placeholder="Под категория"
             onSelect={handleSubCategorySelection}
           />
-          {/* <select
-            value={subCategorySelection}
-            onChange={(e) => handleSubCategorySelection(e.target.value)}
-          >
-            <option>Под категория</option>
-            {subCategories?.map((subCategory) => (
-              <option key={subCategory.id} value={subCategory.id}>
-                {subCategory.title}
-              </option>
-            ))}
-          </select> */}
           <Selector
             selectData={productStatuses}
             className="h-10"
