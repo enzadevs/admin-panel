@@ -8,7 +8,7 @@ import { UseFetcher } from "utils/UseFetcher";
 export default function SettingsPage() {
   const admin = UseAdminData((state) => state.admin);
 
-  const phoneNumberOfAdmin = admin?.data?.user?.phoneNumber;
+  const phoneNumberOfAdmin = admin?.user?.id;
 
   const { data, isLoading, isError } = UseFetcher(
     `http://localhost:5000/users/get/${phoneNumberOfAdmin}`

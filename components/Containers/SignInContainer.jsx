@@ -24,7 +24,7 @@ export default function SignInContainer() {
 
   const checkUser = async (phoneNumber, password) => {
     try {
-      const response = await fetch("http://localhost:5000/auth/check", {
+      const response = await fetch("http://localhost:5000/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
