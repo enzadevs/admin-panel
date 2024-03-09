@@ -36,7 +36,7 @@ export default function OrderViewPage({ params }) {
   const handleStatusUpdate = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/orders/update/${params.id}`,
+        `http://localhost:5000/manage/utils/update/${params.id}`,
         {
           method: "PATCH",
           body: JSON.stringify({
@@ -79,7 +79,7 @@ export default function OrderViewPage({ params }) {
           Заказ номер : {params.id}
         </h2>
         <div className="flex-row-center gap-4">
-          {orderStatuses.map((item) => {
+          {orderStatuses?.map((item) => {
             return (
               <button
                 type="submit"
@@ -109,7 +109,7 @@ export default function OrderViewPage({ params }) {
           </li>
           <li className="border-b flex-row-center justify-between gap-4 h-10">
             <p>Сумма:</p>
-            <p className="font-semibold">{sum}</p>
+            <p className="font-semibold">{sum} ман.</p>
           </li>
           <li className="border-b flex-row-center justify-between gap-4 h-10">
             <p>Комментарий:</p>
