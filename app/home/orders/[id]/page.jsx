@@ -138,7 +138,7 @@ export default function OrderViewPage({ params }) {
             <h3>Количество</h3>
           </div>
           {products.map((product, index) => (
-            <div key={index} className="flex flex-col gap-2">
+            <div key={index} className="flex flex-col gap-2 px-2">
               {product.productsList.map((productListItem, index) => (
                 <div
                   key={index}
