@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 const AsyncSelect = dynamic(() => import("react-select/async"), { ssr: false });
 
-export default function Selector({
+export default function BrandSelector({
   selectData,
   placeholder,
   className,
@@ -11,7 +11,7 @@ export default function Selector({
 }) {
   const filterItems = (inputValue) => {
     return selectData.filter((i) =>
-      i.titleRu.toLowerCase().includes(inputValue.toLowerCase())
+      i.title.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
 
@@ -28,7 +28,7 @@ export default function Selector({
       defaultOptions
       className={className}
       placeholder={placeholder}
-      getOptionLabel={(option) => option.titleRu}
+      getOptionLabel={(option) => option.title}
       getOptionValue={(option) => option.id}
       onChange={onSelect}
     />

@@ -76,13 +76,17 @@ export const ProductsTable = ({ rows }) => {
       <table className="w-full table">
         <thead>
           <tr className="border-b border-gray-200">
+            <th onClick={() => toggleSortByField("id")}>
+              Номер
+              {renderArrows("id")}
+            </th>
             <th onClick={() => toggleSortByField("barcode")}>
               Баркод
               {renderArrows("barcode")}
             </th>
-            <th onClick={() => toggleSortByField("title")}>
+            <th onClick={() => toggleSortByField("titleRu")}>
               Имя
-              {renderArrows("title")}
+              {renderArrows("titleRu")}
             </th>
             <th onClick={() => toggleSortByField("brand.title")}>
               Бренд
@@ -127,22 +131,23 @@ export const ProductsTable = ({ rows }) => {
               key={index}
               className="border-b border-gray-200 cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
             >
+              <td>{row.id}</td>
               <td>{row.barcode}</td>
-              <td>{row.title}</td>
+              <td>{row.titleRu}</td>
               <td>{row.brand?.title}</td>
               <td>{row.arrivalPrice}</td>
               <td>{row.sellPrice}</td>
               <td>{row.stock}</td>
-              <td>{row.unitType?.title}</td>
-              <td>{row.category?.title}</td>
-              <td>{row.status?.title}</td>
+              <td>{row.unitType?.titleRu}</td>
+              <td>{row.category?.titleRu}</td>
+              <td>{row.status?.titleRu}</td>
               <td>{row.createdAt}</td>
             </tr>
           ))}
         </tbody>
       </table>
       {!sortedRows.length && (
-        <div className="border border-yellow-400 bg-yellow-300 rounded-lg center text-sm md:text-base text-center mt-2 px-2 h-20">
+        <div className="bg-yellow-300 rounded-lg center text-center mt-2 px-2 h-20">
           Ничего не нашлось.
         </div>
       )}

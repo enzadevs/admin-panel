@@ -15,7 +15,7 @@ export default function SubCategoriesSelector({
   useEffect(() => {
     const updateFilteredData = () => {
       const filteredOptions = selectData.map((option) => ({
-        label: option.title,
+        label: option.titleRu,
         value: option.id,
       }));
       setFilteredSelectData(filteredOptions);

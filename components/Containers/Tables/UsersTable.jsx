@@ -102,9 +102,9 @@ export const UsersTable = ({ rows }) => {
         <tbody>
           {sortedRows?.map((row, index) => (
             <tr
-              // onClick={() => (window.location.href = `/home/orders/${row.id}`)}
+              // onClick={() => (window.location.href = `/home/users/${row.id}`)}
               key={index}
-              className="border-b border-gray-200 cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
+              className="border-b border-mercury-200 cursor-pointer transition hover:bg-mercury hover:text-keppel-600"
             >
               <td>{row.firstName}</td>
               <td>{row.phoneNumber}</td>
@@ -117,7 +117,7 @@ export const UsersTable = ({ rows }) => {
         </tbody>
       </table>
       {!sortedRows.length && (
-        <div className="bg-yellow-300 border border-yellow-400 rounded-lg center text-xs md:text-sm mt-4 px-4 h-20">
+        <div className="bg-yellow-300  rounded-lg center mt-4 px-4 h-20">
           Ничего не нашлось.
         </div>
       )}

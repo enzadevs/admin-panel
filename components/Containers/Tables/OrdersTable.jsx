@@ -109,7 +109,7 @@ export const OrdersTable = ({ rows }) => {
             <tr
               onClick={() => (window.location.href = `/home/orders/${row.id}`)}
               key={index}
-              className="border-b border-gray-200 cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
+              className="border-b border-mercury-200 cursor-pointer transition hover:bg-mercury-200 hover:text-keppel-600"
             >
               <td>{row.id}</td>
               <td>{row.sum}</td>

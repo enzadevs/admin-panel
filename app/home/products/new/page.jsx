@@ -1,25 +1,28 @@
 "use client";
 
-import Selector from "utils/Selector";
-import SubCategoriesSelector from "utils/SubCategoriesSelector";
-import { UseFetcher } from "utils/UseFetcher";
-import { useState, useRef, useLayoutEffect } from "react";
-import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
 import LoadingBlock from "components/Functions/LoadingBlock";
 import ErrorBlock from "components/Functions/ErrorBlock";
+import Selector from "utils/Selector";
+import BrandSelector from "utils/BrandSelector";
+import SubCategoriesSelector from "utils/SubCategoriesSelector";
 import ProductsSwiper from "components/Containers/SelectedImagesSwiper";
+import { UseFetcher } from "utils/UseFetcher";
+import { useState, useRef } from "react";
+import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
 import { IoSaveOutline, IoImageOutline } from "react-icons/io5";
 
 export default function NewProductPage() {
   const [selectedFiles, setSelectedFiles] = useState();
-  const [brandSelection, setBrandSelection] = useState(undefined);
-  const [categorySelection, setCategorySelection] = useState(undefined);
+  const [brandSelection, setBrandSelection] = useState();
+  const [categorySelection, setCategorySelection] = useState();
   const [subCategories, setSubCategories] = useState([]);
-  const [subCategorySelection, setSubCategorySelection] = useState(undefined);
-  const [productStatus, setProductStatus] = useState(undefined);
-  const [unitTypeSelection, setUnitTypeSelection] = useState(undefined);
+  const [subCategorySelection, setSubCategorySelection] = useState();
+  const [productStatus, setProductStatus] = useState();
+  const [unitTypeSelection, setUnitTypeSelection] = useState();
 
-  const titleRef = useRef();
+  const titleRuRef = useRef();
+  const titleTmRef = useRef();
+  const titleEnRef = useRef();
   const barcodeRef = useRef();
   const arrivalPriceRef = useRef();
   const sellPriceRef = useRef();
@@ -36,7 +39,7 @@ export default function NewProductPage() {
     if (selectedOption) {
       try {
         const response = await fetch(
-          `http://localhost:5000/manage/category/fetch/${selectedOption.id}`
+          `http://localhost:3001/manage/categories/fetch/${selectedOption.id}`
         );
         if (response.ok) {
           const data = await response.json();
@@ -79,21 +82,21 @@ export default function NewProductPage() {
     try {
       const formData = new FormData();
       formData.append("barcode", barcodeRef.current.value);
-      formData.append("title", titleRef.current.value);
+      formData.append("titleRu", titleRuRef.current.value);
       formData.append("brandId", brandSelection);
-      formData.append("unitTypeId", unitTypeSelection);
       formData.append("arrivalPrice", arrivalPriceRef.current.value);
       formData.append("sellPrice", sellPriceRef.current.value);
       formData.append("description", descriptionRef.current.value);
       formData.append("stock", stockRef.current.value);
       formData.append("categoryId", categorySelection);
       formData.append("subCategoryId", subCategorySelection);
+      formData.append("unitTypeId", unitTypeSelection);
       formData.append("statusId", productStatus);
       selectedFiles.forEach((file) => {
         formData.append("productImages", file);
       });
 
-      const response = await fetch("http://localhost:5000/products/create", {
+      const response = await fetch("http://localhost:3001/products/new/", {
         method: "POST",
         body: formData,
       });
@@ -123,22 +126,22 @@ export default function NewProductPage() {
   };
 
   const { data: unitTypes } = UseFetcher(
-    "http://localhost:5000/manage/unittype/all"
+    "http://localhost:3001/manage/unit_types/all"
   );
 
   const { data: categories } = UseFetcher(
-    "http://localhost:5000/manage/category/all"
+    "http://localhost:3001/manage/categories/all"
   );
 
   const { data: productStatuses } = UseFetcher(
-    "http://localhost:5000/manage/status/all"
+    "http://localhost:3001/manage/status/all"
   );
 
   const {
     data: brands,
     isLoading,
     error,
-  } = UseFetcher("http://localhost:5000/manage/brands/all");
+  } = UseFetcher("http://localhost:3001/manage/brands/all");
 
   if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
   if (error) return <ErrorBlock height={"h-20 lg:h-32"} width="w-full" />;
@@ -168,11 +171,11 @@ export default function NewProductPage() {
           <input
             name="title"
             type="text"
-            ref={titleRef}
+            ref={titleRuRef}
             placeholder="Имя продукта"
             className="input-outline px-4 h-10 w-full"
           ></input>
-          <Selector
+          <BrandSelector
             selectData={brands}
             className="h-10"
             placeholder="Бренд"
@@ -240,15 +243,13 @@ export default function NewProductPage() {
             className="custom-file-input"
           ></input>
         </div>
-        <div className="bg-calm-50 shadow-md rounded-lg text-center center flex-col gap-2 p-4 lg:flex-[50%] lg:max-w-[50%] w-full">
-          <p className="text-xs md:text-base">
-            Рекомендуемый размер изображения 1000 x 1000
-          </p>
+        <div className="border border-mercury-200 shadow-md rounded-lg text-center center flex-col gap-2 p-4 lg:flex-[50%] lg:max-w-[50%] w-full">
+          <>Рекомендуемый размер изображения 1000 x 1000</>
           {selectedFiles ? (
             <ProductsSwiper images={selectedFiles} />
           ) : (
-            <div className="center h-full w-72">
-              <IoImageOutline className="animate-pulse h-48 w-48" />
+            <div className="rounded-lg center h-full w-72">
+              <IoImageOutline className="animate-pulse h-32 w-32" />
             </div>
           )}
         </div>

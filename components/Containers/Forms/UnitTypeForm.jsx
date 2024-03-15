@@ -12,12 +12,8 @@ export default function UnitTypeForm() {
   const createNewUnitType = async (e) => {
     e.preventDefault();
 
-    if (
-      !newUnitTypeRefRu.current.value ||
-      !newUnitTypeRefTm.current.value ||
-      !newUnitTypeRefEn.current.value
-    ) {
-      ErrorToast({ errorText: "Пожалуйста, все заполните поле." });
+    if (!newUnitTypeRefRu.current.value) {
+      ErrorToast({ errorText: "Пожалуйста, заполните хотя бы одно поле." });
       return;
     }
 

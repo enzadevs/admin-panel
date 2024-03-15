@@ -13,7 +13,7 @@ export default function ProductStatusForm() {
     e.preventDefault();
 
     if (!newProductStatusRefRu.current.value) {
-      ErrorToast({ errorText: "Пожалуйста, все заполните хотя бы одно поле." });
+      ErrorToast({ errorText: "Пожалуйста, заполните хотя бы одно поле." });
       return;
     }
 

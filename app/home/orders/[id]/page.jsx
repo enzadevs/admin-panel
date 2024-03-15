@@ -10,11 +10,11 @@ export default function OrderViewPage({ params }) {
   const [orderStatusId, setOrderStatusId] = useState();
 
   const { data: orderStatuses } = UseFetcher(
-    "http://localhost:5000/manage/order_status/all"
+    "http://localhost:3001/manage/order_status/all"
   );
 
   const { data, isLoading, isError } = UseFetcher(
-    `http://localhost:5000/orders/fetch/${params.id}`
+    `http://localhost:3001/orders/fetch/${params.id}`
   );
 
   if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
@@ -36,7 +36,7 @@ export default function OrderViewPage({ params }) {
   const handleStatusUpdate = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/manage/utils/update/${params.id}`,
+        `http://localhost:3001/manage/utils/update/${params.id}`,
         {
           method: "PATCH",
           body: JSON.stringify({
