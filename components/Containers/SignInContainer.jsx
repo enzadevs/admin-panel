@@ -2,29 +2,19 @@
 
 import Image from "next/image";
 import Logo from "public/assets/logo_only_transparent.png";
-import toast from "react-simple-toasts";
-import { useRouter } from "next/navigation";
+import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
 import { UseAdminData } from "utils/UseAdminData";
 import { AdminFormSchema } from "utils/AdminFormSchema";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { SlLock } from "react-icons/sl";
 import { BsPhone } from "react-icons/bs";
 
-function AuthErrorToast() {
-  toast("Неправильные данные. Пожалуйста повторите попытку.", {
-    className:
-      "bg-white rounded-lg shadow-md text-center text-sm sm:text-base px-8 h-10 z-10",
-    duration: 1750,
-  });
-}
-
 export default function SignInContainer() {
   const setAdmin = UseAdminData((state) => state.setAdmin);
-  const router = useRouter();
 
   const checkUser = async (phoneNumber, password) => {
     try {
-      const response = await fetch("http://localhost:5000/auth/signin", {
+      const response = await fetch("http://localhost:3001/auth/isadmin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,9 +28,15 @@ export default function SignInContainer() {
       if (response.ok) {
         const adminInfo = await response.json();
         setAdmin(adminInfo);
-        router.push("/home");
+        SuccessToast({ successText: "Вы успешно вошли в аккаунт." });
+        setTimeout(() => {
+          window.location.href = "/home";
+        }, 1000);
       } else {
-        AuthErrorToast();
+        const error = await response.json();
+        ErrorToast({
+          errorText: error.message,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -58,8 +54,8 @@ export default function SignInContainer() {
   };
 
   return (
-    <div className="bg-calm-50 border border-light rounded-lg flex flex-col items-center gap-4 p-4 h-fit w-[360px]">
-      <span className="center flex-col gap-2 text-xl w-full">
+    <div className="bg-mercury border border-mercury-200 rounded-lg flex flex-col items-center gap-4 p-4 h-fit w-[360px]">
+      <span className="center flex-col gap-2 w-full">
         <Image
           src={Logo}
           alt="image"

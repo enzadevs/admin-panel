@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 body {
-  color: #000;
-  font-size: 14px;
+  @apply text-black text-sm;
 }
 
 th {
@@ -17,8 +16,8 @@ h2 {
 }
 
 .gradient-bg {
-  animation: gradient 20s ease infinite;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  animation: gradient 5s ease infinite;
+  background: linear-gradient(-45deg, #158c83, #31b9aa, #1eaea0, #66e2d0);
   background-size: 400% 400%;
   height: 100vh;
 }
@@ -61,29 +60,33 @@ h2 {
 }
 
 .button-primary {
-  @apply bg-calm rounded-lg text-white outline-none transition delay-75 hover:bg-calm-700 min-h-10;
+  @apply bg-keppel rounded-lg text-white outline-none transition delay-75 hover:bg-keppel-600;
 }
 
 .button-outline {
-  @apply bg-white border rounded-lg shadow-sm transition hover:border-calm-700;
+  @apply bg-white border rounded-lg shadow-sm transition hover:shadow-md hover:text-keppel-700;
 }
 
 .input-outline {
-  @apply bg-white border rounded-lg shadow-sm outline-none transition focus:border-calm-600 min-h-10;
+  @apply bg-white border rounded-lg shadow-sm outline-none transition focus:border-keppel-600 min-h-10;
 }
 
 .short-sum-box {
-  @apply bg-white border rounded-lg shadow-md flex-row-center transition hover:border-calm-700 h-20 lg:h-32 w-full;
+  @apply bg-white border rounded-lg shadow-md flex-row-center transition hover:border-keppel-600 h-20 lg:h-32 w-full;
 }
 
 .chart-box {
-  @apply bg-white border rounded-lg shadow-md flex flex-col gap-4 transition hover:border-calm-700 min-h-[360px] w-full;
+  @apply bg-white border rounded-lg shadow-md flex flex-col gap-4 transition hover:border-keppel-600 min-h-[360px] w-full;
 }
 
 .custom-file-input {
-  @apply bg-white block border rounded-lg shadow-sm text-calm-700 file:cursor-pointer file:rounded-l-lg file:border-0 file:text-sm file:bg-calm-600 file:text-white file:px-2 file:h-10 h-10 w-full;
+  @apply bg-white block border rounded-lg shadow-sm text-keppel-700 file:cursor-pointer file:rounded-l-lg file:border-0 file:text-sm file:bg-keppel-600 file:text-white file:px-2 file:h-10 h-10 w-full;
 }
 
 .custom-list-item {
-  @apply cursor-pointer rounded-lg transition hover:bg-calm-50;
+  @apply cursor-pointer rounded-lg transition hover:bg-keppel-50;
+}
+
+.custom-hover-fx {
+  @apply shadow-sm transition hover:shadow-md hover:text-keppel-700;
 }

@@ -8,9 +8,9 @@ export const metadata = {
   content: "width=device-width, initial-scale=1",
 };
 
-import { Noto_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 
-const globalFont = Noto_Sans({
+const globalFont = Inter({
   subsets: ["latin", "cyrillic"],
   display: "swap",
 });
@@ -18,7 +18,7 @@ const globalFont = Noto_Sans({
 export default function RootLayout({ children }) {
   return (
     <html lang="rus" className={globalFont.className} suppressHydrationWarning>
-      <body className="bg-calm-50 flex flex-col min-h-screen">
+      <body className="bg-mercury flex flex-col min-h-screen">
         <TopProgressBar />
         {children}
       </body>

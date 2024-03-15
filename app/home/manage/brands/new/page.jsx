@@ -20,21 +20,20 @@ export default function NewBrandPage() {
       const formData = new FormData();
       formData.append("brandLogo", selectedFile);
       formData.append("title", titleRef.current.value);
-      const response = await fetch(
-        "http://localhost:5000/manage/brands/create",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("http://localhost:3001/manage/brands/new/", {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
-        SuccessToast({ successText: "Бренд был успешно создан." });
+        const responseData = await response.json();
+        SuccessToast({ successText: responseData.message });
         setTimeout(() => {
           window.location.href = "/home/manage/brands";
         }, 1250);
       } else {
-        ErrorToast({ errorText: "Пожалуйста наполните все поля." });
+        const responseData = await response.json();
+        ErrorToast({ errorText: responseData.message });
       }
     } catch (error) {
       if (error.response) {
@@ -55,7 +54,7 @@ export default function NewBrandPage() {
   return (
     <form className="flex flex-col gap-4">
       <div className="flex-row-center justify-between">
-        <h2 className="text-lg font-semibold w-fit">Новый бренд</h2>
+        <h2>Новый бренд</h2>
         <button
           type="submit"
           onClick={handleUpload}
@@ -98,7 +97,7 @@ export default function NewBrandPage() {
               )}
             </div>
           ) : (
-            <div className="bg-calm-50 rounded-lg animate-pulse center h-20 w-20">
+            <div className="bg-mercury rounded-lg animate-pulse center h-20 w-20">
               <IoImageOutline className="h-10 w-10" />
             </div>
           )}

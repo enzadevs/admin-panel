@@ -13,7 +13,7 @@ export default function SideBar({ children }) {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="bg-calm-50 border-r min-h-full w-72">
+        <div className="bg-mercury border-r min-h-full w-72">
           <BrandLogo />
           <SideBarMenu />
         </div>

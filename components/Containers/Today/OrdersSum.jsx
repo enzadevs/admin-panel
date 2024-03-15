@@ -1,6 +1,6 @@
-import { UseFetcher } from "utils/UseFetcher";
 import ErrorBlock from "components/Functions/ErrorBlock";
 import LoadingBlock from "components/Functions/LoadingBlock";
+import { UseFetcher } from "utils/UseFetcher";
 import { TbReportMoney } from "react-icons/tb";
 
 export default function OrderSum() {
@@ -8,7 +8,7 @@ export default function OrderSum() {
     data: stats,
     isLoading,
     isError,
-  } = UseFetcher("http://localhost:5000/orders/today");
+  } = UseFetcher("http://localhost:3001/orders/today");
 
   if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
   if (isError) return <ErrorBlock height={"h-20 lg:h-32"} width="w-full" />;
@@ -16,13 +16,9 @@ export default function OrderSum() {
   return (
     <div className="short-sum-box">
       <div className="flex flex-col flex-[75%] h-full max-w-[75%]">
-        <p className="border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10">
-          Общая сумма
-        </p>
+        <p className="border-b flex items-center pl-2 h-8">Общая сумма</p>
         <div className="center grow">
-          <p className="font-semibold text-lg lg:text-2xl">
-            {stats.overallSum}
-          </p>
+          <p className="font-semibold text-lg lg:text-xl">{stats.overallSum}</p>
         </div>
       </div>
       <span className="border-l center flex-[25%] h-full max-w-[25%]">

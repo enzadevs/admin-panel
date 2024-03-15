@@ -11,7 +11,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ManageBrandsPage() {
   const { data, error, isLoading } = useSWR(
-    "http://localhost:5000/manage/brands/all",
+    "http://localhost:3001/manage/brands/all",
     fetcher,
     {
       refreshInterval: 1750,
@@ -26,7 +26,7 @@ export default function ManageBrandsPage() {
         <h2>Управление брендами</h2>
         <Link
           href="/home/manage/brands/new"
-          className="button-primary flex-row-center justify-center gap-2 px-4 w-fit"
+          className="button-primary flex-row center gap-2 px-4 w-fit"
         >
           <HiOutlinePlusSm className="icons" />
           Добавить

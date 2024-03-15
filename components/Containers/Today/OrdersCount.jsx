@@ -1,6 +1,6 @@
-import { UseFetcher } from "utils/UseFetcher";
 import ErrorBlock from "components/Functions/ErrorBlock";
 import LoadingBlock from "components/Functions/LoadingBlock";
+import { UseFetcher } from "utils/UseFetcher";
 import { BsCart2 } from "react-icons/bs";
 
 export default function OrdersCount() {
@@ -8,7 +8,7 @@ export default function OrdersCount() {
     data: stats,
     isLoading,
     isError,
-  } = UseFetcher("http://localhost:5000/orders/today");
+  } = UseFetcher("http://localhost:3001/orders/today");
 
   if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
   if (isError) return <ErrorBlock height={"h-20 lg:h-32"} width="w-full" />;
@@ -16,11 +16,9 @@ export default function OrdersCount() {
   return (
     <div className="short-sum-box">
       <div className="flex flex-col flex-[75%] h-full max-w-[75%]">
-        <p className="border-b flex items-center text-sm md:text-base text-gray-600 pl-2 h-8 md:h-10">
-          Заказы
-        </p>
+        <p className="border-b flex items-center pl-2 h-8">Заказы</p>
         <div className="center grow">
-          <p className="font-semibold text-lg lg:text-2xl">
+          <p className="font-semibold text-lg lg:text-xl">
             {stats.ordersCount}
           </p>
         </div>

@@ -4,7 +4,7 @@ import Logo from "public/assets/logo_only_transparent.png";
 
 export default function BrandLogo() {
   return (
-    <Link href="/home" className="bg-calm-50 shadow-md center gap-2 h-14">
+    <Link href="/home" className="bg-mercury shadow-md center gap-2 h-14">
       <Image
         src={Logo}
         alt="admin panel logo"
@@ -12,7 +12,7 @@ export default function BrandLogo() {
         width={32}
         sizes="33"
       ></Image>
-      <h2 className="text-lg font-semibold">Admin Panel</h2>
+      <h2 className="text-lg font-bold">Admin Panel</h2>
     </Link>
   );
 }

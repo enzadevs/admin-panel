@@ -13,7 +13,7 @@ export default function UpdateBrandPage({ params }) {
   const titleRef = useRef();
 
   const { data, isLoading, isError } = UseFetcher(
-    `http://localhost:5000/manage/brands/fetch/${params.id}`
+    `http://localhost:3001/manage/brands/fetch/${params.id}`
   );
 
   if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
@@ -31,7 +31,7 @@ export default function UpdateBrandPage({ params }) {
       formData.append("brandLogo", selectedFile);
       formData.append("title", titleRef.current.value);
       const response = await fetch(
-        `http://localhost:5000/manage/brands/update/${params.id}`,
+        `http://localhost:3001/manage/brands/update/${params.id}`,
         {
           method: "PATCH",
           body: formData,
@@ -39,12 +39,14 @@ export default function UpdateBrandPage({ params }) {
       );
 
       if (response.ok) {
-        SuccessToast({ successText: "Бренд был успешно обновлен." });
+        const responseData = await response.json();
+        SuccessToast({ successText: responseData.message });
         setTimeout(() => {
           window.location.href = "/home/manage/brands";
         }, 1250);
       } else {
-        ErrorToast({ errorText: "Пожалуйста наполните все поля." });
+        const responseData = await response.json();
+        ErrorToast({ errorText: responseData.message });
       }
     } catch (error) {
       if (error.response) {
@@ -65,7 +67,7 @@ export default function UpdateBrandPage({ params }) {
   return (
     <form className="flex flex-col gap-4">
       <div className="flex-row-center justify-between">
-        <h2 className="text-lg font-semibold w-fit">Обновить рекламу</h2>
+        <h2>Обновить рекламу</h2>
         <button
           type="submit"
           onClick={handleUpdate}
@@ -76,14 +78,18 @@ export default function UpdateBrandPage({ params }) {
         </button>
       </div>
       <div className="flex flex-col gap-2 md:flex md:flex-row md:gap-4">
-        <div className="flex flex-col gap-4 justify-between md:flex-[50%] md:max-w-[50%]">
-          <input
-            id="title"
-            type="text"
-            ref={titleRef}
-            placeholder={data ? data.title : ""}
-            className="input-outline px-4 h-10 w-full"
-          ></input>
+        <div className="flex flex-col gap-4 justify-between h-fit md:flex-[50%] md:max-w-[50%]">
+          <div className="flex-row-center gap-2">
+            <label htmlFor="brandTitle">Имя товара :</label>
+            <input
+              id="title"
+              name="brandTitle"
+              type="text"
+              ref={titleRef}
+              placeholder={data ? data.title : ""}
+              className="input-outline px-4 h-10 grow"
+            ></input>
+          </div>
           <input
             type="file"
             name="brandLogo"
@@ -92,10 +98,10 @@ export default function UpdateBrandPage({ params }) {
             className="custom-file-input"
           ></input>
         </div>
-        <div className="bg-white shadow-md rounded-lg text-center center flex-col gap-2 h-72 md:flex-[50%] md:max-w-[50%] w-full">
+        <div className="bg-white shadow-md rounded-lg text-center center flex-col gap-2 h-40 md:flex-[50%] md:max-w-[50%] w-full">
           <>Рекомендуемый размер изображения 100 x 100</>
           {selectedFile ? (
-            <div className="relative block h-52 w-full">
+            <div className="relative block h-20 w-20">
               {selectedFile && selectedFile instanceof File && (
                 <Image
                   src={URL.createObjectURL(selectedFile)}
@@ -107,9 +113,9 @@ export default function UpdateBrandPage({ params }) {
               )}
             </div>
           ) : (
-            <div className="center relative h-52 w-72">
+            <div className="center relative h-20 w-20">
               <Image
-                src={"http://localhost:5000/images/" + data.logo}
+                src={"http://localhost:3001/images/" + data.logo}
                 alt="image of brand"
                 className="object-contain"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw"

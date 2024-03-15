@@ -1,0 +1,5 @@
+onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      createNewStatus(e);
+                    }
+                  }}
