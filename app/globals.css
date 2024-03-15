@@ -84,7 +84,7 @@ h2 {
 }
 
 .custom-list-item {
-  @apply cursor-pointer rounded-lg transition hover:bg-keppel-50;
+  @apply cursor-pointer rounded-lg transition hover:bg-mercury;
 }
 
 .custom-hover-fx {

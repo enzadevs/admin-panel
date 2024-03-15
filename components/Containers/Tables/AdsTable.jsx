@@ -87,7 +87,7 @@ export const AdsTable = ({ rows }) => {
               {renderArrows("description")}
             </th>
             <th onClick={() => toggleSortByField("incomeValue")}>
-              Прибыль {"ман"}
+              Прибыль {"(М)"}
               {renderArrows("incomeValue")}
             </th>
             <th>Изображение</th>

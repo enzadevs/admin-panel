@@ -26,7 +26,7 @@ export default function ManageBrandsPage() {
         <h2>Управление брендами</h2>
         <Link
           href="/home/manage/brands/new"
-          className="button-primary flex-row center gap-2 px-4 w-fit"
+          className="button-primary flex-row center gap-2 px-4 h-10 w-fit"
         >
           <HiOutlinePlusSm className="icons" />
           Добавить

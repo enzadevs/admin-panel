@@ -65,7 +65,7 @@ export default function NewBrandPage() {
         </button>
       </div>
       <div className="flex flex-col gap-2 md:flex md:flex-row md:gap-4">
-        <div className="flex flex-col gap-4 justify-between md:flex-[50%] md:max-w-[50%]">
+        <div className="flex flex-col gap-4 justify-between md:flex-[50%] h-fit md:max-w-[50%]">
           <input
             name="title"
             type="text"

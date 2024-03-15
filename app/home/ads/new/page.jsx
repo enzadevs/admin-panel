@@ -32,7 +32,7 @@ export default function NewAdPage() {
         "endDate",
         new Date(endDateRef.current.value).toISOString().slice(0, 10)
       );
-      const response = await fetch("http://localhost:5000/ads/create", {
+      const response = await fetch("http://localhost:3001/ads/new/", {
         method: "POST",
         body: formData,
       });
@@ -119,7 +119,7 @@ export default function NewAdPage() {
             className="custom-file-input"
           ></input>
         </div>
-        <div className="bg-calm-50 shadow-md rounded-lg text-center center flex-col gap-2 p-4 h-72 md:flex-[50%] md:max-w-[50%] w-full">
+        <div className="border border-mercury shadow-md rounded-lg text-center center flex-col gap-2 p-4 h-[250px] md:flex-[50%] md:max-w-[50%] w-full">
           <>Рекомендуемый размер изображения 1360 x 360</>
           {selectedFile ? (
             <div className="relative block h-52 w-full">
@@ -135,7 +135,7 @@ export default function NewAdPage() {
             </div>
           ) : (
             <div className="center h-52 w-72">
-              <IoImageOutline className="animate-pulse h-48 w-48" />
+              <IoImageOutline className="bg-mercury animate-pulse h-32 w-32" />
             </div>
           )}
         </div>

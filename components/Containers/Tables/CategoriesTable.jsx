@@ -77,30 +77,22 @@ export const CategoriesTable = ({ rows }) => {
       </div>
       <table className="table w-full">
         <thead>
-          <tr className="border-b border-gray-200">
+          <tr className="border-b border-mercury-200">
             <th onClick={() => toggleSortByField("id")}>
               Номер
               {renderArrows("id")}
             </th>
-            <th onClick={() => toggleSortByField("title")}>
-              Описание
-              {renderArrows("title")}
+            <th onClick={() => toggleSortByField("titleRu")}>
+              Имя (Ru)
+              {renderArrows("titleRu")}
             </th>
-            <th onClick={() => toggleSortByField("createdAt")}>
-              Создано
-              {renderArrows("createdAt")}
+            <th onClick={() => toggleSortByField("titleTm")}>
+              Ady (Tm)
+              {renderArrows("titleTm")}
             </th>
-            <th onClick={() => toggleSortByField("updatedAt")}>
-              Обновлено
-              {renderArrows("updatedAt")}
-            </th>
-            <th onClick={() => toggleSortByField("subCategoryCount")}>
-              Количество под категорий
-              {renderArrows("subCategoryCount")}
-            </th>
-            <th onClick={() => toggleSortByField("productCount")}>
-              Количество продуктов
-              {renderArrows("productCount")}
+            <th onClick={() => toggleSortByField("titleEn")}>
+              Name (En)
+              {renderArrows("titleEn")}
             </th>
           </tr>
         </thead>
@@ -108,24 +100,26 @@ export const CategoriesTable = ({ rows }) => {
           {sortedRows.map((row, index) => (
             <tr
               key={index}
-              className="border-b border-gray-200 cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
+              className="border-b border-gray-200 cursor-pointer transition hover:bg-mercury hover:text-keppel-600"
             >
-              {Object.values(row).map((entry, columnIndex) => (
-                <td
-                  onClick={() =>
-                    router.push(`/home/manage/categories/${row.id}`)
-                  }
-                  key={columnIndex}
-                >
-                  {entry}
-                </td>
-              ))}
+              {Object.values(row)
+                .slice(0, 4)
+                .map((entry, columnIndex) => (
+                  <td
+                    onClick={() =>
+                      router.push(`/home/manage/categories/${row.id}`)
+                    }
+                    key={columnIndex}
+                  >
+                    {entry}
+                  </td>
+                ))}
             </tr>
           ))}
         </tbody>
       </table>
       {!sortedRows.length && (
-        <div className="bg-yellow-300 border border-yellow-400 rounded-lg center text-xs md:text-sm mt-4 px-4 h-20">
+        <div className="bg-yellow-300  rounded-lg center text-xs md:text-sm mt-4 px-4 h-20">
           Ничего не нашлось.
         </div>
       )}

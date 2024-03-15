@@ -110,7 +110,7 @@ export default function SignInContainer() {
               />
             </div>
             <button
-              className="button-primary center gap-2"
+              className="button-primary center gap-2 h-10"
               disabled={isSubmitting}
               type="submit"
             >

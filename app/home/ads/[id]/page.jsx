@@ -16,7 +16,7 @@ export default function UpdateAdDataPage({ params }) {
   const endDateRef = useRef();
 
   const { data, isLoading, isError } = UseFetcher(
-    `http://localhost:5000/ads/fetch/${params.id}`
+    `http://localhost:3001/ads/fetch/${params.id}`
   );
 
   if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
@@ -41,7 +41,7 @@ export default function UpdateAdDataPage({ params }) {
       formData.append("endDate", endDateRef.current.value || data?.endDate);
 
       const response = await fetch(
-        `http://localhost:5000/ads/update/${params.id}`,
+        `http://localhost:3001/ads/update/${params.id}`,
         {
           method: "PATCH",
           body: formData,
@@ -145,10 +145,10 @@ export default function UpdateAdDataPage({ params }) {
               )}
             </div>
           ) : (
-            <div className="center relative h-52 w-72">
+            <div className="center relative h-52 w-full">
               <Image
-                src={"http://localhost:5000/images/" + data.posterImage}
-                alt="image"
+                src={"http://localhost:3001/images/" + data.posterImage}
+                alt="ad image"
                 className="object-contain"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw"
                 fill

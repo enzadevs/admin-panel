@@ -6,7 +6,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export function UseFetcher(url) {
   const { data, error, isLoading } = useSWR(url, fetcher, {
-    refreshInterval: 2500,
+    refreshInterval: 1250,
   });
 
   return {
