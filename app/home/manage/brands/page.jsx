@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import useSWR from "swr";
+import { UseFetcher } from "utils/UseFetcher";
 import LoadingBlock from "components/Functions/LoadingBlock";
 import ErrorBlock from "components/Functions/ErrorBlock";
 import { BrandsTable } from "components/Containers/Tables/BrandsTable";
@@ -10,12 +10,8 @@ import { HiOutlinePlusSm } from "react-icons/hi";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ManageBrandsPage() {
-  const { data, error, isLoading } = useSWR(
-    "http://localhost:3001/manage/brands/all",
-    fetcher,
-    {
-      refreshInterval: 1750,
-    }
+  const { data, error, isLoading } = UseFetcher(
+    "http://localhost:3001/manage/brands/all"
   );
   if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
   if (error) return <ErrorBlock height={"h-20 lg:h-32"} width="w-full" />;

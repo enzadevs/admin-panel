@@ -147,7 +147,7 @@ export default function PaymentTypesForm() {
       </dialog>
       <ul className="flex flex-col">
         {paymentTypes?.length === 0 ? (
-          <p className="bg-yellow-300 rounded-lg center text-xs md:text-sm px-4 h-10">
+          <p className="bg-yellow-300 rounded-lg center px-4 h-10">
             Ничего нет.
           </p>
         ) : (

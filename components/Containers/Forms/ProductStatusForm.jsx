@@ -144,7 +144,7 @@ export default function ProductStatusForm() {
       </dialog>
       <ul className="flex flex-col">
         {statuses?.length === 0 ? (
-          <p className="bg-yellow-300 rounded-lg center text-xs md:text-sm px-4 h-10">
+          <p className="bg-yellow-300 rounded-lg center px-4 h-10">
             Статусов нет.
           </p>
         ) : (

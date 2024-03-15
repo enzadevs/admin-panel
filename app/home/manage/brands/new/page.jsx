@@ -30,7 +30,7 @@ export default function NewBrandPage() {
         SuccessToast({ successText: responseData.message });
         setTimeout(() => {
           window.location.href = "/home/manage/brands";
-        }, 1250);
+        }, 500);
       } else {
         const responseData = await response.json();
         ErrorToast({ errorText: responseData.message });

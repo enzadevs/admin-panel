@@ -67,14 +67,14 @@ export default function UpdateBrandPage({ params }) {
   return (
     <form className="flex flex-col gap-4">
       <div className="flex-row-center justify-between">
-        <h2>Обновить рекламу</h2>
+        <h2>Обновить бренд</h2>
         <button
           type="submit"
           onClick={handleUpdate}
           className="button-primary center gap-2 px-4 h-10 w-fit"
         >
-          <>Обновить</>
           <IoSaveOutline className="icons" />
+          Обновить
         </button>
       </div>
       <div className="flex flex-col gap-2 md:flex md:flex-row md:gap-4">

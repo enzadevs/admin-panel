@@ -184,9 +184,12 @@ export default function ViewCategoryPage({ params }) {
                 {data?.products.map((item) => {
                   return (
                     <li key={item.id}>
-                      <div className="custom-list-item border-b flex-row-center justify-between line-clamp-1 px-4 h-10 w-full">
+                      <div
+                        // href={"/home/products/fetch/" + item.id}
+                        className="custom-list-item border-b flex-row-center justify-between line-clamp-1 px-4 h-10 w-full"
+                      >
                         <p>{item.titleRu}</p>
-                        <p>{item.sellPrice + "М"}</p>
+                        <p className="font-bold">{item.sellPrice + " М"}</p>
                       </div>
                     </li>
                   );
