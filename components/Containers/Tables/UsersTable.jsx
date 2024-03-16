@@ -81,10 +81,7 @@ export const UsersTable = ({ rows }) => {
               {renderArrows("firstName")}
             </th>
             <th>Номер телефона</th>
-            <th onClick={() => toggleSortByField("address")}>
-              Адрес
-              {renderArrows("address")}
-            </th>
+            <th>Адрес</th>
             <th onClick={() => toggleSortByField("role")}>
               Роль
               {renderArrows("role")}
@@ -117,7 +114,7 @@ export const UsersTable = ({ rows }) => {
         </tbody>
       </table>
       {!sortedRows.length && (
-        <div className="bg-yellow-300  rounded-lg center mt-4 px-4 h-20">
+        <div className="bg-yellow-300 rounded-lg center mt-4 px-4 h-20">
           Ничего не нашлось.
         </div>
       )}

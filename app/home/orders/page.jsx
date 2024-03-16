@@ -1,11 +1,9 @@
 "use client";
 
-import { UseFetcher } from "utils/UseFetcher";
 import LoadingBlock from "components/Functions/LoadingBlock";
 import ErrorBlock from "components/Functions/ErrorBlock";
+import { UseFetcher } from "utils/UseFetcher";
 import { OrdersTable } from "components/Containers/Tables/OrdersTable";
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function AdsPage() {
   const { data, error, isLoading } = UseFetcher(

@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 export default function SubCategoriesSelector({
   selectData,
   placeholder,
-  className,
   onSelect,
 }) {
   const [filteredSelectData, setFilteredSelectData] = useState([]);
@@ -35,7 +34,7 @@ export default function SubCategoriesSelector({
   return (
     <Select
       options={filteredSelectData}
-      className={className}
+      className="w-full"
       placeholder={placeholder}
       onChange={handleSelectChange}
     />

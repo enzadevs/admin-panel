@@ -29,7 +29,7 @@ export default function ImagesSwiper({ images }) {
           <SwiperSlide key={index}>
             <div className="relative h-full w-full">
               <Image
-                src={"http://localhost:5000/images/" + file}
+                src={"http://localhost:3001/images/" + file}
                 alt="image of product"
                 className="object-contain"
                 sizes="100vw"
@@ -56,7 +56,7 @@ export default function ImagesSwiper({ images }) {
               onClick={(e) => e.preventDefault()}
             >
               <Image
-                src={"http://localhost:5000/images/" + file}
+                src={"http://localhost:3001/images/" + file}
                 alt="thumbnail of currently selected image"
                 className="bg-white border border-grey-200 shadow-md rounded-lg p-2 md:p-4 object-contain"
                 sizes="100vw"

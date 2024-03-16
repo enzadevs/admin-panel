@@ -83,6 +83,8 @@ export default function NewProductPage() {
       const formData = new FormData();
       formData.append("barcode", barcodeRef.current.value);
       formData.append("titleRu", titleRuRef.current.value);
+      formData.append("titleTm", titleTmRef.current.value);
+      formData.append("titleEn", titleEnRef.current.value);
       formData.append("brandId", brandSelection);
       formData.append("arrivalPrice", arrivalPriceRef.current.value);
       formData.append("sellPrice", sellPriceRef.current.value);
@@ -102,10 +104,10 @@ export default function NewProductPage() {
       });
 
       if (response.ok) {
-        SuccessToast({ successText: "Продукт был успешно создан." });
+        SuccessToast({ successText: "Продукт добавлен." });
         setTimeout(() => {
           window.location.href = "/home/products";
-        }, 1250);
+        }, 500);
       } else {
         ErrorToast({ errorText: "Пожалуйста наполните все поля." });
       }
@@ -169,21 +171,33 @@ export default function NewProductPage() {
             className="input-outline px-4 h-10 w-full"
           ></input>
           <input
-            name="title"
+            name="titleRu"
             type="text"
             ref={titleRuRef}
             placeholder="Имя продукта"
             className="input-outline px-4 h-10 w-full"
           ></input>
+          <input
+            name="titleTm"
+            type="text"
+            ref={titleTmRef}
+            placeholder="Harydyň ady"
+            className="input-outline px-4 h-10 w-full"
+          ></input>
+          <input
+            name="titleEn"
+            type="text"
+            ref={titleEnRef}
+            placeholder="Title of product"
+            className="input-outline px-4 h-10 w-full"
+          ></input>
           <BrandSelector
             selectData={brands}
-            className="h-10"
             placeholder="Бренд"
             onSelect={handleBrandSelection}
           />
           <Selector
             selectData={unitTypes}
-            className="h-10"
             placeholder="Ед. измерения"
             onSelect={handleUnitTypeSelection}
           />
@@ -217,19 +231,16 @@ export default function NewProductPage() {
           ></input>
           <Selector
             selectData={categories}
-            className="h-10"
             placeholder="Категория"
             onSelect={handleCategorySelection}
           />
           <SubCategoriesSelector
             selectData={subCategories}
-            className="h-10"
             placeholder="Под категория"
             onSelect={handleSubCategorySelection}
           />
           <Selector
             selectData={productStatuses}
-            className="h-10"
             placeholder="Статус продукта"
             onSelect={handleStatusSelection}
           />
