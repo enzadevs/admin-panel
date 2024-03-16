@@ -1,5 +1,8 @@
 "use client";
 
+import LoadingBlock from "components/Functions/LoadingBlock";
+import ErrorBlock from "components/Functions/ErrorBlock";
+import { UseFetcher } from "utils/UseFetcher";
 import dynamic from "next/dynamic";
 const CurrentMonthSalesChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -9,12 +12,19 @@ const CurrentMonthVisitorsChart = dynamic(() => import("react-apexcharts"), {
 });
 
 export default function SalesAndRevenue() {
+  const { data, isLoading, isError } = UseFetcher(
+    "http://localhost:3001/visitor/currentmonth"
+  );
+
+  if (isLoading) return <LoadingBlock height={"h-20 lg:h-32"} width="w-full" />;
+  if (isError) return <ErrorBlock height={"h-20 lg:h-32"} width="w-full" />;
+
   const daysOfMonth = {
     chart: {
       id: "month-revenue",
     },
     xaxis: {
-      categories: Array.from({ length: 30 }, (_, i) => (i + 1).toString()),
+      categories: data.daysOfMonth,
     },
   };
 
@@ -40,10 +50,7 @@ export default function SalesAndRevenue() {
   const visitorsCount = [
     {
       name: "Количество посетителей",
-      data: Array.from(
-        { length: 30 },
-        () => Math.floor(Math.random() * (2000 - 1000 + 1)) + 1000
-      ),
+      data: data.series,
       color: "#7e22ce",
     },
   ];
@@ -67,8 +74,7 @@ export default function SalesAndRevenue() {
       </div>
       <div className="chart-box">
         <div className="flex-row-center items-center gap-2 pl-4 h-10">
-          <p className="text-keppel-600 font-bold">Посетители /</p>
-          <p>(ман.)</p>
+          <p className="text-keppel-600 font-bold">Посетители</p>
         </div>
         <CurrentMonthVisitorsChart
           type="area"

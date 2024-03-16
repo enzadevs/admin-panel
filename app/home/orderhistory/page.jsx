@@ -3,8 +3,9 @@
 import LoadingBlock from "components/Functions/LoadingBlock";
 import ErrorBlock from "components/Functions/ErrorBlock";
 import { UseFetcher } from "utils/UseFetcher";
+import { OrdersTable } from "components/Containers/Tables/OrdersTable";
 
-export default function CurrentOrdersPage() {
+export default function OrdersPage() {
   const { data, error, isLoading } = UseFetcher(
     "http://localhost:3001/orders/all"
   );
@@ -13,7 +14,8 @@ export default function CurrentOrdersPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2>Текущие заказы</h2>
+      <h2>Список заказов</h2>
+      <OrdersTable rows={data} />
     </div>
   );
 }

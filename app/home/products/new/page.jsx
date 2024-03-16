@@ -109,7 +109,7 @@ export default function NewProductPage() {
           window.location.href = "/home/products";
         }, 500);
       } else {
-        ErrorToast({ errorText: "Пожалуйста наполните все поля." });
+        ErrorToast({ errorText: "Товар с таким баркодом уже есть." });
       }
     } catch (error) {
       if (error.response) {

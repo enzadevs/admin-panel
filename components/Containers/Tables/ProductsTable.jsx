@@ -76,10 +76,10 @@ export const ProductsTable = ({ rows }) => {
       <table className="w-full table">
         <thead>
           <tr className="border-b border-gray-200">
-            <th onClick={() => toggleSortByField("id")}>
+            {/* <th onClick={() => toggleSortByField("id")}>
               Номер
               {renderArrows("id")}
-            </th>
+            </th> */}
             <th onClick={() => toggleSortByField("barcode")}>
               Баркод
               {renderArrows("barcode")}
@@ -129,9 +129,9 @@ export const ProductsTable = ({ rows }) => {
                 (window.location.href = `/home/products/${row.id}`)
               }
               key={index}
-              className="border-b border-gray-200 cursor-pointer transition hover:bg-calm-50 hover:text-calm-600"
+              className="border-b border-mercury cursor-pointer transition hover:bg-mercury hover:text-keppel-600"
             >
-              <td>{row.id}</td>
+              {/* <td>{row.id}</td> */}
               <td>{row.barcode}</td>
               <td>{row.titleRu}</td>
               <td>{row.brand?.title}</td>

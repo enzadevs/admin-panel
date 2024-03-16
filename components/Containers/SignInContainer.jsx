@@ -31,7 +31,7 @@ export default function SignInContainer() {
         SuccessToast({ successText: "Вы успешно вошли в аккаунт." });
         setTimeout(() => {
           window.location.href = "/home";
-        }, 1000);
+        }, 500);
       } else {
         const error = await response.json();
         ErrorToast({

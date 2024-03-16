@@ -4,6 +4,8 @@ import { BsBoxSeam, BsCart2 } from "react-icons/bs";
 import { LuUsers2 } from "react-icons/lu";
 import { TbDeviceDesktopCheck } from "react-icons/tb";
 import { PiChartLineUp } from "react-icons/pi";
+import { BiMessageSquareDots } from "react-icons/bi";
+import { GoHistory } from "react-icons/go";
 
 export default function SideBarMenu() {
   return (
@@ -20,7 +22,7 @@ export default function SideBarMenu() {
         className="button-outline flex-row-center gap-2 px-2 h-10"
       >
         <BsCart2 className="icons" />
-        <p>Заказы</p>
+        <p>Текущие заказы</p>
       </Link>
       <Link
         href="/home/products"
@@ -30,6 +32,13 @@ export default function SideBarMenu() {
         <p>Товары</p>
       </Link>
       <Link
+        href="/home/ads"
+        className="button-outline flex-row-center gap-2 px-2 h-10"
+      >
+        <TbDeviceDesktopCheck className="icons" />
+        <p>Реклама</p>
+      </Link>
+      <Link
         href="/home/users"
         className="button-outline flex-row-center gap-2 px-2 h-10"
       >
@@ -37,19 +46,26 @@ export default function SideBarMenu() {
         <p>Пользователи</p>
       </Link>
       <Link
-        href="/home/ads"
+        href="/home/messages"
         className="button-outline flex-row-center gap-2 px-2 h-10"
       >
-        <TbDeviceDesktopCheck className="icons" />
-        <p>Реклама</p>
+        <BiMessageSquareDots className="icons" />
+        <p>Сообщения</p>
       </Link>
-      {/* <Link
+      <Link
+        href="/home/orderhistory"
+        className="button-outline flex-row-center gap-2 px-2 h-10"
+      >
+        <GoHistory className="icons" />
+        <p>История заказов</p>
+      </Link>
+      <Link
         href="/home/analytics"
         className="button-outline flex-row-center gap-2 px-2 h-10"
       >
         <PiChartLineUp className="icons" />
         <p>Аналитика</p>
-      </Link> */}
+      </Link>
       <Link
         href="/home/settings"
         className="button-outline flex-row-center gap-2 px-2 h-10"

@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Заказы",
+  title: "Текущие заказы",
 };
 
-export default function OrdersLayout({ children }) {
+export default function CurrentOrdersLayout({ children }) {
   return <div className="min-h-[768px]">{children}</div>;
 }
