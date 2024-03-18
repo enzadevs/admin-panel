@@ -45,13 +45,13 @@ export default function SideBarMenu() {
         <LuUsers2 className="icons" />
         <p>Пользователи</p>
       </Link>
-      <Link
+      {/* <Link
         href="/home/messages"
         className="button-outline flex-row-center gap-2 px-2 h-10"
       >
         <BiMessageSquareDots className="icons" />
         <p>Сообщения</p>
-      </Link>
+      </Link> */}
       <Link
         href="/home/orderhistory"
         className="button-outline flex-row-center gap-2 px-2 h-10"

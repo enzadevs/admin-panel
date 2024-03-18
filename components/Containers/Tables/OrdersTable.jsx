@@ -107,17 +107,19 @@ export const OrdersTable = ({ rows }) => {
         <tbody>
           {sortedRows?.map((row, index) => (
             <tr
-              onClick={() => (window.location.href = `/home/orders/${row.id}`)}
+              // onClick={() =>
+              //   (window.location.href = `/home/orderhistory/${row.id}`)
+              // }
               key={index}
-              className="border-b border-mercury-200 cursor-pointer transition hover:bg-mercury-200 hover:text-keppel-600"
+              className="border-b border-mercury-200 transition hover:bg-mercury-200 hover:text-keppel-600"
             >
               <td>{row.id}</td>
               <td>{row.sum}</td>
               <td>{row.customer?.firstName}</td>
               <td>{row.customer?.phoneNumber}</td>
-              <td>{row.deliveryType?.title}</td>
-              <td>{row.paymentType?.title}</td>
-              <td>{row.orderStatus?.title}</td>
+              <td>{row.deliveryType?.titleRu}</td>
+              <td>{row.paymentType?.titleRu}</td>
+              <td>{row.orderStatus?.titleRu}</td>
               <td>{row.createdAt}</td>
             </tr>
           ))}

@@ -18,7 +18,9 @@ export default function OrderSum() {
       <div className="flex flex-col flex-[75%] h-full max-w-[75%]">
         <p className="border-b flex items-center pl-2 h-8">Общая сумма</p>
         <div className="center grow">
-          <p className="font-semibold text-lg lg:text-xl">{stats.overallSum}</p>
+          <p className="font-semibold text-lg lg:text-xl">
+            {stats.overallSum ? stats.overallSum + " М" : null}
+          </p>
         </div>
       </div>
       <span className="border-l center flex-[25%] h-full max-w-[25%]">
