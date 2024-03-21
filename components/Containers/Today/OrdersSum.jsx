@@ -19,7 +19,7 @@ export default function OrderSum() {
         <p className="border-b flex items-center pl-2 h-8">Общая сумма</p>
         <div className="center grow">
           <p className="font-semibold text-lg lg:text-xl">
-            {stats.overallSum ? stats.overallSum + " М" : null}
+            {stats.overallSum ? stats.overallSum + " М" : 0}
           </p>
         </div>
       </div>

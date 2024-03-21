@@ -17,7 +17,7 @@ export default function RevenueSummary() {
         <p className="border-b flex items-center pl-2 h-8">Выгода</p>
         <div className="center grow">
           <p className="font-semibold text-lg lg:text-xl">
-            {data.revenue ? data.revenue + " М" : null}
+            {data.revenue ? data.revenue + " М" : 0}
           </p>
         </div>
       </div>
