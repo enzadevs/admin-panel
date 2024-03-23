@@ -23,6 +23,7 @@ export default function OrderPage({ params }) {
     address,
     comment,
     customer,
+    phoneNumber,
     deliveryType,
     paymentType,
     orderStatus,
@@ -68,6 +69,14 @@ export default function OrderPage({ params }) {
     }
   };
 
+  function confirmAndUpdateStatus(id, title) {
+    if (
+      window.confirm(`Вы уверены, что хотите изменить статус на "${title}"?`)
+    ) {
+      handleStatusUpdate(id);
+    }
+  }
+
   return (
     <div className="flex flex-col gap-2">
       <h2>Номер заказа: {params.id}</h2>
@@ -79,7 +88,7 @@ export default function OrderPage({ params }) {
           </li>
           <li className="border-b flex-row-center justify-between gap-2 h-10">
             <p>Номер телефона:</p>
-            <p className="font-semibold">{customer.phoneNumber}</p>
+            <p className="font-semibold">{phoneNumber}</p>
           </li>
           <li className="border-b flex-row-center justify-between gap-2 h-10">
             <p>Адрес:</p>
@@ -109,12 +118,12 @@ export default function OrderPage({ params }) {
             <p>Обновлено:</p>
             <p className="font-semibold">{updatedAt}</p>
           </li>
-          <li className="flex-row-center justify-between gap-2 h-10">
-            <p>Сумма:</p>
-            <p className="font-semibold">{sum}</p>
-          </li>
         </div>
         <div className="bg-white rounded-lg shadow-md flex flex-col gap-2 px-4 w-full">
+          <div className="border-b border-gallery-200 flex-row-center justify-between text-base h-10">
+            Сумма:
+            <p className="text-base font-bold">{sum}М</p>
+          </div>
           <h3 className="flex-row-center justify-between gap-2 font-bold h-10">
             Продукты
           </h3>
@@ -124,12 +133,13 @@ export default function OrderPage({ params }) {
               return (
                 <div
                   key={item.id}
-                  className="bg-mercury rounded-lg flex-row-center gap-2 px-2 h-10"
+                  className="bg-mercury border border-gallery-200 rounded-md flex-row-center gap-2 p-2"
                 >
                   <div className="relative h-10 w-10">
                     <Image
                       src={
-                        `http://localhost:3001/images/` + item.product?.images
+                        `http://localhost:3001/images/` +
+                        item.product?.images[0]
                       }
                       alt="image"
                       className="object-contain"
@@ -137,39 +147,44 @@ export default function OrderPage({ params }) {
                       fill
                     ></Image>
                   </div>
-                  <Link
-                    href={`/home/products/` + item.product?.id}
-                    className="nav-link"
-                  >
-                    {item.product?.titleRu}
-                  </Link>
+                  <div className="flex flex-col">
+                    Имя
+                    <Link
+                      href={`/home/products/` + item.product?.id}
+                      className="font-bold"
+                    >
+                      {item.product?.titleRu}
+                    </Link>
+                  </div>
                   <div className="ml-auto flex-row-center gap-2">
-                    <p className="text-end font-bold w-16">
-                      {item.quantity} шт.
-                    </p>
-                    <p className="text-end font-bold w-16">
-                      {(value = item.quantity * item.product.sellPrice)} М
-                    </p>
+                    <div className="flex flex-col">
+                      Количество
+                      <p className="font-bold">{item.quantity} шт.</p>
+                    </div>
+                    <div className="flex flex-col">
+                      Сумма
+                      <p className="font-bold">
+                        {(value = item.quantity * item.product.sellPrice)} М
+                      </p>
+                    </div>
                   </div>
                 </div>
               );
             })}
           </div>
-          <div className="flex-row-center gap-4">
-            <h3 className="flex-row-center justify-between gap-2 font-bold h-10">
-              Изменить статус:
-            </h3>
+          <div className="flex-row-center justify-start gap-4">
             {orderStatuses?.map((item) => {
               return (
                 <button
                   type="submit"
-                  onClick={() => handleStatusUpdate(item.id)}
+                  onClick={() => confirmAndUpdateStatus(item.id, item.titleRu)}
                   className="button-primary center gap-2 px-4 h-10 w-fit"
                   key={item.id}
                 >
                   {item.titleRu}
                 </button>
               );
+              s;
             })}
           </div>
         </div>
