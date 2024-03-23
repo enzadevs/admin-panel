@@ -8,7 +8,14 @@ export default function OrdersCount() {
   const [notificationPermission, setNotificationPermission] =
     useState("default");
   const [ordersCount, setOrdersCount] = useState(0);
-  const audioRef = useRef(new Audio("/bell.mp3"));
+  // const audioRef = useRef(new Audio("/bell.mp3"));
+  const audioRef = useRef(null);
+
+  try {
+    audioRef.current = new Audio("/bell.mp3");
+  } catch (error) {
+    console.error("Error initializing Audio:", error);
+  }
 
   useEffect(() => {
     Notification.requestPermission().then((permission) => {

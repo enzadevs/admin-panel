@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BsBoxSeam, BsCart2 } from "react-icons/bs";
 import { TbBrandAppgallery, TbCategory2 } from "react-icons/tb";
+import { MdOutlineNotificationAdd } from "react-icons/md";
 
 export default function ManagementPage() {
   return (
@@ -34,6 +35,13 @@ export default function ManagementPage() {
         >
           <TbCategory2 className="h-6 w-6 mr-2" />
           <p className="text-base">Настройки категорий</p>
+        </Link>
+        <Link
+          href="/home/manage/notification"
+          className="bg-white border rounded-lg flex-row center custom-hover-fx h-20 w-full"
+        >
+          <MdOutlineNotificationAdd className="h-6 w-6 mr-2" />
+          <p className="text-base">Настройки уведомлений</p>
         </Link>
       </div>
     </div>
