@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
     "@plaiceholder/next": "^3.0.0",
     "@vercel/postgres": "^0.7.2",
     "apexcharts": "^3.45.0",

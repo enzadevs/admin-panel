@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useRef } from "react";
 import { SuccessToast, ErrorToast } from "components/Functions/Toaster";
+import { RadioGroup } from "@headlessui/react";
 import { IoSaveOutline, IoImageOutline } from "react-icons/io5";
 
 export default function NewNotificationPage() {
@@ -10,10 +11,27 @@ export default function NewNotificationPage() {
   const [acceptsOrders, setAcceptsOrders] = useState(true);
   const textRef = useRef();
 
+  const isActiveArray = [
+    {
+      id: 0,
+      value: true,
+      text: "Да",
+    },
+    {
+      id: 1,
+      value: false,
+      text: "Нет",
+    },
+  ];
+
   function getFile(e) {
     const file = e.target.files[0];
     setSelectedFile(file || null);
   }
+
+  const handleIsActiveStatusChange = (e) => {
+    setAcceptsOrders(e.target.value);
+  };
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -30,6 +48,7 @@ export default function NewNotificationPage() {
       if (response.ok) {
         const responseData = await response.json();
         SuccessToast({ successText: responseData.message });
+        textRef.current.value = "";
       } else {
         const responseData = await response.json();
         ErrorToast({ errorText: responseData.message });
@@ -51,7 +70,7 @@ export default function NewNotificationPage() {
   };
 
   return (
-    <form className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <div className="flex-row-center justify-between">
         <h2>Новое объявление</h2>
         <button
@@ -74,28 +93,26 @@ export default function NewNotificationPage() {
           ></input>
           <div className="bg-white border rounded-lg shadow-sm flex-row-center gap-4 px-4 h-10">
             <p>Заказы принимаются:</p>
-            <div className="flex flex-row gap-4 ml-auto">
-              <label>
-                <input
-                  type="radio"
-                  name="acceptsOrders"
-                  value={true}
-                  checked={acceptsOrders === true}
-                  onChange={() => setAcceptsOrders(true)}
-                />
-                Да
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="acceptsOrders"
-                  value={false}
-                  checked={acceptsOrders === false}
-                  onChange={() => setAcceptsOrders(false)}
-                />
-                Нет
-              </label>
-            </div>
+            <RadioGroup className="flex-row-center gap-2 ml-auto h-full">
+              {isActiveArray.map((item) => (
+                <RadioGroup.Option value={item.value} key={item.id}>
+                  {({ checked }) => (
+                    <button
+                      onClick={handleIsActiveStatusChange}
+                      key={item.id}
+                      value={item.value}
+                      className={
+                        checked
+                          ? "button-primary center px-4 h-8"
+                          : "button-outline center px-4 h-8"
+                      }
+                    >
+                      {item.text}
+                    </button>
+                  )}
+                </RadioGroup.Option>
+              ))}
+            </RadioGroup>
           </div>
           <input
             type="file"
@@ -109,7 +126,7 @@ export default function NewNotificationPage() {
         <div className="bg-white shadow-md rounded-lg text-center center flex-col gap-2 p-4 h-72 md:flex-[50%] md:max-w-[50%] w-full">
           <>Рекомендуемый размер изображения 500 x 500</>
           {selectedFile ? (
-            <div className="relative block h-20 w-full">
+            <div className="relative block h-40 w-full">
               {selectedFile && selectedFile instanceof File && (
                 <Image
                   src={URL.createObjectURL(selectedFile)}
@@ -127,6 +144,6 @@ export default function NewNotificationPage() {
           )}
         </div>
       </div>
-    </form>
+    </div>
   );
 }
